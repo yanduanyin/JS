@@ -17,7 +17,7 @@
         <span>影片详情</span>
     </header>
     <div class="page">
-        <!-- section -->
+        <!-- section1 -->
         <section class="movie-header">
             <div class="movie">
                 <div class="movie-background"></div>
@@ -72,58 +72,153 @@
                     </div>
             </div>
         </section>
-        
+        <!-- section2 -->
+        <section class="section-seperate section-expander" >
+            <div class="text-expander" id="text-expander">
+                <div class="text-expander__content close">
+                    <p>如果珂珂能以 K 的进食速度最终吃完所有的香蕉（在 H 小时内），那么她也可以用更快的速度吃完。
+                        当珂珂能以 K 的进食速度吃完香蕉时，我们令 possible(K) 为 true，那么就存在 X 使得当 K >= X 时， possible(K) = True。
+                        举个例子，当初始条件为 piles = [3, 6, 7, 11] 和 H = 8 时，存在 X = 4 使得 possible(1) = possible(2) = possible(3) = False，且 possible(4) = possible(5) = ... = True
+                        </p>
+                </div>
+                <div class="text-expander_button">
+                    <i class="icon-chevron__down"></i>
+                </div>
+            </div>
+        </section>
+        <!-- section3 -->
+        <section class="section-seperate">
+            <p class="action-list section-title">演职人员</p>
+            <ul class="movie-celebrities">
+                <!-- <li>
+                    <a href="#" class="link">
+                        <div class="movie-celebrities__pic">
+                            <img src="http://p0.meituan.net/movie/665a25835d7332d503eb4c018ece473915209.jpg@250w_140h_1e_1c.webp" alt="">
+                        </div>
+                        <span class="movie-celebrities-nick">aaa</span>
+                        <span class="movie-celebrities-roles">bbb</span>
+                    </a>
+                </li> -->
+            </ul>
+        </section>
+        <!-- section4 -->
+        <section class="movie-booking section-seperate section-expander">
+            <p class="section-title">票房</p>
+            <div class="weui-flex">
+                <div class="weui-flex__item"><div class="placeholder">
+                    <span id="ranking"></span>
+                    <p>昨日票房</p>
+                </div></div>
+                <div class="weui-flex__item"><div class="placeholder">
+                    <span id="bookingWeek"></span>
+                    <p>首周票房(万)</p>
+                </div></div>
+                <div class="weui-flex__item"><div class="placeholder">
+                    <span id="bookingTotal"></span>
+                    <p>累计票房(万)</p>
+                </div></div>
+                </div>
+            </div>
+        </section>
+        <!-- toast -->
+        <div id="toast">
+            <div class="weui-mask_transparent"></div>
+            <div class="weui-toast">
+                <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+                <p class="weui-toast__content">已标记为想看</p>
+            </div>
+        </div>
     </div>
     <script>
-        (function(){
+        (function() {
             $.ajax({
-                url:'https://www.easy-mock.com/mock/5d2ed7c57f168b5e40d35f45/qtitem/y123',
-                type:'get',
-                success:function(res){
+                url: 'https://www.easy-mock.com/mock/5d2ed7a47f168b5e40d35ef7/movie/mymovie-learn',
+                type: 'get',
+                success: function(res) {
                     console.log(res)
-                    $('#moviePic').attr('src',res.data.moviePic)
+                    $('#moviePic').attr('src', res.data.moviePic)
                     $('.score-num span').html(res.data.people)
-                    $('.movie-name span').html(res.data.name)
-                    $('.movie-ename span').html(res.data.nameEnglish)
-                    $('.rating span').html(res.data.grade)
+                    $('.movie-content .movie-name span').html(res.data.name)
+                    $('.movie-content .movie-ename span').html(res.data.nameEnglish)
                     star(res.data.star)
+                    $('.rating-score').html(res.data.grade)
                     $('.movie-type').html(res.data.type)
-                    $('.address').html(res.data.where)
-                    $('.time').html(res.data.time)
-                    $('.date').html(res.data.date)
+                    $('.address-time .address').html(res.data.where)
+                    $('.address-time .time').html(res.data.time)
+                    $('.movie-detail .date').html(res.data.date)
+                    celebrity(res.data.person)
+                    booking(res.data.booking)
                 }
             })
 
             function star(e) {
                 let num = Math.floor(e)
-                //Math.floor()   向下取整函数
-                let white =Math.floor(5 - e)
-                for (let i = 0; i < white;i++) {
-                    $('#rating').prepend('<img class="img" src="./images/star2.png"></img>')
+                let white = Math.floor(5 - e)
+                for (let i = 0; i < white; i++) {
+                    $('#rating').prepend('<img class="img" src="./images/star2.png"></img>') 
                 }
-                if (e>num) {
+                if (e > num) {
                     $('#rating').prepend('<img class="img" src="./images/star-h.png"></img>')
                 }
-                for(let j = 0;j < num;j++){
+                for (let j = 0; j < num; j++) {
                     $('#rating').prepend('<img class="img" src="./images/star.png"></img>')
                 }
             }
-            $('#movie-watch').click(function(){
-                if($(this).hasClass('show')){
+
+            // 想看的点击事件
+            // let watch = document.getElementById('movie-watch')
+            // let toast = document.getElementById('toast')
+            // watch.addEventListener('click', function() {
+            //     toast.classList.add('active')
+            // })
+            $('#movie-watch').click(function() {
+                if ($(this).hasClass('show')) {
                     $(this).removeClass('show')
-                    $('#movie-watch img').attr('src','./images/heart.png')
-                    $('#toast .weui-toast_content').html('已取消想看')
-                }else{
+                    $('#movie-watch img').attr('src', './images/heart.png')
+                    $('#toast .weui-toast__content').html('已取消想看')
+                } else {
                     $('#movie-watch').addClass('show')
-                    $('#movie-watch img').attr('src','./images/heart1.png')
-                    $('#toast .weui-toast_content').html('已标记为想看')
+                    $('#movie-watch img').attr('src', './images/heart1.png')
+                    $('#toast .weui-toast__content').html('已标记为想看')
                 }
                 $('#toast').addClass('active')
-                setTimeout(()=>{
+                setTimeout(() => {
                     $('#toast').removeClass('active')
-
                 },2000)
             })
+            //收放详情
+            $('#text-expander').on('click',function(){
+                if( $('.text-expander__content').hasClass('close')) {
+                    $('.icon-chevron__down').addClass('up') 
+                    $('.text-expander__content').removeClass('close')
+                }else{
+                    $('.icon-chevron__down').removeClass('up') 
+                    $('.text-expander__content').addClass('close')
+                }
+               
+            })
+            //演员表
+            function celebrity(e){
+                for(let n of e){
+                    $('.movie-celebrities').append(
+                        `<li>
+                            <a href="#" class="link">
+                                <div class="movie-celebrities__pic">
+                                    <img src="${n.avatal}" alt="">
+                                </div>
+                                <span class="movie-celebrities-nick">${n.name}</span>
+                                <span class="movie-celebrities-roles">${n.sort}</span>
+                            </a>
+                        </li>`
+                    )
+                }
+            }
+            //票房
+            function booking(e) {
+                $('#ranking').html(e.ranking)
+                $('#bookingWeek').html(e.bookingWeek)
+                $('#bookingTotal').html(e.bookingTotal)
+            }
         })()
     </script>
 </body>
