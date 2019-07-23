@@ -10,6 +10,7 @@ html,body
 .section-title
     font-size 17px
     color #000
+    font-weight 700
 .action-list.section-title
     padding-left .4rem
 .nav
@@ -219,6 +220,82 @@ html,body
                     color #bababa
                     margin-top 0.1rem
                     // white-space nowrap
+.movie-photo
+    .movie-photo__lists
+        width 100%
+        box-sizing border-box
+        padding .3rem .3rem .2rem .3rem
+        white-space nowrap
+        overflow-x scroll
+        .stage-img-container
+            margin-right 0.13333rem
+            display inline-block
+            width 2.4rem
+            height 1.867rem
+            .movie-celebrities__pic
+                width 100%
+                height 100%
+                img 
+                    width 100%
+                    height 100%
+            &:first-child
+                width 3.3334rem
+                height 1.867rem
+            &:last-child
+                margin-right 0
+.section-seperate
+    padding 0.4rem
+    margin-bottom 0.3rem
+    border-top 1px solid $bd_color
+    .pos_r
+        position relative
+    .join-comment
+        // box-sizing border-box
+        position absolute
+        right 0
+        font-size 14px
+        background-color #e54847
+        color #fff
+        top 50%
+        transform translateY(-50%)
+        padding .1rem .3rem  
+        border-radius 20px
+    .movie-comment
+        padding 0.2rem 0 .4rem 0
+        overflow hidden
+        .comment-item
+            float left
+            padding .1rem 0.25rem
+            border 1px solid #aaa
+            border-radius 20px
+            margin-top 0.2rem
+            margin-right 0.3rem
+.tourist-pic
+    width 38px
+    height 38px
+    margin 18px 0 0 0
+    border-radius 50%
+    background #000
+    background-image url('./images/avatar.jpg')
+    background-size contain//让背景图片大小最大至适应容器大小
+.section-por
+    position relative
+    .tourist-wrap
+        position absolute
+        top 64px
+        left 70px
+        border-bottom 1px solid #bababa
+        .tourist
+            .tourist-message
+                .tourist-name
+                    display inline-block
+                img
+                    display inline-block
+                    width 15px
+                    height 15px
+.rimg
+    float right
+                
 #toast
     display none
 .active
