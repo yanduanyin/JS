@@ -274,10 +274,13 @@ html,body
     width 38px
     height 38px
     margin 18px 0 0 0
-    border-radius 50%
-    background #000
-    background-image url('./images/avatar.jpg')
-    background-size contain//让背景图片大小最大至适应容器大小
+    // background-image url('http://img3.duitang.com/uploads/item/201511/14/20151114125146_LXHzE.jpeg')
+    //background-size contain//让背景图片大小最大至适应容器大小
+    img 
+        display inline-block
+        border-radius 50%
+        width 100%
+        height 100%
 .section-por
     position relative
     .tourist-wrap
@@ -285,25 +288,54 @@ html,body
         top 64px
         left 70px
         border-bottom 1px solid #bababa
+        margin-bottom 50px
         .tourist
             .tourist-message
+                position relative
                 .tourist-name
-                    display inline-block
+                    float left
                 img
                     display inline-block
-                    width 15px
-                    height 15px
-.tourist-score
-    color rgba(135,135,135,.7)
+                    height 22px
+                .tourist-score
+                    position absolute
+                    top 20px
+                    color rgba(135,135,135,.7)
+.comment-bottom
+    width 307px
+    height 40px
+    position relative
 .comment-time
     color rgba(135,135,135,.7)
+    position absolute
+    left 0
+    top 50%
+    transform translate(-40%, -40%)
 .rimg
-    float right
+    // float right
+    display inline-block
+    width 18px
     position absolute
     top 0
     right 0
 .comment-content
-    margin 8px 37px 15px 0   
+    margin 25px 37px 15px 0 
+.dz-pl
+    float right
+    .dz  
+        display inline-block
+        border-radius 20px
+        border 1px solid #aaa
+        padding: 0.1rem 0.25rem;
+        margin-top: 0.2rem;
+        margin-right: 0.3rem;
+    .pl  
+        border-radius 20px
+        display inline-block
+        border 1px solid #aaa
+        padding: 0.1rem 0.25rem;
+        margin-top: 0.2rem;
+        margin-right: 0.3rem;
 .section-button 
     position fixed
     bottom 0px
@@ -317,13 +349,15 @@ html,body
         background #f54343
         color #fff
         font-size 22px
-        // text-align center
+        position relative
         span 
             display block
             width 88px
             height 33px
-            margin  auto 
-            
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%,-50%)
 
 #toast
     display none
