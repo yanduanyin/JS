@@ -335,12 +335,9 @@ body {
   width: 100%;
   height: 100%;
 }
-.section-por {
-  position: relative;
-}
 .section-por .tourist-wrap {
   position: absolute;
-  top: 64px;
+  top: 0px;
   left: 70px;
   border-bottom: 1px solid #bababa;
   margin-bottom: 50px;
@@ -364,13 +361,14 @@ body {
   width: 307px;
   height: 40px;
   position: relative;
+  padding-bottom: 17px;
 }
 .comment-time {
   color: rgba(135,135,135,0.7);
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translate(-40%, -40%);
+  transform: translate(0, -48%);
 }
 .rimg {
   display: inline-block;
@@ -424,6 +422,10 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.ul .li {
+  height: 380px;
+  position: relative;
 }
 #toast {
   display: none;
