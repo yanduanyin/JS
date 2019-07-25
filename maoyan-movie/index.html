@@ -186,33 +186,35 @@
         <section class="section-seperate section-expander section-por">
             <p class="section-title">精选</p>
             <div class="ul">
+                <!-- 此处为li结构 -->
                 <!-- <div class="li">
                     <div class="tourist-pic">
-                        <img src="http://img3.duitang.com/uploads/item/201511/14/20151114125146_LXHzE.jpeg" alt="" class="avatal">
+                        <img src="${k.avatal}" alt="" class="avatal">
                     </div>
                     <div class="tourist-wrap">
+                        
                         <div class="tourist">
                             <ul class="tourist-message">
-                                <li class="tourist-name nickName">许东红· Donna</li>
-                                <img src="http://p0.meituan.net/moviemachine/83a90e3a7dda4463963fbc7fb8c02ee32335.png" alt="#" class="lever">
-                                <li class="tourist-score">给这部电影打了10分</li>
+                                <li class="tourist-name nickName">${k.nickName}</li>
+                                <img src="${k.lever}" alt="#" class="lever">
+                                <li class="tourist-score">给这部电影打了<span>${k.grade}</span>分</li>
                             </ul>
                             <img src="./images/star.png" alt="#" class="rimg">
                         </div>
                         <div class="comment-content">
-                            <span class="detail">"可以说本片是今年至今为止，我看过的最好看的影片，没有之一！片子特别温情，除了开始有几个点比较搞笑外，我几乎事含着泪看完全场的—为师生间深刻的情感、为同学间真挚的友谊、为青春时美好的爱恋……总之，如果用一个词概括—"纯粹"，对，特别纯粹！我觉得凡70后、上过高中的人都应该走进影院，我想你会找到自己的影子(比如你曾就读是青岛三十九中😏 )。为于谦老师的演绎打CALL，老年的他一出现，我就泪崩了！特别想念我人生中对我影响至深的几位老师，深深地为你们祝福！"</span>
+                            <span class="detail">${k.detail}</span>
                         </div>
                         <div class="comment-bottom">
-                            <p class="comment-time date">3-22</p>
+                            <p class="comment-time date">${k.date}</p>
                             <div class="dz-pl">
                                 <div class="dz ">
                                     <div class="dz__sort">
-                                        <span class="dz__num">1248</span>
+                                        <span class="dz__num like">${k.like}</span>
                                     </div>
                                 </div>
                                 <div class="pl">
                                     <div class="dz__sort">
-                                        <span class="dz__num">1248</span>
+                                        <span class="dz__num reply">${k.reply}</span>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +235,7 @@
             <div class="weui-mask_transparent"></div>
             <div class="weui-toast">
                 <i class="weui-icon-success-no-circle weui-icon_toast"></i>
-                <p class="weui-toast__content">已标记为想看</p>
+                <p class="weui-toast__content"></p>
             </div>
         </div>
     </div>
@@ -300,6 +302,7 @@
             })
             //收放详情
             $('#text-expander').on('click',function(){
+                //hasClass  检查是否有'close'类名
                 if( $('.text-expander__content').hasClass('close')) {
                     $('.icon-chevron__down').addClass('up') 
                     $('.text-expander__content').removeClass('close')
@@ -354,14 +357,15 @@
                 $('.sameCity').html(e.sameCity)
                 $('.bought').html(e.bought)
             }
+            // 评论区
             function comments(e){
                 for(var k of e){
                     $('.ul').append(
                         `<div class="li">
-                    <div class="tourist-pic">
-                        <img src="${k.avatal}" alt="" class="avatal">
-                    </div>
                     <div class="tourist-wrap">
+                        <div class="tourist-pic">
+                            <img src="${k.avatal}" alt="" class="avatal">
+                        </div>
                         <div class="tourist">
                             <ul class="tourist-message">
                                 <li class="tourist-name nickName">${k.nickName}</li>
