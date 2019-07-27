@@ -11,4 +11,4 @@
 - 操作系统
    addEventListener  事件监听 I/O操作
    Input/Output   CPU(运算和指令集) 内存，外部存储设备 典型的慢操作
-   fs.readFile(path,'utf8')
+   fs.readFile(path,'utf8')    ‘我是修改的内容’
