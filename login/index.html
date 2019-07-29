@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            text-align: center;
+            padding: 25px;
+        }
+        .inner {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p class="inner">asjka</p>
+    </div>
+    <!-- 登录  评论 loginForm-->
+    <a href="/login" id="login_a">login</a>
+    <!-- href="javascript:;"   可以干掉a标签的默认行为 -->
+    <!-- <button id="loginBth">登录</button> -->
+    <script>
+        const box = document.querySelector('.box');
+        const inner = document.querySelector('.inner');
+        document.getElementById('login_a')
+            .addEventListener('click',function(event){
+                alert('打开弹窗');
+                event.preventDefault();  //  preventDefault() 此处可以阻止a标签的href=""默认跳转属性，他的作用是阻止其默认行为
+        });
+        document.querySelector('.box').addEventListener('click',(event)=>{
+            alert('I am a box'); 
+        },false)
+        document.querySelector('.inner').addEventListener('click',(event)=>{
+            alert('I am a inner');
+            event.stopPropagation();//阻止其冒泡行为
+        },false)
+    </script>
+</body>
+</html>
