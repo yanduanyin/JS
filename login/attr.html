@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* .red {
+            color: red
+        }
+        .blue {
+            color: blue
+        } */
+    </style>
+</head>
+<body>
+    <!-- <div class="red" id="box" data-index="2">
+        box
+    </div>
+    <form action="">
+        <input type="text" name="username">
+    </form>
+    <script src=""></script> -->
+    <div class="box"><!-- 注释也是一个节点-->
+        <li>1</li>
+    </div>
+    <script>
+        var boxclass = document.querySelector('.box')
+        console.log(boxclass.firstChild.nodeType)
+        console.log(boxclass.firstElementChild)//第一个元素节点li
+        var liNode = document.createElement("h1") //创建一个元素节点h1
+        var text = document.createTextNode("0")  //创建一个文本元素
+        liNode.appendChild(text)   //创建的文本元素插入到创建的元素节点h1里去
+        boxclass.insertBefore(liNode,boxclass.firstElementChild)   //将创建的h1元素节点放到指定的DOM树元素节点去
+
+        // const box = document.querySelector('#box');
+        // const className1 = box.getAttribute('class')//getAttribute  获取属性class的值
+        // box.setAttribute('class', 'blue')//setAttribute  改变
+        // const className2 = box.getAttribute('id')//getAttribute  获取属性id的值
+        // box.setAttribute('id', 'bbox')//setAttribute  改变属性值
+        // console.log(className1)
+        // console.log(className2)
+        // console.log(box.dataset.index);//dataset获取自定义属性
+        // console.log('all names',box.getAttributeNames());//获取所有属性
+        // console.log('all', document.all);
+        // console.log('images', document.images);
+        // console.log('forms', document.forms);
+        // console.log('body', document.body);
+        // console.log('html', document.documentElement);
+        // document.body.addEventListener('click', () => {
+        //     var form = document.forms[0];
+        //     var inputNode = form['username']
+        //     console.log(inputNode.value)
+        // })
+        // document.documentElement.style.fontSize = '32px';
+    </script>
+</body>
+</html>
