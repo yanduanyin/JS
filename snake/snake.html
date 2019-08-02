@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>snake game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        /* #gameCanvas {
+            display: block;
+            margin: 0 auto;
+        } */
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="300" height="300">
+
+    </canvas>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // JS 执行的最佳时期
+            console.log('111')
+            var gameCanvas = document.getElementById('gameCanvas');
+            var ctx = gameCanvas.getContext('2d');
+            var snake = [
+                {
+                    x: 150,
+                    y: 150
+                },
+                {
+                    x: 140,
+                    y: 150
+                },
+                {
+                    x: 130,
+                    y: 150
+                },
+                {
+                    x: 120,
+                    y: 150
+                },
+                {
+                    x: 110,
+                    y: 150
+                },
+            ];
+            init();//初始化
+            drawSnake();//画蛇
+            function init() { 
+                // console.log(ctx);
+                ctx.fillStyle = 'white';
+                // ctx.strokeStyle = 'black';
+                ctx.fillRect(0, 0, gameCanvas.width,
+                gameCanvas.height);
+                ctx.strokeRect(0, 0, gameCanvas.width,
+                gameCanvas.height);
+            }
+            //画一个格子，坐标 forEach
+            function drawSnake() {
+                snake.forEach(drawSnakePart);
+            }
+            function drawSnakePart(snakePart) {
+                // console.log(snakePart);
+                ctx.fillStyle = 'lightgreen';
+                ctx.strokeStyle = 'drakgreen';
+                ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+                ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+            }
+        })
+    </script>
+</body>
+</html>

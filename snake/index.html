@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> game snake</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .welcome {
+        font-size: 60px;
+        text-align: center;
+        height: 100vh;
+        line-height: 100vh;
+        background-color: red;
+    }
+</style>
+<body>
+    <img 
+    onload="imgLoaed()"
+    src="http://e0.ifengimg.com/12/2019/0728/494EF7CBAB5DD0A75D6F65A501C2D7AB1CE4F102_size23_w640_h360.jpeg" alt="">
+    <div class="welcome">
+        welcome to snake
+    </div>
+    <script>
+        function imgLoaed() {
+            console.log('哪吒来了');
+        }
+        function hideWelcome() {
+            console.log('隐藏hideWelcome');
+            document.querySelector('.welcome').style.display = "none";
+        }
+        const loadAssets = (fn) => {
+            setTimeout(() => {
+                fn();
+                console.log("资源加载完毕");
+            },5000)
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('页面渲染完成')
+            loadAssets(hideWelcome);//把函数作为参数传进去  fn
+        })
+        // 资源加载完成
+        window.onload = () => {
+            console.log("页面加载完成");
+            // 加载完资源后，hideWelcome
+           
+            // loadAssets();  //定时器延迟1s
+            // hideWelcome();
+        }
+    </script>
+</body>
+</html>
