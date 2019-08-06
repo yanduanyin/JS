@@ -22,6 +22,8 @@
         <div id="grassLand2"></div>
     </div>
     <script src="./js/bird.js"></script>
+    <script src="./js/baseObj.js"></script>
+    <script src="./js/block.js"></script>
     <script>
         var jsWrapBg = document.getElementById('wrapbg')
         var jsHeadTitle = document.getElementById('headerTitle')
@@ -29,18 +31,39 @@
         var jsGrassLand2 = document.getElementById('grassLand2')
         var jsHeadBird = document.getElementById('headBird')
         var jsStartBtn = document.getElementById('startBtn')
+        var blocksArr = [] //用来存储block的数据
+        var blockDistance = baseObj.randomNum(120, 350)
         //让草地动起来
         var landTimer = setInterval(landRun,30)//计时器
         function landRun() {
             if(jsGrassLand1.offsetLeft <=-343) {
                 jsGrassLand1.style.left = '343px'
             }
-            if(jsGrassLand2.offsetLeft <=-343) {
+            if(jsGrassLand2.offsetLeft <= -343) {
                 jsGrassLand2.style.left = '343px'
             }
             jsGrassLand1.style.left = jsGrassLand1.offsetLeft -3 + 'px'
             jsGrassLand2.style.left = jsGrassLand2.offsetLeft -3 + 'px'
+          if(blocksArr.length) {
+            for (var i = 0; i < blocksArr.length; i++){
+                blocksArr[i].moveBlock()
+                var x = baseObj.rectangleCrashExamine(blocksArr[i].downDivWrap,bird.div)
+                var y = baseObj.rectangleCrashExamine(blocksArr[i].upDivWrap,bird.div)
+                var z = bird.div.offsetTop >= 390
+                if (x || y || z ) {
+                    window.clearInterval(landTimer)
+                    bird.fallSpeed = 0
+                    jsWrapBg.onclick = null
+                }
+            }
+            if(blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (450 - blockDistance)) {
+                blockDistance = baseObj.randomNum(130, 250)
+                var newBlock = new Block()
+                newBlock.createBlock()
+                blocksArr.push(newBlock)
+            }
         }
+    } 
         //让标题摆动
         var Y = 3
         var index = 0
@@ -65,6 +88,10 @@
             jsWrapBg.onclick = function() {
                 bird.fallSpeed = -8
             }
+            //开始出现管道
+            var b = new Block()
+            b.createBlock()
+            blocksArr.push(b)
         }
     </script>
 </body>
