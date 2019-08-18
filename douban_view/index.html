@@ -35,6 +35,35 @@
             </form>
         </div>
     </div>
+    <div id="anony-reg-new" style="background-image: url(https://img3.doubanio.com/view/puppy_image/raw/public/16ad990ec23uwn790d4.jpg)">
+        <div class="wrapper">
+            <div class="login">
+                <iframe style="height: 300px;width: 300px;" src="https://accounts.douban.com/passport/login_popup?login_source=anony" frameborder="0"></iframe>
+            </div>
+            <div class="app">
+                <p class="app-title">
+                    豆瓣
+                    <span>6.0</span>
+                </p>
+                <p class="app-slogan"></p>
+                <a href="https://www.douban.com/doubanapp/app?channel=nimingy" class="lnk-app">下载豆瓣 App</a>
+                <div class="app-qr">
+                   <a href="javascript: void 0;" class="lnk-qr" id="expand-qr">
+                       <img src="https://img3.doubanio.com/f/sns/0c708de69ce692883c1310053c5748c538938cb0/pics/sns/anony_home/icon_qrcode_green.png" alt="" width="28px" height="28px">
+                   </a>
+                   <div class="app-qr-expand">
+                       <img src="https://img3.doubanio.com/f/sns/1cad523e614ec4ecb6bf91b054436bb79098a958/pics/sns/anony_home/doubanapp_qrcode.png" alt="" width="160px" height="160px">
+                       <p>iOS / Android 扫码直接下载</p>
+                    </div>
+                </div>
+            </div>
+            <div class="app">
+                
+            </div>
+            
+            
+        </div>
+    </div>
     <script>
         // S 60*salary
         // A 6*salary
@@ -43,42 +72,42 @@
         // D 1*salary
 
         // 奖金的发放策略
-        var caulateBonus = function(performanceLevel, salary) {
-            switch(performanceLevel){
-                case  'S':
-                    return performanceSBonus(salary);
-                    break;
-                case  'A':
-                    return performanceABonus(salary);
-                    break;
-                case  'B':
-                    return  performanceBBonus(salary);
-                    break;
-                case  'C':
-                    return performanceCBonus(salary)
-                    break;
-                case  'D':
-                    return  performanceDBonus(salary);
-                    break;
+        // var caulateBonus = function(performanceLevel, salary) {
+        //     switch(performanceLevel){
+        //         case  'S':
+        //             return performanceSBonus(salary);
+        //             break;
+        //         case  'A':
+        //             return performanceABonus(salary);
+        //             break;
+        //         case  'B':
+        //             return  performanceBBonus(salary);
+        //             break;
+        //         case  'C':
+        //             return performanceCBonus(salary)
+        //             break;
+        //         case  'D':
+        //             return  performanceDBonus(salary);
+        //             break;
                     
-            }
-        }
-        var performanceSBonus = function(salary) {
-            return salary*60;
-        }
-        var performanceABonus = function(salary) {
-            return salary*6;
-        }
-        var performanceBBonus = function(salary) {
-            return salary*4;
-        }
-        var performanceCBonus = function(salary) {
-            return salary*2;
-        }
-        var performanceDBonus = function(salary) {
-            return salary*1;
-        }
-        console.log(caulateBonus('S',30000))
+        //     }
+        // }
+        // var performanceSBonus = function(salary) {
+        //     return salary*60;
+        // }
+        // var performanceABonus = function(salary) {
+        //     return salary*6;
+        // }
+        // var performanceBBonus = function(salary) {
+        //     return salary*4;
+        // }
+        // var performanceCBonus = function(salary) {
+        //     return salary*2;
+        // }
+        // var performanceDBonus = function(salary) {
+        //     return salary*1;
+        // }
+        // console.log(caulateBonus('S',30000))
     </script>
 </body>
 </html>
