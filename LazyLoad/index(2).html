@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .image-item{
+      margin-bottom: 50px;
+      height: 200px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="" class="image-item" lazyload="true" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566037871525&di=03545c9cba762f86b85bdb79a9c5a0f9&imgtype=0&src=http%3A%2F%2Fpic8.nipic.com%2F20100713%2F1954049_091647155567_2.jpg" />
+  <img src="" class="image-item" lazyload="true" data-original="http://img15.3lian.com/2015/f2/57/d/96.jpg" />
+  <img src="" class="image-item" lazyload="true" data-original="http://img2.3lian.com/2014cf/f6/146/d/93.jpg" />
+  <img src="" class="image-item" lazyload="true"
+    data-original="http://img0.imgtn.bdimg.com/it/u=2078897288,2205081274&fm=26&gp=0.jpg" />
+  <img src="" class="image-item" lazyload="true"
+    data-original="http://pic1.win4000.com/wallpaper/b/546441f1d83c2.jpg" />
+  <img src="" class="image-item" lazyload="true"
+    data-original="http://www.officedoyen.com/uploads/allimg/140929/1-140929230255201.jpg" />
+  <img src="" class="image-item" lazyload="true" data-original="http://img1.3lian.com/2015/w22/38/d/82.jpg" />
+  <img src="" class="image-item" lazyload="true"
+    data-original="http://b.zol-img.com.cn/desk/bizhi/image/4/960x600/1393553860400.jpg" />
+  <img src="" class="image-item" lazyload="true" data-original="http://img2.3lian.com/2014cf/f6/146/d/92.jpg" />
+  <img src="" class="image-item" lazyload="true"
+    data-original="http://pic1.win4000.com/wallpaper/2018-01-09/5a547c0cb840c.jpg" />
+  <img src="" class="image-item" lazyload="true"
+    data-original="http://image.biaobaiju.com/uploads/20180802/00/1533139825-SvFkOmnxrA.jpg" />
+  <img src="" class="image-item" lazyload="true"
+    data-original="http://img3.xiazaizhijia.com/walls/20160927/1440x900_dec5fdacc3059ca.jpg" />
+
+  <script>
+    var viewHeight = document.documentElement.clientHeight
+    function lazyload() {
+      var eles = document.querySelectorAll('img[data-original][lazyload]')
+      Array.prototype.forEach.call(eles, function(item, index) {
+        var rect
+        if (!item.dataset.original) return;
+        rect = item.getBoundingClientRect()
+        if (rect.bottom >= 0 && rect.top < viewHeight) {
+          !function(){
+            var img = new Image()
+            img.src = item.dataset.original
+            img.onload = function() {
+              item.src = img.src
+            }
+            item.removeAttribute('data-original')
+            item.removeAttribute('lazyload')
+          }()
+        }
+        //叹号后面跟函数!function和加号后面跟函数+function
+// 都是跟(function(){})();这个函数是一个意思，都是告诉浏览器自动运行这个匿名函数的，因为!+()这些符号的运算符是最高的，所以会先运行它们后面的函数
+
+      })
+    }
+
+    lazyload()
+    document.addEventListener('scroll', lazyload)
+  </script>
+</body>
+
+</html>
