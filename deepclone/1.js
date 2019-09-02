@@ -2,6 +2,7 @@
 let a = 1;//值
 let b = a;
 
+
 b = 2;
 console.log(a);
 //复杂数据类型，拷贝是引用式赋值
