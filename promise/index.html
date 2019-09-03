@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function xq() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                console.log('猛哥去相亲了')
+                // resolve('相亲很顺利')
+                reject('相亲失败')
+            },1000)
+            })
+        }
+        function marry() {
+            setTimeout(() => {
+                console.log('猛哥去结婚了') 
+            },500)
+        }
+        function baby() {
+            console.log('蒙哥有baby了')
+        }
+        // xq().then((e) => {
+        //     console.log(e)
+        // })
+        xq().catch((e) => {
+            console.log(e)
+            marry()
+        })
+        // xq().then(marry)
+        // xq().catch(marry)
+        // Promise.all([xq(),marry()]).then(baby)
+        // Promise.race([xq(),marry()]).then(baby)
+    </script>
+</body>
+</html>
