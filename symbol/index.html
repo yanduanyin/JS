@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
+    <script>
+        //Symbol 产生的值都是唯一的
+        //why
+
+        let a = Symbol('thisisa');
+        let b = Symbol('thisisb');
+        console.log(a === b)
+        var obj = {
+            a: 1,
+            [b]: 1,
+            [a]: 2
+        }
+        console.log(obj)
+        //for...in  可以枚举对象的属性
+        for (let key in obj) {
+            console.log(obj[key])
+        }
+        //获取对象上属性的方法，两种
+        const keys = Object.keys(obj);//获取对象上所有的普通属性
+        console.log(keys)
+        const symbolKeys = Object.getOwnPropertySymbols(obj);  //获取对象上Symbol的属性
+        console.log(symbolKeys)
+
+        //消除魔法字符串
+        const SHAPE = {
+            react: Symbol(),
+            sanjiao: Symbol()
+        }
+        function getArea(shape, options) {
+            switch (shape) {
+                case SHAPE.react:
+                    return options.width * options.height;
+                case SHAPE.sanjiao:
+                    return .5 * options.width * options.height;
+                // case '': 
+                //     return 
+            }
+        }
+        console.log(getArea(SHAPE.react, { width: 1, height: 2 }))
+        console.log(getArea(SHAPE.react, { width: 1, height: 2 }))
+    </script>
+</body>
+
+</html>
