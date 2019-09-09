@@ -11,43 +11,43 @@
             margin: 0;
             padding: 0
         }
-
+        @keyframes ani_img{
+            0%{
+                opacity: 0;        
+            }
+            50%{
+                opacity: 0.5;        
+            }
+            100%{
+                opacity: 1;        
+            }
+        }
         .box-cirs-imgs {
-            width: 100%;
-            height: 100%;
+            /* width: 100%;
+            height: 100%; */
             position: relative;
         }
-
         .box-imgs {
             display: inline-block;
             background-color: rgb(165, 165, 165);
         }
-
-        .imgs {
-            overflow: hidden;
-        }
-
         .imgs li {
             width: 100%;
             float: left;
         }
-
         img {
             width: 100%;
             height: 100%;
         }
-
         .ani {
             animation: ani_img .5s ease 1;
         }
-
         .box-cirs {
             position: absolute;
             bottom: 10px;
             right: 50%;
             transform: translateX(50%);
         }
-
         .box-cirs li {
             display: inline-block;
             width: 8px;
@@ -80,8 +80,8 @@
     <script>
         //轮播图部分
         const jsImgs_box = document.querySelector('.box-imgs');
-        const JSImgs_ul = document.querySelector('.imgs');
-        const jsImg = JSImgs_ul.children;
+        const jsImgs_ul = document.querySelector('.imgs');
+        const jsImg = jsImgs_ul.children;
         const jsCirs_ul = document.querySelector('.box-cirs');
         const jsCir = jsCirs_ul.children;
         var len = jsImg.length;//图片的张数
@@ -90,7 +90,7 @@
         var cirN = 0;                         //当前显示图片的小圆点下标
         hold = false;                           //初始化按下时的状态
         let stratPointX = 0;                    //初始化按下时x轴坐标
-        let offsetX = 0;                        //初始化按键离开时x轴坐标
+        let endsetX = 0;                        //初始化按键离开时x轴坐标
 
         ///添加小圆点，之所用js添加小圆点，是因为小圆点的数量是由图片张数决定的。
         for (var i = 0; i < len; i++) {
@@ -110,7 +110,7 @@
         }
         //封装自动播放函数autoRun里的定时器内参数递增，
         function time(pi, ci) {
-            jsImg.timer = setInterval(function () {
+            timer = setInterval(function () {
                 Roll(pi, ci);
                 pi++;
                 ci++;
@@ -152,7 +152,7 @@
             jsCir[j].index = j;//给每个圆点一个索引值
             //当触及小圆点是高亮
             jsCir[j].onclick = function () {
-                clearInterval(jsImg.timer)//每次运行该函数必须清除之前的定时器！
+                clearInterval(timer)//每次运行该函数必须清除之前的定时器！
                 var i = this.index;  //将当前圆点的index索引值传给i
                 autoRun(i, this.index)  //传入实参i，this.index，e,调用自动轮播函数autoRun()
             }
@@ -178,35 +178,32 @@
         jsImgs_box.onmousedown = function (e) {
             e.preventDefault();
             hold = true;
-            clearInterval(jsImg.timer);
+            clearInterval(timer);
             // console.log('你点击了鼠标');
             stratPointX = e.clientX;
-            // for(var j = 0; j < len; j++) {
-            //     jsCir[j].index = j;
-            // }
         }
         //鼠标移动时执行的事件
-        jsImgs_box.onmousemove = function (evt) {
-            event.preventDefault();//阻止轮播图图片被拖拽的默认行为，它影响到onmousemove、onmouseup事件的执行了
-            if (!hold) {
-                return
-            }
-            // console.log("x坐标是:" + evt.clientX + ",y坐标是:" + evt.clientY);
-        }
+        // jsImgs_box.onmousemove = function (e) {
+        //     e.preventDefault();//阻止轮播图图片被拖拽的默认行为，它影响到onmousemove、onmouseup事件的执行了
+        //     if (!hold) {
+        //         return
+        //     }
+        //     // console.log("x坐标是:" + e.clientX + ",y坐标是:" + e.clientY);
+        // }
         //放开鼠标执行的事件
         jsImgs_box.onmouseup = function (e) {
             // console.log('你放开了鼠标');
-            offsetX = e.clientX;
+            endsetX = e.clientX;
             // console.log(stratPointX)
-            // console.log(offsetX)
-            // console.log(offsetX - stratPointX)
+            // console.log(endsetX)
+            // console.log(endsetX - stratPointX)
             if (hold) {
                 for (var j = 0; j < len; j++) {
                     jsImg[j].index = j;
                 }
-                if ((stratPointX - offsetX) > 400) {
+                if ((stratPointX - endsetX) > 400) {
                     moveleft();
-                } else if ((offsetX - stratPointX) > 400) {
+                } else if ((endsetX - stratPointX) > 400) {
                     moveright();
                 } else {// bug 修复  如果点击了会清除定时器，这里要重新开启一下
                     n = document.querySelector('.ani').index

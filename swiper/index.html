@@ -19,7 +19,7 @@
   padding: 0;
   margin: 20px auto 0;
 }
-#parent #uls {
+#uls {
   position: relative;
   margin: 0;
   padding: 0;
@@ -27,7 +27,7 @@
   height: 616.64px;
   overflow: hidden;
 }
-#parent #uls #img_ul {
+#img_ul {
    position: absolute;
   margin: 0;
   padding: 0;
@@ -35,21 +35,21 @@
   left: -1350px;
   width: 6750px;
 }
-#parent #uls #img_ul li {
+#img_ul li {
   float: left;
   width: 1350px;
 }
-#parent #uls #img_ul li img {
+#img_ul li img {
   background-repeat: no-repeat;
   width: 1350px;
   height: 616.64px;
 }
-#parent #uls #litCir_ul {
+#litCir_ul {
   position: absolute;
   bottom: 10px;
   right: 649px;
 }
-#parent #uls #litCir_ul li {
+#litCir_ul li {
   display: inline-block;
   width: 8px;
   height: 8px;
@@ -57,18 +57,18 @@
   border-radius: 50%;
   cursor: pointer;
 }
-#parent #uls #litCir_ul .active {
+#litCir_ul .active {
   background-color: #00bebe;
 }
-#parent #uls #litCir_ul .quiet {
+#litCir_ul .quiet {
   background-color: #00263c;
 }
-#parent #buttons {
+#buttons {
   margin: 0;
   padding: 0;
   display: none;
 }
-#parent #buttons span {
+#buttons span {
   position: absolute;
   width: 40px;
   height: 40px;
@@ -85,12 +85,11 @@
   color: #fff;
   background: #000;
 }
-#parent #buttons #left {
+#left {
   left: 5px;
 }
-#parent #buttons #right {
+#right {
   right: 5px;
-  margin-left: -45px;
 }
 </style>
 <body>
@@ -134,7 +133,6 @@ var a_li = document.createElement('li');//创建li元素节点
 a_li.className = 'quiet';//给li添加类名quiet
 litCir_ul.appendChild(a_li);
 }
-litCir_ul.children[0].className = 'active';
 //通过传进来的distance来控制img_ul的位置来显示      //设置img_ul的left该如何变化，以达到图片轮播的
 function Roll(distance){                                         //参数distance：滚动的目标点（必为图片宽度的倍数）
     clearInterval(img_ul.timer);                                     //每次运行该函数必须清除之前的定时器！
