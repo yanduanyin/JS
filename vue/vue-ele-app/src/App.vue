@@ -3,7 +3,7 @@
     <v-header :seller="seller"></v-header>
     <div class="tab border-1px">
       <div class="tab-item">
-        <router-link to="/googs">商品</router-link>
+        <router-link to="/goods">商品</router-link>
       </div>
       <div class="tab-item">
         <router-link to="/ratings">评论</router-link>
@@ -29,9 +29,11 @@ export default {
     'v-header': header
   },
   created () {
-    this.$http.get('https://www.easy-mock.com/mock/5d2ed7c57f168b5e40d35f45/qtitem/vue-eleme-seller_copy_1567759750894')
+    // 请求 easy mock 数据方式   this.$http.get('easy mock里的接口地址')
+    // 本地服务器数据
+    this.$http.get('http://localhost:8080/static/seller.json')
       .then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.data.errno === 0) {
           this.seller = Object.assign({}, this.seller, res.data.data)
         }
