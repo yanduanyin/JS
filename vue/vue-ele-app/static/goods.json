@@ -3,7 +3,8 @@
   "data": [{
       "name": "热销榜",
       "type": -1,
-      "foods": [{
+      "foods": [
+        {
           "name": "皮蛋瘦肉粥",
           "price": 10,
           "oldPrice": "",
