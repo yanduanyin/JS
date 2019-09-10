@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>map for..of  forEach</title>
+</head>
+<body>
+  <script>
+    var money = [10, 11, 12];
+    var mapMoney = money.map(item => {
+      return item * 10;
+    })
+    console.log(mapMoney);
+    // for of
+    // var newMoney = [];
+    // for( let a of money) {
+    //   newMoney.push(a * 10);
+    // }
+    // console.log(newMoney);
+
+    //foreach
+
+    var count = money.reduce((pre, next) => {
+      console.log(pre, next)
+      return pre + next
+    })
+    console.log(count);
+  </script>
+</body>
+</html>
