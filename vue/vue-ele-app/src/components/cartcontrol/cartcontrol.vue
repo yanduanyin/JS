@@ -1,16 +1,43 @@
 <template>
   <div class="cartcontrol">
     <transition name="move">
-      <div class="cart-decrease">
+      <div class="cart-decrease" v-show="food.count" @click.stop.prevent="decreaseCart"> 0">
         <span class="inner icon-remove_circle_outline"></span>
       </div>
     </transition>
-    <div class="cart-count">1</div>
-    <div class="cart-add icon-add_circle"></div>
+    <div class="cart-count" v-show="food.count > 0">{{food.count}}</div>
+    <div class="cart-add icon-add_circle" @click.stop.prevent="addCart"></div>
+     <!-- @click.stop.prevent  组织点击事件的冒泡 -->
   </div>
 </template>
 <script>
-export default {}
+export default {
+  name: 'cartcontrol',
+  props: {
+    food: {
+      type: Object
+    }
+  },
+  data () {
+    return {
+
+    }
+  },
+  methods: {
+    addCart (event) {
+      if (!this.food.count) {
+        // this.$set  往数据源里添加一个字段
+        this.$set(this.food, 'count', 1)
+      } else {
+        this.food.count++
+      }
+      this.$emit('add', event.target)
+    },
+    decreaseCart () {
+      if (this.food.count) this.food.count--
+    }
+  }
+}
 </script>
 <style lang="stylus">
 .cartcontrol

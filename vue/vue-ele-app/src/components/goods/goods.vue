@@ -32,7 +32,7 @@
                     <div class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</div>
                   </div>
                   <div class="cartcontrol-wrapper">
-                    <cartcontrol></cartcontrol>
+                    <cartcontrol :food="food" @add="addFood"></cartcontrol>
                   </div>
                 </div>
               </li>
@@ -40,7 +40,8 @@
           </li>
         </ul>
       </div>
-      <!-- 还缺一个购物车 -->
+      <!-- 购物车 -->
+      <shopcart :selectFoods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
     </div>
   </div>
 </template>
@@ -48,7 +49,13 @@
 <script>
 import BScroll from 'better-scroll'
 import cartcontrol from '@/components/cartcontrol/cartcontrol'
+import Shopcart from '@/components/shopcart/shopcart'
 export default {
+  props: {
+    seller: {
+      type: Object
+    }
+  },
   data () {
     return {
       goods: [],
@@ -81,10 +88,22 @@ export default {
         }
       }
       return 0
+    },
+    selectFoods () {
+      let foods = []
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   components: {
-    cartcontrol: cartcontrol
+    cartcontrol: cartcontrol,
+    shopcart: Shopcart
   },
   methods: {
     _initScroll () {
@@ -116,6 +135,8 @@ export default {
         height += item.clientHeight
         this.listHeight.push(height)
       }
+    },
+    addFood () {
     }
   }
 }
