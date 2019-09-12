@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Map 是一个构造函数
+        var map = new Map();
+        map.set('a', () => {
+            console.log('a')
+        })
+        map.get('a')();
+        // map函数有keys属性，而且是set进去的值
+        for(let key of map.keys()) {
+            console.log('key:', key);
+        }
+        // map 函数有values属性，是set进去的方法
+        for(let v of map.values()) {
+            console.log('v', v);
+        }
+        //遍历key values的组合   
+        // map 函数有entries属性，是set进去的值和方法的汇总
+        for (let kv of map.entries()) {
+            console.log('kv', kv);
+        }
+        map.delete('a');
+        console.log(map.has('a'), map.size)
+    </script>
+</body>
+</html>
