@@ -41,7 +41,9 @@
         </ul>
       </div>
       <!-- 购物车 -->
-      <shopcart :selectFoods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
+      <shopcart :selectFoods="selectFoods"
+       :deliveryPrice="seller.deliveryPrice"
+      :minPrice="seller.minPrice"></shopcart>
     </div>
   </div>
 </template>
