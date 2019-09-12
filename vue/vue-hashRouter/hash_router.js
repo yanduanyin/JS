@@ -7,20 +7,11 @@ class HashRouter{
     window.addEventListener('hashchange', this.load.bind(this))
   }
 
-  register (hash, callback = function() {}) {
-    this.routers[hash] = callback;
-  }
-  registerNotFound(callback = function() {}){
-    this.routers['404'] = callback;
-  }
-  registerError(callback = function() {}) {
-    // console.log('error');
-    this.routers['error'] = callback;
-  }
   load() {
     // console.log(this)
     let hash = location.hash.slice(1),
     handler;//处理函数
+        console.log(hash)
     // container 显示相应的page内容
     // 由外界决定
     // handler = this.routers[hash];
@@ -39,5 +30,16 @@ class HashRouter{
       (this.routers['error'] || function() {}).call(this, e);
     }
     
+  }
+  // 
+  register (hash, callback = function() {}) {
+    this.routers[hash] = callback;
+  }
+  registerNotFound(callback = function() {}){
+    this.routers['404'] = callback;
+  }
+  registerError(callback = function() {}) {
+    // console.log('error');
+    this.routers['error'] = callback;
   }
 }

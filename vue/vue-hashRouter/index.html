@@ -30,9 +30,11 @@
     router.register('/page5', () => {
       // 出错了
       throw new Error('抛出一个异常')})
+
     router.registerNotFound(() => {
       container.innerHTML = '页面未找到';
     })
+    
     router.registerError((e) => {
       container.innerHTML = `页面异常出错，错误消息： <br/>${e.message}`; 
     })

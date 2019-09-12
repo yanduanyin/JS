@@ -30,17 +30,19 @@
       listenLink () {
         //利用了什么技术  js 什么概念
         window.addEventListener('click', (e) => {
-          console.log('YINDAADA')
+          // console.log('YINDAADA')
           let dom = e.target;
+          // console.log(dom)
+
           if (dom.tagName.toUpperCase() === 'A' && dom.getAttribute('href'))  {
             e.preventDefault();
-            // history api 
-            this.assign(dom.getAttribute('href'));
+            // history api     pushState(添加浏览历史)
+            this.assign(dom.getAttribute('href'));//获取所有属性为href的属性值
           }
         }, false);
       }
       assign (path) {
-        // 添加一个新的状态  url 代表的 router 发生了改变
+        // 添加一个新的状态  url 代表的 router 发生了改变  
         history.pushState({path}, null, path);
         this.dealPathHandler(path);
       }
@@ -55,12 +57,12 @@
     router.register('/page1', () => {
       container.innerHTML = '我是page1';
     })
-    router.register('/page2', () => {
-      container.innerHTML = '我是page2';
-    })
-    router.register('/page3', () => {
-      container.innerHTML = '我是page3';
-    })
+    // router.register('/page2', () => {
+    //   container.innerHTML = '我是page2';
+    // })
+    // router.register('/page3', () => {
+    //   container.innerHTML = '我是page3';
+    // })
   </script>
 </body>
 </html>
