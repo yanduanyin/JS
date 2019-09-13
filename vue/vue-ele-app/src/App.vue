@@ -47,6 +47,7 @@ export default {
 .tab
   display flex
   height 40px
+  z-index 9999
   line-height 40px
   // align-items center
   border-bottom 1px solid rgba(7, 17, 27, 0.1)
@@ -61,5 +62,4 @@ export default {
       text-decoration none
       &.router-link-active
         color rgb(240, 20, 20)
-
 </style>

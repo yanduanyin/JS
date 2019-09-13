@@ -3,7 +3,10 @@
     <div class="goods">
       <div class="menu-wrapper" ref="menuWrapper">
         <ul>
-          <li v-for="(item,index) in goods" :key="index" class="menu-item" @click="selectMenu(index, $event)" :class="{'current':currentIndex === index}">
+          <li v-for="(item,index) in goods"
+          :key="index" class="menu-item"
+          @click="selectMenu(index, $event)"
+          :class="{'current':currentIndex === index}">
             <span class="text border-1px">
               <span class="icon" :class="classMap[item.type]" v-if="item.type > 0"></span>
             {{item.name}}
@@ -117,7 +120,7 @@ export default {
         probeType: 3
       })
       this.foodsScroll.on('scroll', pos => {
-        console.log(pos.y)
+        // console.log(pos.y)
         this.scrollY = Math.abs(Math.round(pos.y))
       })
     },
