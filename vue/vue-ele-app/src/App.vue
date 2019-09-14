@@ -11,6 +11,7 @@
       <div class="tab-item">
         <router-link to="/seller">商家</router-link>
       </div>
+      <!-- <button @click="showBu">点击我</button> -->
     </div>
     <router-view :seller="seller"/>
   </div>
@@ -28,6 +29,11 @@ export default {
   components: {
     'v-header': header
   },
+  methods: {
+    // showBu () {
+    //   this.$toast('恭喜你', 'top')
+    // }
+  },
   created () {
     // 请求 easy mock 数据方式   this.$http.get('easy mock里的接口地址')
     // 本地服务器数据
@@ -44,6 +50,7 @@ export default {
 
 <style lang="stylus">
 @import './common/stylus/mixin.styl'
+@import './common/stylus/plugin.styl'
 .tab
   display flex
   height 40px

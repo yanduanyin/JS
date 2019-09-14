@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 
 import './common/stylus/index.styl'
+// import { Toast } from '@/common/plugin.js'
 
 import axios from 'axios'
 Vue.prototype.$http = axios
+// Vue.use(Toast)
 
 Vue.config.productionTip = false
 

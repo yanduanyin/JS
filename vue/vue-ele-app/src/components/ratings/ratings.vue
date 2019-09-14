@@ -144,7 +144,7 @@ export default {
       // console.log(this.Istatus)
     },
     clickSelect (index, event) {
-      console.log(event)
+      // console.log(event)
       // console.log(index)
       // this.CIndex = index
     }
@@ -154,6 +154,7 @@ export default {
 <style lang="stylus" scoped>
 .wrapper
   height 400px
+  overflow hidden
 .scoreDesc
   width 100%
   padding 18px 0
