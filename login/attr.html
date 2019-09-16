@@ -22,17 +22,54 @@
         <input type="text" name="username">
     </form>
     <script src=""></script> -->
-    <div class="box"><!-- 注释也是一个节点-->
+    <div class="box">
+        <!-- 注释也是一个节点 -->
         <li>1</li>
     </div>
     <script>
         var boxclass = document.querySelector('.box')
-        console.log(boxclass.firstChild.nodeType)
-        console.log(boxclass.firstElementChild)//第一个元素节点li
-        var liNode = document.createElement("h1") //创建一个元素节点h1
-        var text = document.createTextNode("0")  //创建一个文本元素
-        liNode.appendChild(text)   //创建的文本元素插入到创建的元素节点h1里去
-        boxclass.insertBefore(liNode,boxclass.firstElementChild)   //将创建的h1元素节点放到指定的DOM树元素节点去
+        // console.log(boxclass.firstChild.nodeType)
+        // console.log(boxclass.firstElementChild)//第一个元素节点li
+        // var liNode = document.createElement("h1") //创建一个元素节点h1
+        // var text = document.createTextNode("0")  //创建一个文本元素
+        // liNode.appendChild(text)   //创建的文本元素插入到创建的元素节点h1里去
+        // boxclass.insertBefore(liNode,boxclass.firstElementChild)   //将创建的h1元素节点放到指定的DOM树元素节点去
+
+        var cb = function(mutationList) {
+            console.log(mutationList);
+        }
+        var observer = new MutationObserver(cb);/*cb为一个函数*/
+        observer.observe(boxclass,{
+            attributes:true,
+            childList:true
+        });
+        
+        boxclass.setAttribute('style','color:red')
+        var li = document.createElement('li')
+        var text = document.createTextNode('2')
+        li.appendChild(text)
+        boxclass.appendChild(li)
+
+        var observe1 = new MutationObserver(
+      function(mutationList) {
+        for (let i = 0; i < mutationList.length;
+        i ++) {
+          // type attributeName
+          var mutation = mutationList[i];
+          if (mutation.type === 'attributes'
+          && mutation.attributeName === 'bgcolor') {
+            // click()
+            setTimeout(() => {
+              stopTest();
+            }, 10)
+          }
+        }
+    })
+    observe1.observe(document.body, {
+      attributes: true
+    })
+
+
 
         // const box = document.querySelector('#box');
         // const className1 = box.getAttribute('class')//getAttribute  获取属性class的值
