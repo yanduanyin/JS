@@ -38,7 +38,7 @@ export default {
       default () {
         return [
           {
-            price: 10,
+            price: 0,
             count: 0
           }
         ]
@@ -71,7 +71,8 @@ export default {
         {
           show: false
         }
-      ]
+      ],
+      dropBalls: []
     }
   },
   computed: {
@@ -113,9 +114,54 @@ export default {
     }
   },
   methods: {
-    beforeDrop () {},
-    dropping () {},
-    afterDrop () {}
+    drop (el) {
+      for (let i = 0; i < this.balls.length; i++) {
+        let ball = this.balls[i]
+        if (!ball.show) {
+          ball.show = true
+          ball.el = el
+          this.dropBalls.push(ball)
+          return
+        }
+      }
+    },
+    beforeDrop (el) {
+      let count = this.balls.length
+      while (count--) {
+        let ball = this.balls[count]
+        if (ball.show) {
+          let rect = ball.el.getBoundingClientRect() // 返回元素的大小及其相对于视口的位置。
+          let x = rect.left - 32 // 小球距离左边32px
+          let y = -(window.innerHeight - rect.top - 22)
+          el.style.display = ''
+          el.style.webkitTransform = `translate3d(0, ${y}px, 0)`
+          el.style.transform = `translate3d(0, ${y}px, 0)`
+
+          let inner = el.getElementsByClassName('inner-hook')[0] // 数组
+          inner.style.webkitTransform = `translate3d(${x}px, 0, 0)`
+          inner.style.transform = `translate3d(${x}px, 0, 0)`
+        }
+      }
+    },
+    dropping (el, done) {
+      /* eslint-disable no-unused-vars */
+      let rf = el.offsetHeight
+      this.$nextTick(() => {
+        el.style.webkitTransform = 'translate3d(0,0,0)'
+        el.style.transform = 'translate3d(0,0,0)'
+        let inner = el.getElementsByClassName('inner-hook')[0]
+        inner.style.webkitTransform = 'translate3d(0,0,0)'
+        inner.style.transform = 'translate3d(0,0,0)'
+        el.addEventListener('transitionend', done)
+      })
+    },
+    afterDrop (el) {
+      let ball = this.dropBalls.shift()
+      if (ball) {
+        ball.show = false
+        el.style.display = 'none'
+      }
+    }
   }
 }
 </script>
