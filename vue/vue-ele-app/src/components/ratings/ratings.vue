@@ -24,7 +24,7 @@
             <div class="score-wrapper">
               <span>商品评分</span>
               <div class="stars">
-                <i class="stars-item on"></i>
+                <i class="stars-ite on"></i>
                 <i class="stars-item on"></i>
                 <i class="stars-item on"></i>
                 <i class="stars-item on"></i>

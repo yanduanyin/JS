@@ -39,7 +39,7 @@ export default {
     // 本地服务器数据
     this.$http.get('http://localhost:8080/static/seller.json')
       .then(res => {
-        // console.log(res)
+        console.log(res)
         if (res.data.errno === 0) {
           this.seller = Object.assign({}, this.seller, res.data.data)
         }

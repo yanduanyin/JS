@@ -55,6 +55,7 @@
       console.log($container);
       var $scroll = $container.find('.scrollContainer')
       // container height -> scroll  
+      console.log($scroll);
       // scroll  显现出来
       var height = $container.height();
       // console.log(height)
@@ -75,16 +76,14 @@
           },
           next:function() {
             // 还可以往下滑
-  
             if((current + 1) <= len) {
-              
               current += 1;
               console.log(current);
               page.move(current);
             }
           },
           move:function(index) {
-          // if(page.isScrolling) return;
+          if(page.isScrolling) return;
           page.isScrolling = true;
           var di = - (index - 1)*height + 'px';
           console.log(di);
@@ -97,7 +96,7 @@
         var mouseWheelHandle = function(event) {
           // 向上 向下？
           // console.log(event.originalEvent)
-          // console.log('-----')
+          console.log(page.isScrolling)
           if(page.isScrolling) return;
           var deltaY = event.originalEvent.deltaY;
           console.log(deltaY);
@@ -108,7 +107,7 @@
           }
         }
 
-        var keyboarHandle = function(event) {
+    var keyboarHandle = function(event) {
       if (page.isScrolling) return;
       var key = event.keyCode || event.which;
       switch (key) {

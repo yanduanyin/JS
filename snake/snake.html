@@ -48,7 +48,7 @@
                     y: 150
                 },
             ];
-            init();//初始化
+            init();//初始化 绘画环境
             drawSnake();//画蛇
             function init() { 
                 // console.log(ctx);
@@ -64,7 +64,7 @@
                 snake.forEach(drawSnakePart);
             }
             function drawSnakePart(snakePart) {
-                // console.log(snakePart);
+                console.log(snakePart);
                 ctx.fillStyle = 'lightgreen';
                 ctx.strokeStyle = 'drakgreen';
                 ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
