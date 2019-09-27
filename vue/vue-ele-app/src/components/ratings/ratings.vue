@@ -13,24 +13,18 @@
             <div class="score-wrapper">
               <span>服务态度</span>
               <div class="stars">
-                <i class="stars-item on"></i>
-                <i class="stars-item on"></i>
-                <i class="stars-item on"></i>
-                <i class="stars-item on"></i>
-                <i class="stars-item off"></i>
+                <i class="stars-item on" v-for="(item, index) of serviceStarArr" :key="index"></i>
+                <i class="stars-item off" v-for="(item, index) of serviceStarArr2" :key="index"></i>
               </div>
-              <span style="color:#f90">{{starNum[0]}}</span>
+              <span style="color:#f90">{{seller.serviceScore}}</span>
             </div>
             <div class="score-wrapper">
               <span>商品评分</span>
               <div class="stars">
-                <i class="stars-ite on"></i>
-                <i class="stars-item on"></i>
-                <i class="stars-item on"></i>
-                <i class="stars-item on"></i>
-                <i class="stars-item off"></i>
+                <i class="stars-item on" v-for="(item, index) of foodStarArr" :key="index"></i>
+                <i class="stars-item off" v-for="(item, index) of foodStarArr2" :key="index"></i>
               </div>
-              <span style="color:#f90">{{starNum[1]}}</span>
+              <span style="color:#f90">{{seller.foodScore}}</span>
             </div>
             <div class="desctimes">
               <span>送达时间</span>
@@ -46,7 +40,7 @@
             @click="clickSelect(index,$event)"
             v-for="(item, index) in select"
             :key="index"
-            :class="{'select-no': index === 2,'active': CIndex === index}"
+            :class="{'select-no': index === 2}"
             >
             <span>{{item.desc}}</span>
             <span>{{item.num}}</span>
@@ -65,15 +59,12 @@
               <div class="titleWrapper">
                 <div class="userTop">
                   <span class="userNumber">{{item.username}}</span>
-                  <span class="timeRight">{{item.rateTime}}</span>
+                  <span class="timeRight">{{item.rateTime | Ctime}}</span>
                 </div>
                 <div class="scoreNum">
                   <div class="star-items"></div>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
+                    <i class="stars-item on" style="width=5px; height=5px"></i>
+                    <i class="stars-item off" style="width=5px; height=5px"></i>
                   <span>{{item.deliveryTime}}</span>
                 </div>
               </div>
@@ -94,6 +85,11 @@
 <script>
 import BScroll from 'better-scroll'
 export default {
+  props: {
+    seller: {
+      type: Object
+    }
+  },
   data () {
     return {
       select: [
@@ -110,14 +106,68 @@ export default {
           num: '4'
         }
       ],
-      starNum: [4.1, 4.3],
       Istatus: true,
       ratings: []
     }
   },
   computed: {
-    CIndex () {
-      return 0
+    serviceStarArr () {
+      let serviceStarArr = []
+      let starNum = Math.round(this.seller.serviceScore)
+      for (let i = 0; i < starNum; i++) {
+        serviceStarArr.push(i)
+      }
+      return serviceStarArr
+    },
+    foodStarArr () {
+      let foodStarArr = []
+      let starNum = Math.round(this.seller.foodScore)
+      for (let i = 0; i < starNum; i++) {
+        foodStarArr.push(i)
+      }
+      return foodStarArr
+    },
+    serviceStarArr2 () {
+      let serviceStarArr2 = []
+      let starNum = Math.round(this.seller.serviceScore)
+      let starNum2 = 5 - starNum
+      for (let i = 0; i < starNum2; i++) {
+        serviceStarArr2.push(i)
+      }
+      return serviceStarArr2
+    },
+    foodStarArr2 () {
+      let foodStarArr2 = []
+      let starNum = Math.round(this.seller.foodScore)
+      let starNum2 = 5 - starNum
+      for (let i = 0; i < starNum2; i++) {
+        foodStarArr2.push(i)
+      }
+      return foodStarArr2
+    }
+  },
+  filters: {
+    Ctime: function (value) {
+      let date = new Date(value)
+      let Y = date.getFullYear()// 年
+      let M = date.getMonth() + 1// 月
+      let D = date.getDate()// 日
+      let H = date.getHours()// 时
+      let i = date.getMinutes()// 分
+      if (M < 10) {
+        M = '0' + M
+      }
+      if (D < 10) {
+        D = '0' + D
+      }
+      if (H < 10) {
+        H = '0' + H
+      }
+      if (i < 10) {
+        i = '0' + i
+      }
+      let t = Y + '-' + M + '-' + D + ' ' + H + ':' + i
+      return t
     }
   },
   created () {
