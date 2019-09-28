@@ -40,7 +40,7 @@
             @click="clickSelect(index,$event)"
             v-for="(item, index) in select"
             :key="index"
-            :class="{'select-no': index === 2}"
+            :class="{'select-no': index === 2, 'active': index === CIndex, 'active2': CIndex === index + 15}"
             >
             <span>{{item.desc}}</span>
             <span>{{item.num}}</span>
@@ -53,7 +53,7 @@
         </li>
         <!-- 评论内容区 -->
         <li class="commentsWrapper">
-          <div class="commentList" v-for="(item, index) in ratings" :key="index">
+          <div class="commentList" v-for="(item, index) in ratingsNum" :key="index">
             <img class="logo" :src="item.avatar"/>
             <div class="userRight">
               <div class="titleWrapper">
@@ -62,9 +62,9 @@
                   <span class="timeRight">{{item.rateTime | Ctime}}</span>
                 </div>
                 <div class="scoreNum">
-                  <div class="star-items"></div>
-                    <i class="stars-item on" style="width=5px; height=5px"></i>
-                    <i class="stars-item off" style="width=5px; height=5px"></i>
+                  <div class="star-items">
+                    <star :score="item.score" :size="24"></star>
+                  </div>
                   <span>{{item.deliveryTime}}</span>
                 </div>
               </div>
@@ -84,6 +84,7 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import star from '../star/star'
 export default {
   props: {
     seller: {
@@ -107,8 +108,12 @@ export default {
         }
       ],
       Istatus: true,
-      ratings: []
+      ratings: [],
+      CIndex: 0
     }
+  },
+  components: {
+    star
   },
   computed: {
     serviceStarArr () {
@@ -144,6 +149,19 @@ export default {
         foodStarArr2.push(i)
       }
       return foodStarArr2
+    },
+    ratingsNum () {
+      let ratingsNum = []
+      if (!this.Istatus) {
+        ratingsNum = this.ratings
+      } else {
+        this.ratings.forEach(item => {
+          if (item.text !== '') {
+            ratingsNum.push(item)
+          }
+        })
+      }
+      return ratingsNum
     }
   },
   filters: {
@@ -196,7 +214,13 @@ export default {
     clickSelect (index, event) {
       // console.log(event)
       // console.log(index)
-      // this.CIndex = index
+      if (index === 0) {
+        this.CIndex = index
+      } else if (index === 1) {
+        this.CIndex = index
+      } else {
+        this.CIndex = index + 15
+      }
     }
   }
 }
@@ -290,6 +314,9 @@ export default {
       background-color rgba(77,85,93,.2)
     .active
       background-color #00a0dc
+      color #fff
+    .active2
+      background-color rgba(77,85,93,.9)
       color #fff
       span
         font-size 8px
