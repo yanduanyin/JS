@@ -225,14 +225,11 @@ export default {
     line-height 14px
     margin-bottom 12px
   .scroll-images-wrapper
-    width 100%
     overflow-x scroll
-    // height 90px
+    white-space nowrap
     font-size 0
     .item-image
-      vertical-align middle
       display inline-block
-      word-wrap normal
       margin-right 6px
       height 90px
       width 120px
