@@ -86,7 +86,7 @@
 import BScroll from 'better-scroll'
 import star from '../star/star'
 export default {
-  props: {
+  props: { // 接收父组件传来的数据 seller
     seller: {
       type: Object
     }
@@ -113,7 +113,7 @@ export default {
     }
   },
   components: {
-    star
+    star // 注册 star 星星组件
   },
   computed: {
     serviceStarArr () {
@@ -123,7 +123,7 @@ export default {
         serviceStarArr.push(i)
       }
       return serviceStarArr
-    },
+    }, // 一种笨的根据data里的scroe大小来生成用来循环星星数的方法，但是用来练手可以
     foodStarArr () {
       let foodStarArr = []
       let starNum = Math.round(this.seller.foodScore)
@@ -150,7 +150,7 @@ export default {
       }
       return foodStarArr2
     },
-    ratingsNum () {
+    ratingsNum () { // 根据Istatus的改变，动态改变循环数据的数据源
       let ratingsNum = []
       if (!this.Istatus) {
         ratingsNum = this.ratings
@@ -164,7 +164,7 @@ export default {
       return ratingsNum
     }
   },
-  filters: {
+  filters: { // 过滤属性，用以对数据的处理，一般用在v-for出来的列表数据的再处理
     Ctime: function (value) {
       let date = new Date(value)
       let Y = date.getFullYear()// 年
@@ -189,6 +189,7 @@ export default {
     }
   },
   created () {
+    // 请求数据，并以数据源里的ratings数组接收，以便使用
     this.$http.get('http://localhost:8080/static/ratings.json')
       .then((res) => {
         console.log(res.data.data)
@@ -201,25 +202,39 @@ export default {
       })
   },
   methods: {
-    _initScroll () {
+    _initScroll () { // 初始化 better scroll
       this.commentScroll = new BScroll(this.$refs.commentWrapper, {
         click: true
       })
       // console.log(this.commentScroll)
     },
     clickI () {
-      this.Istatus = !this.Istatus
+      this.Istatus = !this.Istatus// 点击事件改变Istatus的状态，从而影响计算属性中的评价内容循环列表
       // console.log(this.Istatus)
-    },
+    }, // 控制有无内容的评价
     clickSelect (index, event) {
       // console.log(event)
       // console.log(index)
-      if (index === 0) {
+      if (index === 0) { // 当点击全部是显示的评价内容列表
         this.CIndex = index
-      } else if (index === 1) {
+      } else if (index === 1) { // 当点击满意按钮，显示四星以上的评价内容
         this.CIndex = index
-      } else {
+        let ratings = []
+        this.ratings.forEach(item => {
+          if (item.score >= 4) {
+            ratings.push(item)
+          }
+          this.ratings = ratings
+        })
+      } else { // 当点击不满意按钮，显示四星以下的评价内容
         this.CIndex = index + 15
+        let ratings = []
+        this.ratings.forEach(item => {
+          if (item.score < 4) {
+            ratings.push(item)
+          }
+          this.ratings = ratings
+        })
       }
     }
   }
