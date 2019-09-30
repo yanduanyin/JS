@@ -109,7 +109,8 @@ export default {
       ],
       Istatus: true,
       ratings: [],
-      CIndex: 0
+      CIndex: 0,
+      Cratings: []
     }
   },
   components: {
@@ -152,14 +153,26 @@ export default {
     },
     ratingsNum () { // 根据Istatus的改变，动态改变循环数据的数据源
       let ratingsNum = []
-      if (!this.Istatus) {
-        ratingsNum = this.ratings
+      if (this.Cratings.length === 0) {
+        if (!this.Istatus) {
+          ratingsNum = this.ratings
+        } else {
+          this.ratings.forEach(item => {
+            if (item.text !== '') {
+              ratingsNum.push(item)
+            }
+          })
+        }
       } else {
-        this.ratings.forEach(item => {
-          if (item.text !== '') {
-            ratingsNum.push(item)
-          }
-        })
+        if (!this.Istatus) {
+          ratingsNum = this.Cratings
+        } else {
+          this.Cratings.forEach(item => {
+            if (item.text !== '') {
+              ratingsNum.push(item)
+            }
+          })
+        }
       }
       return ratingsNum
     }
@@ -215,25 +228,26 @@ export default {
     clickSelect (index, event) {
       // console.log(event)
       // console.log(index)
+      this.Cratings = this.ratings
       if (index === 0) { // 当点击全部是显示的评价内容列表
         this.CIndex = index
       } else if (index === 1) { // 当点击满意按钮，显示四星以上的评价内容
         this.CIndex = index
         let ratings = []
-        this.ratings.forEach(item => {
+        this.Cratings.forEach(item => {
           if (item.score >= 4) {
             ratings.push(item)
           }
-          this.ratings = ratings
+          this.Cratings = ratings
         })
       } else { // 当点击不满意按钮，显示四星以下的评价内容
         this.CIndex = index + 15
         let ratings = []
-        this.ratings.forEach(item => {
+        this.Cratings.forEach(item => {
           if (item.score < 4) {
             ratings.push(item)
           }
-          this.ratings = ratings
+          this.Cratings = ratings
         })
       }
     }
