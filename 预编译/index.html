@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 变量 声明提升
+    // 函数声明整体提升
+    
+  //   var a;
+  // console.log(a)
+
+  // var a = 123;
+  // a = 123;
+
+
+  test()
+  function test() {
+    console.log('hello world')
+  }
+  function fn(a) {
+    console.log(a)
+    var a = 123;
+    console.log(a)
+    function a() {}
+    console.log(a)
+    var b = function() {}
+    console.log(b)
+    function d() {}
+  }
+
+  fn(1)
+  </script>
+</body>
+</html>
