@@ -18,22 +18,88 @@
   // a = 123;
 
 
-  test()
-  function test() {
-    console.log('hello world')
-  }
-  function fn(a) {
-    console.log(a)
-    var a = 123;
-    console.log(a)
-    function a() {}
-    console.log(a)
-    var b = function() {}
-    console.log(b)
-    function d() {}
-  }
+  // test()
+  // function test() {
+  //   console.log('hello world')
+  // }
+  // function fn(a) {
+  //   console.log(a)
+  //   var a = 123;
+  //   console.log(a)
+  //   function a() {}
+  //   console.log(a)
+  //   var b = function() {}
+  //   console.log(b)
+  //   function d() {}
+  // }
 
-  fn(1)
+  // fn(1)
+
+
+  function test (a, b) {
+    console.log(a) // 
+    c = 0;
+    var c;
+    b = 2;
+    a = 3;
+    console.log(b) // 
+    function b () {}
+    function d () {}
+    console.log(b) // 
+  }
+  test(1)
+// // 预编译后
+//   AO {
+//     a: undefined 1
+//     b: undefined function () {}
+//     c: undefined 
+//     d: function () {}
+//   }
+//   // 读取js代码
+//   AO {
+//     a: undefined 1 3
+//     b: undefined function () {} 2
+//     c: undefined 0
+//     d: function () {}
+//   }
+// // 全局预编译后
+// GO {
+//   global: undefined
+//   fn: function () {}
+// }
+// // 走完全局、局部预编译后，执行代码
+// GO {
+//   global: undefined 100
+//   fn: function () {}
+// }
+// var global = 100;
+// function fn () {
+//   console.log(global)
+// }
+// // 预编译后
+// AO {
+// }
+// fn ()
+
+
+// 函数体内代码执行，先找AO 再找 GO
+// GO {
+//   global: undefined 100
+//   fn： undefined
+// }
+global = 100;
+function fn () {
+  console.log(global); // undefined
+  global = 200;
+  console.log(global) // 200
+  var global = 300;
+}
+fn();
+var global;
+
+// AO {
+//   global: undefined
+// }
   </script>
 </body>
 </html>
