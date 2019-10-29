@@ -1,15 +1,26 @@
 <template>
   <div id="app">
-    <router-view/>
+    <navigationBar />
+    <div class="main-mg">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
+import navigationBar from './components/common_components/navigationBar.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    navigationBar
+  }
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
+#app
+  .main-mg
+    width 1190px
+    margin 0 auto
 
 </style>

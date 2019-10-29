@@ -4,8 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-Vue.config.productionTip = false
+import './common/stylus/index.styl'
 
+Vue.config.productionTip = false
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
