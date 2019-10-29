@@ -9,7 +9,7 @@
             </div>
             <div class="nav_bar_ul">
               <li class="nav_bar_li">
-                <a href="javascript:;" :class="on_or_up=='on' ? 'nav_bar_li_active':''">登录</a>
+                <a href="javascript:;" :class="on_or_up=='on' ? 'nav_bar_li_active':''">登录</a> 
               </li>
               <li class="nav_bar_li">
                 <a href="javascript:;" :class="on_or_up=='up' ? 'nav_bar_li_active':''">注册</a>
