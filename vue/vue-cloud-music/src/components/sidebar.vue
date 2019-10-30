@@ -1,9 +1,12 @@
 <template>
-  <div class="sidebar" :class="{showSidebar : showSidebar}">
-    <div class="sidebar-con" :class="{showbar: showSidebar}">
+  <div class="sidebar" :class="{'showSidebar': showSidebar}">
+    <div class="sidebar-con" :class="{'showbar': showSidebar}">
       <div class="head">
         <div class="avatar">
-          <img src alt />
+          <img
+            src="http://img0.imgtn.bdimg.com/it/u=1022109268,3759531978&fm=26&gp=0.jpg"
+            alt
+          />
         </div>
         <div class="name">许嵩vae</div>
       </div>
@@ -58,15 +61,15 @@ export default {
   data () {
     return {}
   },
+  methods: {
+    _hidebar () {
+      this.$store.dispatch('setShowSidebar', false) // dispatch派发actions的方法
+    }
+  },
   computed: {
     ...mapGetters([
       'showSidebar'
     ])
-  },
-  methods: {
-    _hidebar () {
-      this.$store.dispatch('setShowSidebar', false)
-    }
   }
 }
 </script>
@@ -103,10 +106,12 @@ export default {
         height: px2rem(90px);
         background: #f1f1f1;
         border-radius: 50%;
+        overflow hidden
         margin: px2rem(60px) auto px2rem(15px);
 
         img {
           width: 100%;
+          height 100%;
         }
       }
 
