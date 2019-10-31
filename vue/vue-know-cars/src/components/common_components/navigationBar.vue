@@ -1,10 +1,10 @@
 <template>
   <div id="home_page">
     <div class="header_mg">
-      <a href="http://localhost:8080/#/" class="dcd_login"></a>
-      <router-link to="/" class="nvg-alink">首页</router-link>
-      <router-link to="/auto" class="nvg-alink">车型库</router-link>
-      <router-link to="/video" class="nvg-alink">视频</router-link>
+      <a href="http://localhost:8080/#/" class="dcd_login fl"></a>
+      <router-link to="/" class="nvg-alink fl">首页</router-link>
+      <router-link to="/auto" class="nvg-alink fl">车型库</router-link>
+      <router-link to="/video" class="nvg-alink fl">视频</router-link>
     </div>
   </div>
 </template>
@@ -35,16 +35,11 @@ export default {
       border-radius 5px
       background url('http://localhost:8080/static/know-cars-image/logo-img@3x.png') no-repeat
       background-size 133px 40px
-      float left
     .nvg-alink
       display inline-block
       line-height 68px
       color #fff
       text-decoration none // 去掉下划线
       margin-left 50px
-      letter-spacing 0 // 字符间距
-      float left
-    
-
-    
+      letter-spacing 0 // 字符间距  
 </style>
