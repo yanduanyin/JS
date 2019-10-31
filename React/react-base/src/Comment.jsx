@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Input extends Component {
-  // 静态属性
+  // 静态属性 数据集合
   state = {
     value: ''
   }
@@ -54,7 +54,7 @@ class Comment extends Component {
     clist: [
       {content: '666'},
       {content:  '999'},
-      {content: '幸苦了'}
+      {content: '第三条数据'}
     ] // 评论列表
   }
   handleReceiveComment = (value) => {
