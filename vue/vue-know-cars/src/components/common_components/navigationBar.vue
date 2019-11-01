@@ -13,8 +13,6 @@
         <input type="search" placeholder="请输入你要搜索的内容" class="searchInput fl">
         <button type="submit" class="searchBt">搜索</button>
       </div>
-      <!-- 所在地组件 -->
-      <siteBar />
       <!-- 二维码部分 -->
       <a href="https://www.dcdapp.com/download/" class="nav-qrcodeWrap">
         <span class="nav-qrcode-bt iconfont icon-erweima">
@@ -25,6 +23,8 @@
           <img src="http://localhost:8080/static/know-cars-image/qrcode@3x-.jpg" alt class="qrcode">
         </div>
       </a>
+      <!-- 所在地组件 -->
+      <siteBar  />
     </div>
   </div>
 </template>
@@ -155,26 +155,26 @@ export default {
           display inline-block
           font-size 16px
           color #a7a4a4
-          line-height: 1;
-          vertical-align: middle;
+          line-height 1
+          vertical-align middle
       .searchInput
-        width: 213px;
-        height: 32px;
-        line-height: 12px;
-        font-size: 12px;
-        box-sizing: border-box;
-        -webkit-appearance: none;
-        padding: 0px 10px 0px 0px;
-        outline: 0px;
-        border-width: 0px;
+        width 213px
+        height 32px
+        line-height 12px
+        font-size 12px
+        box-sizing border-box
+        -webkit-appearance: none
+        padding 0px 10px 0px 0px
+        outline 0px
+        border-width 0px
       .searchBt
-        width: 60px;
-        line-height: 32px;
-        font-size: 14px;
-        background-color: rgb(255, 225, 0);
-        cursor: pointer;
-        float: right;
-        border-width: 0px;
-        border-radius: 0px 4px 4px 0px;
-        outline: none;
+        width 60px
+        line-height 32px
+        font-size 14px
+        background-color rgb(255, 225, 0)
+        cursor pointer
+        float right
+        border-width 0px
+        border-radius 0px 4px 4px 0px
+        outline none
 </style>
