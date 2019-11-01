@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 
 import './common/stylus/index.styl'
+import './common/font_iconfont/iconfont.css'
+
 
 Vue.config.productionTip = false
 // 路由守卫

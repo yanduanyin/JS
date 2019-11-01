@@ -18,9 +18,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 #app
   .main-mg
     width 1190px
     margin 0 auto
+
 
 </style>
