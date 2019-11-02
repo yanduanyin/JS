@@ -103,13 +103,12 @@ export default {
     display inline-block
     font-size 24px
     vertical-align middle
-    margin-right 8px
+    margin-right 1px
     margin-top -1px
     line-height 1
   .arrow-down
     display inline-block
     font-size 16px
-    margin-left 8px
     margin-top -3px
     vertical-align middle
     line-height 1

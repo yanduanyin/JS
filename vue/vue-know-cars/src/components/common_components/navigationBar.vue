@@ -23,7 +23,7 @@
           <img src="http://localhost:8080/static/know-cars-image/qrcode@3x-.jpg" alt class="qrcode">
         </div>
       </a>
-      <!-- 所在地组件 -->
+      <!-- 位置信息组件 -->
       <siteBar  />
     </div>
   </div>
