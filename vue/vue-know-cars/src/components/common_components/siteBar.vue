@@ -4,27 +4,29 @@
     南昌
     <section class="cityList">
       <div class="listLt fl">
-        <span data-letter="热门" class="listLt-item active">热</span>
+        <span data-letter="热门城市" class="listLt-item active">热</span>
         <span data-letter="a" class="listLt-item">A</span>
         <span data-letter="b" class="listLt-item">B</span>
       </div>
       <section class="listRt">
-        <div class="listRt-container">
+        <div class="listRt-container" data-letter="热门城市">
           <h4 class="listRtHitem">热门城市</h4>
-          <span class="listRt-item">北京</span>
-          <span class="listRt-item">上海</span>
-          <span class="listRt-item">广州</span>
-          <span class="listRt-item">深圳</span>
-          <span class="listRt-item">重庆</span>
-          <span class="listRt-item">天津</span>
-          <span class="listRt-item">成都</span>
-          <span class="listRt-item">杭州</span>
-          <span class="listRt-item">武汉</span>
-          <span class="listRt-item">苏州</span>
-          <span class="listRt-item">西安</span>
-          <span class="listRt-item">南京</span>
+          <div>
+            <span class="listRt-item">北京</span>
+            <span class="listRt-item">上海</span>
+            <span class="listRt-item">广州</span>
+            <span class="listRt-item">深圳</span>
+            <span class="listRt-item">重庆</span>
+            <span class="listRt-item">天津</span>
+            <span class="listRt-item">成都</span>
+            <span class="listRt-item">杭州</span>
+            <span class="listRt-item">武汉</span>
+            <span class="listRt-item">苏州</span>
+            <span class="listRt-item">西安</span>
+            <span class="listRt-item">南京</span>
+          </div>
         </div>
-        <div class="listRt-container">
+        <div class="listRt-container" data-letter="a">
           <h4 class="listRtHitem">A</h4>
           <span class="listRt-item">北京</span>
           <span class="listRt-item">上海</span>
@@ -39,7 +41,7 @@
           <span class="listRt-item">西安</span>
           <span class="listRt-item">南京</span>
         </div>
-        <div class="listRt-container">
+        <div class="listRt-container" data-letter="b">
           <h4 class="listRtHitem">C</h4>
           <span class="listRt-item">北京</span>
           <span class="listRt-item">上海</span>
@@ -58,7 +60,7 @@
           <span class="listRt-item">西安</span>
           <span class="listRt-item">南京</span>
         </div>
-        <div class="listRt-container">
+        <div class="listRt-container" data-letter="c">
           <h4 class="listRtHitem">D</h4>
           <span class="listRt-item">北京</span>
           <span class="listRt-item">上海</span>
@@ -175,6 +177,8 @@ export default {
           line-height 22px
           text-align center
           padding 8px 0px
+          &:hover
+            background-color rgba(255, 225, 0, 0.2)
 
 
 </style>
