@@ -1,11 +1,11 @@
 {
   "data": [
     {
-      "smallLetter": "热门城市",
-      "bigLetter": "A",
+      "smallLetter": "热",
+      "bigLetter": "热门城市",
       "citys": [
         {
-          "title": "热门城市",
+          "title": "热",
           "citynames": [
             {
               "cityname": "北京"
@@ -21,11 +21,11 @@
       ]
     },
     {
-      "smallLetter": "热门城市",
+      "smallLetter": "a",
       "bigLetter": "A",
       "citys": [
         {
-          "title": "热门城市",
+          "title": "a",
           "citynames": [
             {
               "cityname": "北京"
