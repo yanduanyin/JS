@@ -1,8 +1,8 @@
 <template>
-  <div class="site-container">
+  <div class="site-container"  @click="cityListShow">
     <span class="site-icon iconfont icon-weizhi"></span>
     南昌
-    <section class="cityList">
+    <section :class="['cityList']" v-show="cityShow">
       <div class="listLt fl">
         <span data-letter="热门城市" class="listLt-item active">热</span>
         <span data-letter="a" class="listLt-item">A</span>
@@ -87,7 +87,16 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      cityShow: false
+    }
+  },
+  methods: {
+   cityListShow () {
+     this.cityShow = !this.cityShow
+   }
+  }
 }
 </script>
 
