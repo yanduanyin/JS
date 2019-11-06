@@ -9,8 +9,8 @@
           <span :data-letter="item.letter">{{item.content}}</span>
         </div>
       </div>
-      <section class="listRt" ref="nameWrapper">
-        <div class="listRt-wrapper">
+      <section class="listRt" ref="names" >
+        <div class="listRt-wrapper" @mousewheel.stop="handleScroll" ref="nameWrapper">
           <div class="listRt-box" v-for="(Bitem, index) in siteName" :key="index" ref="nameList">
             <div class="listRt-container" :data-letter="Bitem.letter" v-for="(items, index) in Bitem.child" :key="index">
               <h4 class="listRtHitem">{{items.h4_content}}</h4>
@@ -27,23 +27,20 @@
 </template>
 
 <script>
-// import BScroll from 'better-scroll'
+import BScroll from 'better-scroll'
 export default {
   data() {
     return {
       siteLetter: [],// 接受axios请求的数据
       siteName: [], // 接受axios请求的数据
       hostCity: '南昌', //默认地名南昌
-      // currentIndex: 0,
       cityShow: false, // 控制城市列表dmo结构出现的开关变量
       listHeight: [], // 保存不同首字母 城市名列表的高度
-      scrollY: 0 // 初始化滚动距离
+      scrollY: 0, // 初始化滚动距离
+      scorllTop: 0
     }
   },
   created() {
-  },
-  mounted() {
-    window.addEventListener('mousewheel',this.handleScroll,false)
   },
   computed: {
     currentIndex () {
@@ -72,9 +69,9 @@ export default {
       .then(res => {
         // console.log('siteData:', res)
         this.siteName = res.data
-         this.$nextTick(() => { // 页面渲染完成才会执行
-          this._calculateHeight()
-          this.handleScroll()
+        this.$nextTick(() => { // 页面渲染完成才会执行
+           this._calculateHeight()
+           this._initScroll()
         })
       })
       .catch((err)=>{
@@ -87,39 +84,56 @@ export default {
     this.hostCity = name
    },
    // 监控pc 端滚轮滑动
-   handleScroll (e) {
-     //var direction = e.deltaY>0?'down':'up' 该语句可以用来判断滚轮是向上滑动还是向下
-    if(document.getElementsByTagName("li").length == 1){   //此处决定无论一次滚轮滚动的距离是多少，此事件都得等上次滚动结束，才会执行本次
-          this.isShow = false
-          setTimeout(() => {
-              this.isShow = true
-              ++ this.nowIndex
-              if(this.nowIndex == 3){
-              this.nowIndex = 0
-          }
-          }, 10)
-      }
+    //getBoundingClientRect()   这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离。
+    // 
+    // var box=document.getElementById('box');         // 获取元素
+    // alert(box.getBoundingClientRect().top);         // 元素上边距离页面上边的距离
+    // alert(box.getBoundingClientRect().right);       // 元素右边距离页面左边的距离
+    // alert(box.getBoundingClientRect().bottom);      // 元素下边距离页面上边的距离
+    // alert(box.getBoundingClientRect().left);        // 元素左边距离页面左边的距离
+   handleScroll () {
+     console.log('滚动了一次')
+     this._scorllHeight() 
     },
     clickColor(index, event) {
       console.log(index)
-      console.log(event)
+      // console.log(event)
       // this.currentIndex = index
       let nameList = this.$refs.nameList
       let el = nameList[index]
-      // this.namesScroll.scrollToElement(el, 3)
+      // console.log(el)
+      this.scrollY = this.listHeight[index]
+      this.namesScroll.scrollToElement(el, 3)
    },
+    _scorllHeight () {
+      let nameWrapper = this.$refs.nameWrapper
+      console.log(nameWrapper.getBoundingClientRect().top)
+      this.scrollTop = nameWrapper.getBoundingClientRect().top
+      if (this.scrollTop >= 0) {
+        this.scrollY = 80 - this.scrollTop
+      } else if (this.scrollTop < 0) {
+        this.scrollY = Math.abs(this.scrollTop) + 80
+      }
+      console.log('滚动了:',this.scrollY)
+    },
+    _initScroll () {
+      this.namesScroll = new BScroll(this.$refs.names, {
+        click: true,
+        probeType: 3
+      })
+    },
     _calculateHeight () {
       let nameList = this.$refs.nameList
-      let height = 0
       // console.log(this.$refs)
       // console.log(nameList)
-      this.listHeight.push(height)
-      // console.log(this.$refs.nameWrapper.clientHeight)
+      let Height = 0
+      this.listHeight.push(Height)
       for (let i = 0; i < nameList.length; i++) {
         let item = nameList[i]
-        // console.log(item, item.clientHeight)
-        height += item.clientHeight
-        this.listHeight.push(height)
+        Height += item.clientHeight
+        // console.log(Height, '----')
+        this.listHeight.push(Height)
+        console.log(this.listHeight)
       }
     }
   }
