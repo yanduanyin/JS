@@ -6,7 +6,9 @@ import router from './router'
 
 import './common/stylus/index.styl'
 import './common/font_iconfont/iconfont.css'
-
+// 使用axios请求数据
+import axios from 'axios'
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 // 路由守卫
