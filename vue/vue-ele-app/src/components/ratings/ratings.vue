@@ -71,7 +71,7 @@
               <div class="contentWrapper">
                 <span>{{item.text}}</span>
                 <div class="fooder-content">
-                  <img class="dianzan" src="http://localhost:8080/static/点赞.png"/>
+                  <img class="dianzan" src="http://localhost:8081/static/点赞.png"/>
                   <span class="text" v-for="(comment,index ) of item.recommend" :key="index">{{comment}}</span>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default {
   },
   created () {
     // 请求数据，并以数据源里的ratings数组接收，以便使用
-    this.$http.get('http://localhost:8080/static/ratings.json')
+    this.$http.get('http://localhost:8081/static/ratings.json')
       .then((res) => {
         console.log(res.data.data)
         if (res.data.errno === 0) {
@@ -310,9 +310,9 @@ export default {
           background-size 15px 15px
           background-repeat no-repeat
         .on
-          background-image url('http://localhost:8080/static/star-on.png')
+          background-image url('http://localhost:8081/static/star-on.png')
         .off
-          background-image url('http://localhost:8080/static/star-off.png')
+          background-image url('http://localhost:8081/static/star-off.png')
           margin 0
     .desctimes
       span

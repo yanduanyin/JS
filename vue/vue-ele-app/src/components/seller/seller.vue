@@ -12,7 +12,7 @@
       <!-- 收藏和心脱离文档流 -->
       <div class="sollection">
         <div class="icon-heart">
-          <img src="http://localhost:8080/static/心.png" alt="">
+          <img src="http://localhost:8081/static/心.png" alt="">
         </div>
         <span>收藏</span>
       </div>

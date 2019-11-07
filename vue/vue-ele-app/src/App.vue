@@ -37,7 +37,7 @@ export default {
   created () {
     // 请求 easy mock 数据方式   this.$http.get('easy mock里的接口地址')
     // 本地服务器数据
-    this.$http.get('http://localhost:8080/static/seller.json')
+    this.$http.get('http://localhost:8081/static/seller.json')
       .then(res => {
         console.log(res)
         if (res.data.errno === 0) {

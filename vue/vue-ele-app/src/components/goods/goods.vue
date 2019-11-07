@@ -73,7 +73,7 @@ export default {
   },
   created () {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-    this.$http.get('http://localhost:8080/static/goods.json')
+    this.$http.get('http://localhost:8081/static/goods.json')
       .then(res => {
         console.log(res)
         if (res.data.errno === 0) {
@@ -139,6 +139,8 @@ export default {
       this.listHeight.push(height)
       for (let i = 0; i < foodList.length; i++) {
         let item = foodList[i]
+        console.log(item)
+        console.log(item.clientHeight)
         height += item.clientHeight
         this.listHeight.push(height)
       }
