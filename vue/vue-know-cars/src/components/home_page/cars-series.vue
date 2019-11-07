@@ -1,7 +1,13 @@
 <template>
   <div class="series-wrapper clearfix">
     <div class="seriesFl fl">
-      
+      <ul class="title-ul">
+        <div  v-for="(item, index) in seriesName" :key="index" class="title-li-box" @mousemove="moveIn(index)">
+          <li :class="['title-li', {'active':currentIndex === index}]">
+          <span>{{item.name}}</span>
+        </li>
+        </div>
+      </ul>
     </div>
     <div class="seriesRt fl">
       <div class="title-container">
@@ -64,7 +70,35 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      seriesName: [
+        {name: '热门车型'},
+        {name: '国产'},
+        {name: '德系'},
+        {name: '日系'},
+        {name: '10-15万'},
+        {name: '15-25万'},
+        {name: '25-35万'},
+        {name: '35万以上'}
+      ],
+      moveIndex: ''
+    }
+  },
+  computed: {
+    currentIndex () {
+      if (this.moveIndex) {
+        return this.moveIndex
+      }
+      return 0
+    }
+  },
+  methods: {
+    moveIn (index) {
+      this.moveIndex = index
+      
+    }
+  }
 }
 </script>
 
@@ -74,6 +108,29 @@ export default {
     width 800px
     height 296px
     border-top 0
+    .title-ul
+      height 60px
+      line-height 60px
+      font-size 18px
+      font-weight 500
+      border-bottom 1px solid #e6e6e6
+      padding-left 20px
+      .title-li-box
+          display inline-block
+          margin-right 40px
+        .title-li
+          &:hover 
+            cursor pointer
+        .active
+          position relative
+          &::after
+            content: ''
+            position: absolute
+            left: 0
+            bottom: 0
+            width: 100%
+            height: 4px
+            background-color: #333
   .seriesRt
     width 380px
     min-height 215px
