@@ -8,6 +8,37 @@
         </li>
         </div>
       </ul>
+      <div class="car-list">
+        <div class="box clearfix">
+          <div class="series1">
+            <router-link to="https://www.dcdapp.com/auto/series/99"  target="_blank" class="box-routeLink" title="">
+              <span></span>
+              <div class="name-wrapper">
+                <span class="series-name"></span>
+              </div>
+            </router-link>
+            <div class="series1-item-down">
+              <ul>
+                <li class="series1-down-li">
+                  <a href="https://www.dcdapp.com/dealer/542?zt=default_pc_pc_home_top_series" target="_blank">
+                    <span>报价</span>
+                  </a>
+                </li>
+                <li class="series1-down-li">
+                  <a href="https://www.dcdapp.com/dealer/542?zt=default_pc_pc_home_top_series" target="_blank">
+                    <span>图库</span>
+                  </a>
+                </li>
+                <li class="series1-down-li">
+                  <a href="https://www.dcdapp.com/dealer/542?zt=default_pc_pc_home_top_series" target="_blank">
+                    <span>参数</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="seriesRt fl">
       <div class="title-container">
@@ -82,21 +113,101 @@ export default {
         {name: '25-35万'},
         {name: '35万以上'}
       ],
-      moveIndex: ''
+      moveIndex: 0,
+      seriesData1: '',
+      seriesData2_3: ''
     }
   },
   computed: {
     currentIndex () {
-      if (this.moveIndex) {
-        return this.moveIndex
-      }
-      return 0
+      return this.moveIndex
     }
+  },
+  created() {
+    this.init(this.moveIndex)
   },
   methods: {
     moveIn (index) {
       this.moveIndex = index
-      
+      // console.log(index)
+      // this.init(index)
+    },
+    init (idx) {
+      switch (idx) {
+        case 0:
+          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_germany.json')
+          .then(res => {
+            console.log('seriesData:', res.data.data.series)
+            this.seriesData1 = res.data.data.series.slice(0,7)
+            // console.log(this.seriesData1) 
+            this.seriesData2_3 = res.data.data.series.slice(7, 21)
+            // console.log(this.seriesData2_3)
+          })
+          break;
+        case 1:
+          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_China.json')
+          .then(res => {
+            console.log('seriesData:', res.data.data.series)
+            this.seriesData1 = res.data.data.series.slice(0,7)
+            // console.log(this.seriesData1) 
+            this.seriesData2_3 = res.data.data.series.slice(7, 21)
+          })
+          break;
+        case 2:
+          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_popular.json')
+          .then(res => {
+            console.log('seriesData:', res.data.data.series)
+            this.seriesData1 = res.data.data.series.slice(0,7)
+            // console.log(this.seriesData1) 
+            this.seriesData2_3 = res.data.data.series.slice(7, 21) 
+          })
+          break;
+        case 3:
+          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_japan.json')
+          .then(res => {
+            console.log('seriesData:', res.data.data.series)
+            this.seriesData1 = res.data.data.series.slice(0,7)
+            // console.log(this.seriesData1) 
+            this.seriesData2_3 = res.data.data.series.slice(7, 21)
+          })
+          break;
+        case 4:
+          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_10-15.json')
+          .then(res => {
+            console.log('seriesData:', res.data.data.series)
+            this.seriesData1 = res.data.data.series.slice(0,7)
+            // console.log(this.seriesData1) 
+            this.seriesData2_3 = res.data.data.series.slice(7, 21)
+          })
+          break;
+        case 5:
+          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_15-25.json')
+          .then(res => {
+            console.log('seriesData:', res.data.data.series)
+            this.seriesData1 = res.data.data.series.slice(0,7)
+            // console.log(this.seriesData1) 
+            this.seriesData2_3 = res.data.data.series.slice(7, 21) 
+          })
+          break;
+        case 6:
+          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_25-35.json')
+          .then(res => {
+            console.log('seriesData:', res.data.data.series)
+            this.seriesData1 = res.data.data.series.slice(0,7)
+            // console.log(this.seriesData1) 
+            this.seriesData2_3 = res.data.data.series.slice(7, 21) 
+          })
+          break;
+        case 7:
+          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_35~.json')
+          .then(res => {
+            console.log('seriesData:', res)
+            this.seriesData1 = res.data.data.series.slice(0,7)
+            // console.log(this.seriesData1) 
+            this.seriesData2_3 = res.data.data.series.slice(7, 21)
+          })
+          break;
+      }
     }
   }
 }
