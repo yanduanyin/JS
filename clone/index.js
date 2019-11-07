@@ -37,5 +37,5 @@ let b = a.slice(1)
 // b ['1', [2, 3]]
 a[1] = '22'
 a[2][0] = '4'
-console.log(a) //
+console.log(a) // [0, '22', ['4', 3]]
 console.log(b)
