@@ -9,8 +9,8 @@
           <span :data-letter="item.letter">{{item.content}}</span>
         </div>
       </div>
-      <section class="listRt" ref="names" >
-        <div class="listRt-wrapper" @mousewheel.stop="handleScroll" ref="nameWrapper">
+      <section class="listRt" @scroll.stop="handleScroll" >
+        <div class="listRt-wrapper" ref="nameWrapper">
           <div class="listRt-box" v-for="(Bitem, index) in siteName" :key="index" ref="nameList">
             <div class="listRt-container" :data-letter="Bitem.letter" v-for="(items, index) in Bitem.child" :key="index">
               <h4 class="listRtHitem">{{items.h4_content}}</h4>
@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
 export default {
   data() {
     return {
@@ -55,35 +54,34 @@ export default {
     }
   },
   methods: {
-   cityListShow () {
-     this.cityShow = !this.cityShow
-     this.$http.get('http://localhost:8080/static/Data/shouye/siteData/siteletterData.json')
-      .then(res => {
-        // console.log('siteletterData:', res.data)
-        this.siteLetter = res.data 
-      })
-      .catch((err)=>{
-        console.log('err:请求数据失败！');
-      })　　　　
-     this.$http.get('http://localhost:8080/static/Data/shouye/siteData/siteData.json')
-      .then(res => {
-        // console.log('siteData:', res)
-        this.siteName = res.data
-        this.$nextTick(() => { // 页面渲染完成才会执行
-           this._calculateHeight()
-           this._initScroll()
+    cityListShow () {
+      this.cityShow = !this.cityShow
+      this.$http.get('http://localhost:8080/static/Data/shouye/siteData/siteletterData.json')
+        .then(res => {
+          // console.log('siteletterData:', res.data)
+          this.siteLetter = res.data 
         })
-      })
-      .catch((err)=>{
-        console.log('err:请求数据失败！');
-      })　
-   },
-   clickCity(name) {
-    //  console.log(name)
-    this.cityShow = !this.cityShow
-    this.hostCity = name
-   },
-   // 监控pc 端滚轮滑动
+        .catch((err)=>{
+          console.log('err:请求数据失败！');
+        })　　　　
+      this.$http.get('http://localhost:8080/static/Data/shouye/siteData/siteData.json')
+        .then(res => {
+          // console.log('siteData:', res)
+          this.siteName = res.data
+          this.$nextTick(() => { // 页面渲染完成才会执行
+            this._calculateHeight()
+          })
+        })
+        .catch((err)=>{
+          console.log('err:请求数据失败！');
+        })　
+    },
+    clickCity(name) {
+      //  console.log(name)
+      this.cityShow = !this.cityShow
+      this.hostCity = name
+    },
+    // 监控pc 端滚轮滑动
     //getBoundingClientRect()   这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离。
     // 
     // var box=document.getElementById('box');         // 获取元素
@@ -91,36 +89,25 @@ export default {
     // alert(box.getBoundingClientRect().right);       // 元素右边距离页面左边的距离
     // alert(box.getBoundingClientRect().bottom);      // 元素下边距离页面上边的距离
     // alert(box.getBoundingClientRect().left);        // 元素左边距离页面左边的距离
-   handleScroll () {
-     console.log('滚动了一次')
-     this._scorllHeight() 
-    },
-    clickColor(index, event) {
-      console.log(index)
-      // console.log(event)
-      // this.currentIndex = index
-      let nameList = this.$refs.nameList
-      let el = nameList[index]
-      // console.log(el)
-      this.scrollY = this.listHeight[index]
-      this.namesScroll.scrollToElement(el, 3)
-   },
-    _scorllHeight () {
-      let nameWrapper = this.$refs.nameWrapper
-      console.log(nameWrapper.getBoundingClientRect().top)
+    handleScroll () {
+     //  console.log('滚动了一次')
+     let nameWrapper = this.$refs.nameWrapper
+      // console.log(nameWrapper.getBoundingClientRect().top)
       this.scrollTop = nameWrapper.getBoundingClientRect().top
       if (this.scrollTop >= 0) {
         this.scrollY = 80 - this.scrollTop
       } else if (this.scrollTop < 0) {
         this.scrollY = Math.abs(this.scrollTop) + 80
       }
-      console.log('滚动了:',this.scrollY)
+      // console.log('滚动了:',this.scrollY) 
     },
-    _initScroll () {
-      this.namesScroll = new BScroll(this.$refs.names, {
-        click: true,
-        probeType: 3
-      })
+    clickColor(index, event) {
+      // console.log(index, event)
+      let el = this.$refs.nameWrapper
+      // console.log(el)
+      this.scrollY = this.listHeight[index]
+      // console.log(this.listHeight[index])
+      el.style.top =(-this.scrollY)+'px'
     },
     _calculateHeight () {
       let nameList = this.$refs.nameList
@@ -133,10 +120,10 @@ export default {
         Height += item.clientHeight
         // console.log(Height, '----')
         this.listHeight.push(Height)
-        console.log(this.listHeight)
       }
+      console.log(this.listHeight)
     }
-  }
+    }
 }
 </script>
 
@@ -206,9 +193,10 @@ export default {
       float right
       // transform translateZ(0px)
       margin 12px 0px
-      &::-webkit-scrollbar 
+      &::-webkit-scrollbar
         display: none
       .listRt-wrapper
+        position absolute
         .listRt-box
           .listRt-container
             line-height 0
