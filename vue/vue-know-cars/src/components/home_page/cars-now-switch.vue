@@ -1,6 +1,16 @@
 <template>
   <div class="wrapper clearfix">
     <div class="fl wrapper-switch">
+      <div class="swiper-container">
+        <div class="img-wrapper">
+
+        </div>
+        <div class="swiper-pagination">
+
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
     </div>
     <div class="today-news fl">
       <span class="today-news-title"></span>
@@ -47,6 +57,31 @@ export default {
 <style lang="stylus" scoped>
 .wrapper
   margin-top 10px
+  .wrapper-switch
+    display inline-block
+    width 800px
+    min-width 800px
+    height 316px
+    min-width 316px
+    background-size cover
+    overflow hidden
+    .swiper-container
+      margin 0 auto 
+      position relative
+      overflow hidden
+      list-style none
+      padding 0
+      z-index 1
+      .img-wrapper
+        position relative
+        width 100%
+        height 100%
+      .swiper-button-next
+        right 0
+        border-radius 8px 0 0 8px
+      .swiper-button-prev
+        left 0
+        border-radius 0 8px 8px 0
   .today-news
     width: 380px
     height: 316px
