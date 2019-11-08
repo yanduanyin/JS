@@ -1,6 +1,6 @@
 <template>
   <div class="news-wrapper">
-    
+
   </div>
 </template>
 
@@ -10,6 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
+.news-wrapper
 
 </style>
