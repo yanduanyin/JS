@@ -11,13 +11,13 @@
       <div class="car-list">
         <div class="box" clearfix>
           <div class="series1 fl"  v-for="(item, index) in seriesData1" :key="'info1-'+index">
-            <router-link :to="'https://www.dcdapp.com/auto/series/' + item.id"  target="_blank" class="box-routeLink" :title="item.outter_name">
+            <a :href="'https://www.dcdapp.com/auto/series/' + item.id"  target="_blank" class="box-routeLink" :title="item.outter_name">
               <span :style="'backgroundImage: url(' + item.cover_url + ')'"></span>
               <div class="name-wrapper">
                 <span class="series-name">{{item.outter_name}}</span>
                 <span class="tag" v-show="item.series_status_tag">新</span>
               </div>
-            </router-link>
+            </a>
             <div class="series1-item-down">
               <ul class="series1-down-ul">
                 <li class="series1-down-li">
@@ -39,13 +39,13 @@
             </div>
           </div>
           <div class="series1 fl"  v-for="(item, index) in seriesData2_3" :key="index">
-            <router-link to="https://www.dcdapp.com/auto/series/99"  target="_blank" class="box-routeLink" :title="item.outter_name">
+            <a :href="'https://www.dcdapp.com/auto/series/' + item.id" target="_blank" class="box-routeLink" :title="item.outter_name">
               <!-- <span :style="'backgroundImage: url(' + item.cover_url + ')'"></span> -->
               <div class="name-wrapper">
                 <span class="series-name">{{item.outter_name}}</span>
                 <span class="tag" v-show="item.series_status_tag">新</span>
               </div>
-            </router-link>
+            </a>
             <div class="series1-item-down">
               <ul class="series1-down-ul">
                 <li class="series1-down-li">
@@ -222,8 +222,6 @@ export default {
           border-bottom 2px solid rgb(255, 255, 255)
           box-sizing border-box
           .box-routeLink
-            &:hover 
-              color: #406599
             span 
               display: block
               width: 90px
