@@ -17,7 +17,7 @@
       <div class="icon3 public"></div>
     </a>
     <a href="#/auto?key=series_type&param=4&text=跑车" target="_blank" class="whole fl">
-      <div class="icon4 public"></div>
+      <div class="icon4 public"></div>''
     </a>
     <a href="#/auto?key=series_type&param=3&text=皮卡" target="_blank" class="whole fl">
       <div class="icon5 public"></div>

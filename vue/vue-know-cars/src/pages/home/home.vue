@@ -3,6 +3,7 @@
     <div id="main">
       <carsNav />
       <carsSeries />
+      <carsNowSwitch />
     </div>
     <div class="news-content">
       热点内容
@@ -18,10 +19,12 @@
 <script>
 import carsNav from '../../components/home_page/cars-navigation'
 import carsSeries from '../../components/home_page/cars-series'
+import carsNowSwitch from '../../components/home_page/cars-now-switch'
 export default {
   components: {
     carsNav,
-    carsSeries
+    carsSeries,
+    carsNowSwitch
   }
 }
 </script>

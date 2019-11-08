@@ -2,7 +2,7 @@
   <div class="series-wrapper clearfix">
     <div class="seriesFl fl">
       <ul class="title-ul">
-        <div  v-for="(item, index) in seriesName" :key="index" class="title-li-box" @mousemove="moveIn(index)">
+        <div  v-for="(item, index) in seriesName" :key="index" class="title-li-box" @mouseenter="moveIn(index)">
           <li :class="['title-li', {'active':currentIndex === index}]">
             <span>{{item.name}}</span>
           </li>
@@ -10,27 +10,28 @@
       </ul>
       <div class="car-list">
         <div class="box" clearfix>
-          <div class="series1 fl"  v-for="(item, index) in seriesData1" :key="index">
-            <router-link to="https://www.dcdapp.com/auto/series/99"  target="_blank" class="box-routeLink" title="">
+          <div class="series1 fl"  v-for="(item, index) in seriesData1" :key="'info1-'+index">
+            <router-link :to="'https://www.dcdapp.com/auto/series/' + item.id"  target="_blank" class="box-routeLink" :title="item.outter_name">
               <span :style="'backgroundImage: url(' + item.cover_url + ')'"></span>
               <div class="name-wrapper">
                 <span class="series-name">{{item.outter_name}}</span>
+                <span class="tag" v-show="item.series_status_tag">新</span>
               </div>
             </router-link>
             <div class="series1-item-down">
               <ul class="series1-down-ul">
                 <li class="series1-down-li">
-                  <a href="https://www.dcdapp.com/dealer/542?zt=default_pc_pc_home_top_series" target="_blank">
+                  <a :href="'https://www.dcdapp.com/dealer/' + item.concern_id + '?zt=default_pc_pc_home_top_series'" target="_blank" :title="item.outter_name">
                     <span>报价</span>
                   </a>
                 </li>
                 <li class="series1-down-li">
-                  <a href="https://www.dcdapp.com/auto/series/276/images/wg" target="_blank">
+                  <a :href="'https://www.dcdapp.com/auto/series/' + item.concern_id + '/images/wg'" target="_blank" :title="item.outter_name">
                     <span>图库</span>
                   </a>
                 </li>
                 <li class="series1-down-li">
-                  <a href="https://www.dcdapp.com/auto/params?carIds=35181,30998,35183,31265,31266,31267,31268,38769,41903,41906,37942,37943,30925,32604,32605,32606,32607,32608,38768,35180,32493,35182,38767,35184,35185,38770" target="_blank">
+                  <a :href="'https://www.dcdapp.com/auto/params?carIds='+item.car_ids+''" target="_blank" :title="item.outter_name">
                     <span>参数</span>
                   </a>
                 </li>
@@ -38,26 +39,27 @@
             </div>
           </div>
           <div class="series1 fl"  v-for="(item, index) in seriesData2_3" :key="index">
-            <router-link to="https://www.dcdapp.com/auto/series/99"  target="_blank" class="box-routeLink" title="">
+            <router-link to="https://www.dcdapp.com/auto/series/99"  target="_blank" class="box-routeLink" :title="item.outter_name">
               <!-- <span :style="'backgroundImage: url(' + item.cover_url + ')'"></span> -->
               <div class="name-wrapper">
                 <span class="series-name">{{item.outter_name}}</span>
+                <span class="tag" v-show="item.series_status_tag">新</span>
               </div>
             </router-link>
             <div class="series1-item-down">
               <ul class="series1-down-ul">
                 <li class="series1-down-li">
-                  <a href="https://www.dcdapp.com/dealer/542?zt=default_pc_pc_home_top_series" target="_blank">
+                  <a :href="'https://www.dcdapp.com/dealer/' + item.concern_id + '?zt=default_pc_pc_home_top_series'" target="_blank" :title="item.outter_name">
                     <span>报价</span>
                   </a>
                 </li>
                 <li class="series1-down-li">
-                  <a href="https://www.dcdapp.com/auto/series/276/images/wg" target="_blank">
+                  <a :href="'https://www.dcdapp.com/auto/series/' + item.concern_id + '/images/wg'" target="_blank" :title="item.outter_name">
                     <span>图库</span>
                   </a>
                 </li>
                 <li class="series1-down-li">
-                  <a href="https://www.dcdapp.com/auto/params?carIds=35181,30998,35183,31265,31266,31267,31268,38769,41903,41906,37942,37943,30925,32604,32605,32606,32607,32608,38768,35180,32493,35182,38767,35184,35185,38770" target="_blank">
+                  <a :title="item.outter_name" :href="'https://www.dcdapp.com/auto/params?carIds='+item.car_ids+''" target="_blank">
                     <span>参数</span>
                   </a>
                 </li>
@@ -165,17 +167,15 @@ export default {
   methods: {
     moveIn (index) {
       this.moveIndex = index
-      console.log(index)
-      // this.init(index)
+      // console.log(index, 'sahdsa')
       this.seriesData1 = this.seriesData[index].series.slice(0,7)
-      console.log('11', this.seriesData1)
+      // console.log('11', this.seriesData1)
       this.seriesData2_3 = this.seriesData[index].series.slice(7,21)
-      console.log('22', this.seriesData2_3)
+      // console.log('22', this.seriesData2_3)
     }
   }
 }
 </script>
-
 <style  lang="stylus" scoped>
 .series-wrapper
   .seriesFl
@@ -222,6 +222,8 @@ export default {
           border-bottom 2px solid rgb(255, 255, 255)
           box-sizing border-box
           .box-routeLink
+            &:hover 
+              color: #406599
             span 
               display: block
               width: 90px
@@ -231,6 +233,8 @@ export default {
               position: relative
               vertical-align: middle
               transition: transform 0.3s ease-in-out 0s
+              &:hover 
+                transform: scale(1.1)
             .name-wrapper
               display: flex
               -webkit-box-pack: center
@@ -248,6 +252,21 @@ export default {
                 -webkit-line-clamp: 1
                 word-break: break-all
                 overflow: hidden
+                &:hover 
+                  transform: scale(1)
+              .tag
+                position relative
+                display inline-block
+                height 14px
+                width 14px
+                margin-left 4px
+                top 3px
+                line-height 14px
+                font-size 10px
+                color rgb(255, 255, 255)
+                background-color rgb(250,85,85)
+                padding 0 2px
+                border-radius 2px
           .series1-item-down
             .series1-down-ul
               height: 12px;
@@ -257,11 +276,18 @@ export default {
               color: rgb(153, 153, 153);
               margin: 2px 0px 2.5px;
               .series1-down-li
-                border-right: 1px solid rgb(204, 204, 204)
-                span
-                  white-space: nowrap;
-                  overflow: hidden;
-                  text-overflow: ellipsis;               
+                padding 0px 4px
+                &:not(:last-child) 
+                  border-right 1px solid rgb(204, 204, 204)
+                &:first-child 
+                  padding-left 0px
+                a
+                  &:hover 
+                    color: #406599
+                  span
+                    white-space: nowrap
+                    overflow: hidden
+                    text-overflow: ellipsis              
   .seriesRt
     width 380px
     min-height 215px
