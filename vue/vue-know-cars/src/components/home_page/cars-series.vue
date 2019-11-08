@@ -222,6 +222,8 @@ export default {
           border-bottom 2px solid rgb(255, 255, 255)
           box-sizing border-box
           .box-routeLink
+            &:hover 
+              color: #406599
             span 
               display: block
               width: 90px
