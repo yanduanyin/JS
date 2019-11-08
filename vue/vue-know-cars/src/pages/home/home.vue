@@ -10,10 +10,10 @@
       <carsHotNews/>
     </div>
     <div class="featured-videos">
-      精选视频
+      <carsVideos />
     </div>
     <div class="headline-news">
-      热门排行榜
+      <carsContentApp />
     </div>
   </div>
 </template>
@@ -22,12 +22,16 @@ import carsNav from '../../components/home_page/cars-navigation'
 import carsSeries from '../../components/home_page/cars-series'
 import carsNowSwitch from '../../components/home_page/cars-now-switch'
 import carsHotNews from '../../components/home_page/hot-news'
+import carsVideos from '../../components/home_page/cars-videos'
+import carsContentApp from '../../components/home_page/cars-content-app'
 export default {
   components: {
     carsNav,
     carsSeries,
     carsNowSwitch,
-    carsHotNews
+    carsHotNews,
+    carsVideos,
+    carsContentApp
   }
 }
 </script>
