@@ -4,33 +4,60 @@
       <ul class="title-ul">
         <div  v-for="(item, index) in seriesName" :key="index" class="title-li-box" @mousemove="moveIn(index)">
           <li :class="['title-li', {'active':currentIndex === index}]">
-          <span>{{item.name}}</span>
-        </li>
+            <span>{{item.name}}</span>
+          </li>
         </div>
       </ul>
       <div class="car-list">
-        <div class="box clearfix">
-          <div class="series1">
+        <div class="box" clearfix>
+          <div class="series1 fl"  v-for="(item, index) in seriesData1" :key="index">
             <router-link to="https://www.dcdapp.com/auto/series/99"  target="_blank" class="box-routeLink" title="">
-              <span></span>
+              <span :style="'backgroundImage: url(' + item.cover_url + ')'"></span>
               <div class="name-wrapper">
-                <span class="series-name"></span>
+                <span class="series-name">{{item.outter_name}}</span>
               </div>
             </router-link>
             <div class="series1-item-down">
-              <ul>
+              <ul class="series1-down-ul">
                 <li class="series1-down-li">
                   <a href="https://www.dcdapp.com/dealer/542?zt=default_pc_pc_home_top_series" target="_blank">
                     <span>报价</span>
                   </a>
                 </li>
                 <li class="series1-down-li">
-                  <a href="https://www.dcdapp.com/dealer/542?zt=default_pc_pc_home_top_series" target="_blank">
+                  <a href="https://www.dcdapp.com/auto/series/276/images/wg" target="_blank">
                     <span>图库</span>
                   </a>
                 </li>
                 <li class="series1-down-li">
+                  <a href="https://www.dcdapp.com/auto/params?carIds=35181,30998,35183,31265,31266,31267,31268,38769,41903,41906,37942,37943,30925,32604,32605,32606,32607,32608,38768,35180,32493,35182,38767,35184,35185,38770" target="_blank">
+                    <span>参数</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="series1 fl"  v-for="(item, index) in seriesData2_3" :key="index">
+            <router-link to="https://www.dcdapp.com/auto/series/99"  target="_blank" class="box-routeLink" title="">
+              <!-- <span :style="'backgroundImage: url(' + item.cover_url + ')'"></span> -->
+              <div class="name-wrapper">
+                <span class="series-name">{{item.outter_name}}</span>
+              </div>
+            </router-link>
+            <div class="series1-item-down">
+              <ul class="series1-down-ul">
+                <li class="series1-down-li">
                   <a href="https://www.dcdapp.com/dealer/542?zt=default_pc_pc_home_top_series" target="_blank">
+                    <span>报价</span>
+                  </a>
+                </li>
+                <li class="series1-down-li">
+                  <a href="https://www.dcdapp.com/auto/series/276/images/wg" target="_blank">
+                    <span>图库</span>
+                  </a>
+                </li>
+                <li class="series1-down-li">
+                  <a href="https://www.dcdapp.com/auto/params?carIds=35181,30998,35183,31265,31266,31267,31268,38769,41903,41906,37942,37943,30925,32604,32605,32606,32607,32608,38768,35180,32493,35182,38767,35184,35185,38770" target="_blank">
                     <span>参数</span>
                   </a>
                 </li>
@@ -114,6 +141,7 @@ export default {
         {name: '35万以上'}
       ],
       moveIndex: 0,
+      seriesData: '',
       seriesData1: '',
       seriesData2_3: ''
     }
@@ -124,90 +152,25 @@ export default {
     }
   },
   created() {
-    this.init(this.moveIndex)
+     this.$http.get('http://localhost:8080/static/Data/shouye/series_json/seriesData.json')
+     .then(res => {
+      //  console.log(res.data.data)
+       this.seriesData = res.data.data
+       this.seriesData1 = this.seriesData[this.moveIndex].series.slice(0,7)
+       console.log(this.seriesData1, '1')
+       this.seriesData2_3 = this.seriesData[this.moveIndex].series.slice(7,21)
+       console.log(this.seriesData2_3, '23')
+     })
   },
   methods: {
     moveIn (index) {
       this.moveIndex = index
-      // console.log(index)
+      console.log(index)
       // this.init(index)
-    },
-    init (idx) {
-      switch (idx) {
-        case 0:
-          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_germany.json')
-          .then(res => {
-            console.log('seriesData:', res.data.data.series)
-            this.seriesData1 = res.data.data.series.slice(0,7)
-            // console.log(this.seriesData1) 
-            this.seriesData2_3 = res.data.data.series.slice(7, 21)
-            // console.log(this.seriesData2_3)
-          })
-          break;
-        case 1:
-          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_China.json')
-          .then(res => {
-            console.log('seriesData:', res.data.data.series)
-            this.seriesData1 = res.data.data.series.slice(0,7)
-            // console.log(this.seriesData1) 
-            this.seriesData2_3 = res.data.data.series.slice(7, 21)
-          })
-          break;
-        case 2:
-          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_popular.json')
-          .then(res => {
-            console.log('seriesData:', res.data.data.series)
-            this.seriesData1 = res.data.data.series.slice(0,7)
-            // console.log(this.seriesData1) 
-            this.seriesData2_3 = res.data.data.series.slice(7, 21) 
-          })
-          break;
-        case 3:
-          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_japan.json')
-          .then(res => {
-            console.log('seriesData:', res.data.data.series)
-            this.seriesData1 = res.data.data.series.slice(0,7)
-            // console.log(this.seriesData1) 
-            this.seriesData2_3 = res.data.data.series.slice(7, 21)
-          })
-          break;
-        case 4:
-          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_10-15.json')
-          .then(res => {
-            console.log('seriesData:', res.data.data.series)
-            this.seriesData1 = res.data.data.series.slice(0,7)
-            // console.log(this.seriesData1) 
-            this.seriesData2_3 = res.data.data.series.slice(7, 21)
-          })
-          break;
-        case 5:
-          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_15-25.json')
-          .then(res => {
-            console.log('seriesData:', res.data.data.series)
-            this.seriesData1 = res.data.data.series.slice(0,7)
-            // console.log(this.seriesData1) 
-            this.seriesData2_3 = res.data.data.series.slice(7, 21) 
-          })
-          break;
-        case 6:
-          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_25-35.json')
-          .then(res => {
-            console.log('seriesData:', res.data.data.series)
-            this.seriesData1 = res.data.data.series.slice(0,7)
-            // console.log(this.seriesData1) 
-            this.seriesData2_3 = res.data.data.series.slice(7, 21) 
-          })
-          break;
-        case 7:
-          this.$http.get('http://localhost:8080/static/Data/shouye/series_json/series_35~.json')
-          .then(res => {
-            console.log('seriesData:', res)
-            this.seriesData1 = res.data.data.series.slice(0,7)
-            // console.log(this.seriesData1) 
-            this.seriesData2_3 = res.data.data.series.slice(7, 21)
-          })
-          break;
-      }
+      this.seriesData1 = this.seriesData[index].series.slice(0,7)
+      console.log('11', this.seriesData1)
+      this.seriesData2_3 = this.seriesData[index].series.slice(7,21)
+      console.log('22', this.seriesData2_3)
     }
   }
 }
@@ -242,6 +205,63 @@ export default {
             width: 100%
             height: 4px
             background-color: #333
+    .car-list
+      margin-left 10px
+      .box
+        .series1
+          position relative
+          width 112px
+          font-size 14px
+          text-align center
+          padding 10px 9px 7px
+          border-width 0px 1px 2px
+          border-style solid solid
+          border-color rgb(255, 255, 255) rgb(255, 255, 255)
+          border-image initial
+          border-top 0px
+          border-bottom 2px solid rgb(255, 255, 255)
+          box-sizing border-box
+          .box-routeLink
+            span 
+              display: block
+              width: 90px
+              height: 60px
+              background-size: 90px 60px
+              background-repeat: no-repeat
+              position: relative
+              vertical-align: middle
+              transition: transform 0.3s ease-in-out 0s
+            .name-wrapper
+              display: flex
+              -webkit-box-pack: center
+              justify-content: center
+              width: 90px
+              position: relative
+              text-align: center
+              height: 20px
+              line-height: 20px
+              .series-name
+                text-overflow: ellipsis
+                height 20px
+                display: -webkit-box
+                -webkit-box-orient: vertical
+                -webkit-line-clamp: 1
+                word-break: break-all
+                overflow: hidden
+          .series1-item-down
+            .series1-down-ul
+              height: 12px;
+              line-height: 12px;
+              font-size: 12px;
+              display: flex;
+              color: rgb(153, 153, 153);
+              margin: 2px 0px 2.5px;
+              .series1-down-li
+                border-right: 1px solid rgb(204, 204, 204)
+                span
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;               
   .seriesRt
     width 380px
     min-height 215px
