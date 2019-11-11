@@ -61,9 +61,10 @@ export default {
       cirN: 0,//当前显示图片的小圆点下标
       url: [
         {url: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'},
-        {url: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'},
-        {url: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'},
-        {url: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'}
+        {url: 'https://p3.pstatp.com/obj/1749500001118411c9039.jpg'},
+        {url: 'https://p3.pstatp.com/obj/174950000111a0d8a692e.jpg'},
+        {url: 'https://p3.pstatp.com/obj/1749500001119e5971af9.jpg'},
+        {url: 'https://p3.pstatp.com/obj/17492000011e4cd85d7fe.jpg'}
       ]
     }
   },
