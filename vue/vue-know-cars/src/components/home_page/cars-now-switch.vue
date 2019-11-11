@@ -9,7 +9,7 @@
             </a>
           </div>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination" ref="pagination"></div>
         <div class="swiper-button-next button">
           <span></span>
         </div>
@@ -120,25 +120,34 @@ export default {
       }
     },
     autoRun(){
-          this.picN = ++this.picN
-          // cirN++
-          //如果轮播完克隆项应该轮播回第二张照片上，因为克隆项和第一张图片一样
-          // console.log( this.$refs.item.length, '222----')
-          // console.log(this.$refs.item)
+      //添加小圆点，之所用js添加小圆点，是因为小圆点的数量是由图片张数决定的。
+      let len = this.$refs.item.length
+      let img_parent_box = this.$refs.parent
+      for(let i = 0; i < len;i++){
+        var ele_span = document.createElement('span');//创建span元素节点
+        // ele_span.className = 'quiet';//给li添加类名quiet
+        this.$refs.pagination.appendChild(ele_span);
+        }
+        img_parent_box.appendChild(img_parent_box.children[0].cloneNode(true));//克隆第一张图片至列表尾部
+        this.picN = ++this.picN
+        // cirN++
+        //如果轮播完克隆项应该轮播回第二张照片上，因为克隆项和第一张图片一样
+        // console.log( this.$refs.item.length, '222----')
+        // console.log(this.$refs.item)
+        console.log(this.picN)
+        // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
+        if (this.picN !== 5) {
+          setTimeout( () => {
+            this.Roll(-this.picN*800)
+          }, 3000)
+        } else {
+          this.picN = 1
+          console.log('left至真正的第一项处')
           console.log(this.picN)
-          // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
-          if (this.picN !== 5) {
-            setTimeout( () => {
-              this.Roll(-this.picN*800)
-            }, 3000)
-          } else {
-            this.picN = 1
-            console.log('left至真正的第一项处')
-            console.log(this.picN)
-            setTimeout( () => {
-              this.Roll(-this.picN*800)
-            }, 3000)
-          }
+          setTimeout( () => {
+            this.Roll(-this.picN*800)
+          }, 3000)
+        }
             
           //判断是否到了最后一个圆点，当圆点到了最后一个时，应该变回第一个点进行轮播
           // if (cirN > this.$refs.item.length - 1) {
