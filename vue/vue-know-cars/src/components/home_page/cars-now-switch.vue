@@ -70,6 +70,8 @@ export default {
   },
   created() {
     this.$nextTick(() => {
+      this.$refs.parent.appendChild(this.$refs.parent.children[0].cloneNode(true));//克隆第一张图片至列表尾部
+      this.$refs.parent.style.width = this.$refs.parent.children.length * 800 + 'px' // 将父容器的宽度根据内容动态添加
       this.autoRun()
     })
 
@@ -122,44 +124,42 @@ export default {
     autoRun(){
       //添加小圆点，之所用js添加小圆点，是因为小圆点的数量是由图片张数决定的。
       let len = this.$refs.item.length
-      let img_parent_box = this.$refs.parent
       for(let i = 0; i < len;i++){
         var ele_span = document.createElement('span');//创建span元素节点
         // ele_span.className = 'quiet';//给li添加类名quiet
         this.$refs.pagination.appendChild(ele_span);
-        }
-        img_parent_box.appendChild(img_parent_box.children[0].cloneNode(true));//克隆第一张图片至列表尾部
-        this.picN = ++this.picN
-        // cirN++
-        //如果轮播完克隆项应该轮播回第二张照片上，因为克隆项和第一张图片一样
-        // console.log( this.$refs.item.length, '222----')
-        // console.log(this.$refs.item)
-        console.log(this.picN)
-        // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
-        if (this.picN !== len+1) {
-          setTimeout( () => {
-            this.Roll(-this.picN*800)
-          }, 3500)
-        } else {
-          this.picN = 1
-          console.log('left至真正的第一项处')
-          console.log(this.picN)
-          setTimeout( () => {
-            this.Roll(-this.picN*800)
-          }, 3500)
-        }
-            
-          //判断是否到了最后一个圆点，当圆点到了最后一个时，应该变回第一个点进行轮播
-          // if (cirN > this.$refs.item.length - 1) {
-          //     cirN = 0;
-          // }
-          // for(var i = 0; i < this.$refs.item.length;i++) {
-          //     cLis[i].className = 'quiet';//让所有圆点背景色变为默认色
-          // }
-          // cLis[cirN].className = 'active';
       }
-      //注意：以上轮播图片时是当图片索引值picN已经有了，要+1，等待一定时间执行移动到下一张图片的事件
-      // 开始自动滚动：
+      this.picN = ++this.picN
+      // cirN++
+      //如果轮播完克隆项应该轮播回第二张照片上，因为克隆项和第一张图片一样
+      // console.log( this.$refs.item.length, '222----')
+      // console.log(this.$refs.item)
+      console.log(this.picN)
+      // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
+      if (this.picN !== len+1) {
+        setTimeout( () => {
+          this.Roll(-this.picN*800)
+        }, 3500)
+      } else {
+        this.picN = 1
+        console.log('left至真正的第一项处')
+        console.log(this.picN)
+        setTimeout( () => {
+          this.Roll(-this.picN*800)
+        }, 3500)
+      }
+            
+      //判断是否到了最后一个圆点，当圆点到了最后一个时，应该变回第一个点进行轮播
+      // if (cirN > this.$refs.item.length - 1) {
+      //     cirN = 0;
+      // }
+      // for(var i = 0; i < this.$refs.item.length;i++) {
+      //     cLis[i].className = 'quiet';//让所有圆点背景色变为默认色
+      // }
+      // cLis[cirN].className = 'active';
+    }
+    //注意：以上轮播图片时是当图片索引值picN已经有了，要+1，等待一定时间执行移动到下一张图片的事件
+    // 开始自动滚动：
 
   }
 }
