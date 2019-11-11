@@ -139,14 +139,14 @@ export default {
         if (this.picN !== 5) {
           setTimeout( () => {
             this.Roll(-this.picN*800)
-          }, 3000)
+          }, 3500)
         } else {
           this.picN = 1
           console.log('left至真正的第一项处')
           console.log(this.picN)
           setTimeout( () => {
             this.Roll(-this.picN*800)
-          }, 3000)
+          }, 3500)
         }
             
           //判断是否到了最后一个圆点，当圆点到了最后一个时，应该变回第一个点进行轮播
@@ -160,7 +160,7 @@ export default {
       }
       //注意：以上轮播图片时是当图片索引值picN已经有了，要+1，等待一定时间执行移动到下一张图片的事件
       // 开始自动滚动：
-      // timer = setInterval(autoRun, gap); //定时器
+
   }
 }
 </script>
