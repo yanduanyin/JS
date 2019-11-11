@@ -136,7 +136,7 @@ export default {
         // console.log(this.$refs.item)
         console.log(this.picN)
         // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
-        if (this.picN !== 5) {
+        if (this.picN !== len+1) {
           setTimeout( () => {
             this.Roll(-this.picN*800)
           }, 3500)
