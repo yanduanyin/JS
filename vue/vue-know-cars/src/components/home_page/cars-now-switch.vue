@@ -75,13 +75,10 @@ export default {
   },
   methods: {
     Roll(distance){ //参数distance：滚动的目标点（必为图片宽度的倍数）
-      if (this.picN > 0 || this !== 5) {
-        this.autoRun()
-      } else {
-        this.$refs.parent.style.left = 0;//改变left至真正的第一项处，这个过程是时间太快太短所以可以忽略不计然后立刻
-        this.autoRun()
-      }
-      let img_parent_box = this.$refs.parent
+      // this.autoRun()
+      if (this.picN > 1) {
+        console.log('1111')
+        let img_parent_box = this.$refs.parent
       clearInterval(img_parent_box.timer);  //每次运行该函数必须清除之前的定时器！
       var speed = img_parent_box.offsetLeft < distance ?  this.rate : (0-this.rate);//判断图片移动的方向  此处用了三元运算符  ？ 前面的不等式成立时为rate,不成立时为0-rete
           // console.log(speed)
@@ -97,6 +94,29 @@ export default {
               img_parent_box.style.left = distance + "px";
           } 
       },4);
+      this.autoRun()
+      } else if (this.picN === 1) {
+        // clearInterval()
+        console.log(this.$refs.parent, '====55555')
+        this.$refs.parent.style.left = 0;//改变left至真正的第一项处，这个过程是时间太快太短所以可以忽略不计然后立刻
+        let img_parent_box = this.$refs.parent
+      clearInterval(img_parent_box.timer);  //每次运行该函数必须清除之前的定时器！
+      var speed = img_parent_box.offsetLeft < distance ?  this.rate : (0-this.rate);//判断图片移动的方向  此处用了三元运算符  ？ 前面的不等式成立时为rate,不成立时为0-rete
+          // console.log(speed)
+      img_parent_box.timer = setInterval(function(){ //设置定时器，每隔10毫秒，调用一次该匿名函数
+          img_parent_box.style.left = img_parent_box.offsetLeft + speed + "px";//每一次调用滚动到的地方 (速度为 speed px/5 ms)       offsetLeft为元素边框外侧到父元素边框内侧的距离    
+          var leave = distance - img_parent_box.offsetLeft;//距目标点剩余的px值      
+          /*接近目标点时的处理，滚动接近目标时直接到达， 避免rate值设置不当时不能完整显示图片*/
+          // Math.abs()  abs() 方法可返回一个数的绝对值
+          // console.log(speed);
+          
+          if (Math.abs(leave) <= Math.abs(speed)) {                    
+              clearInterval(img_parent_box.timer);
+              img_parent_box.style.left = distance + "px";
+          } 
+      },4);
+        this.autoRun()
+      }
     },
     autoRun(){
           this.picN = ++this.picN
@@ -106,21 +126,19 @@ export default {
           // console.log(this.$refs.item)
           console.log(this.picN)
           // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
-          if (this.picN > 0) {
-            if (this.picN !== 5) {
-              setTimeout( () => {
-                this.Roll(-this.picN*800)
-              }, 3000)
-            } else {
-              this.picN = 0
-              console.log('left至真正的第一项处')
-              setTimeout( () => {
-                this.Roll(-this.picN*800)
-              }, 3000)
-              
-            }
-            
+          if (this.picN !== 5) {
+            setTimeout( () => {
+              this.Roll(-this.picN*800)
+            }, 3000)
+          } else {
+            this.picN = 1
+            console.log('left至真正的第一项处')
+            console.log(this.picN)
+            setTimeout( () => {
+              this.Roll(-this.picN*800)
+            }, 3000)
           }
+            
           //判断是否到了最后一个圆点，当圆点到了最后一个时，应该变回第一个点进行轮播
           // if (cirN > this.$refs.item.length - 1) {
           //     cirN = 0;
