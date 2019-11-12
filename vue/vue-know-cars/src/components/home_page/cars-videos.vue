@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="swiper-pagination" ref="pagination">
-        <span :class="['swiper-pagination-bullet', {'active':currentIndex === index}]"
+        <span :class="['swiper-pagination-bullet']"
           v-for="(item, index) in cirArr" :key="index" @click="clickCirN(index)"></span>
       </div>
       <div class="swiper-button-next button" @click="clickNext">
@@ -94,142 +94,16 @@ export default {
           videoUrl: '123',
           text: '驶向荒野之旅第二季'
         }
-      ], 
-      rate:8, //一张图片的切换速度， 单位为px
-      timer: null,//初始化一个定时器
-      cirArr: [],
-      picN: 0,//当前显示的图片下标
-      cirN: 0,//当前显示图片的小圆点下标
-      url: [
-        {url: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'},
-        {url: 'https://p3.pstatp.com/obj/1749500001118411c9039.jpg'},
-        {url: 'https://p3.pstatp.com/obj/174950000111a0d8a692e.jpg'},
-        {url: 'https://p3.pstatp.com/obj/1749500001119e5971af9.jpg'},
-        {url: 'https://p3.pstatp.com/obj/17492000011e4cd85d7fe.jpg'}
       ]
     }
   },
   created() {
     this.$nextTick(() => {
-      this.$refs.parent.appendChild(this.$refs.parent.children[0].cloneNode(true));//克隆第一张图片至列表尾部
-      this.$refs.parent.style.width = this.$refs.parent.children.length * 1190 + 'px' // 将父容器的宽度根据内容动态添加
-      //添加小圆点，之所用js添加小圆点，是因为小圆点的数量是由图片张数决定的。
-      let len = this.$refs.item.length
-      for(let i = 0; i < len;i++){
-        this.cirArr.push(i);
-      }
-      this.autoRun()
     })
   },
   computed: {
-    currentIndex() {
-      return this.cirN
-    }
   },
   methods: {
-    RollNext(distance){ //参数distance：滚动的目标点（必为图片宽度的倍数）
-      if (this.picN > 1) {
-        // console.log('1111')
-        this.autoRun()
-      } else if (this.picN === 0) {
-        this.autoRun()
-      } else if (this.picN === 1) {
-        // console.log(this.$refs.parent, '====55555')
-        this.$refs.parent.style.left = 0;//改变left至真正的第一项处，这个过程是时间太快太短所以可以忽略不计然后立刻
-        this.autoRun()
-      }
-       let img_parent_box = this.$refs.parent
-      clearInterval(img_parent_boxTime);  //每次运行该函数必须清除之前的定时器！
-      var speed = img_parent_box.offsetLeft < distance ?  this.rate : (0-this.rate);//判断图片移动的方向  此处用了三元运算符  ？ 前面的不等式成立时为rate,不成立时为0-rete
-          // console.log(speed)
-      let img_parent_boxTime = setInterval(function(){ //设置定时器，每隔10毫秒，调用一次该匿名函数
-          img_parent_box.style.left = img_parent_box.offsetLeft + speed + "px";//每一次调用滚动到的地方 (速度为 speed px/5 ms)       offsetLeft为元素边框外侧到父元素边框内侧的距离    
-          var leave = distance - img_parent_box.offsetLeft;//距目标点剩余的px值      
-          /*接近目标点时的处理，滚动接近目标时直接到达， 避免rate值设置不当时不能完整显示图片*/
-          // Math.abs()  abs() 方法可返回一个数的绝对值
-          // console.log(speed);
-          if (Math.abs(leave) <= Math.abs(speed)) {                    
-              clearInterval(img_parent_boxTime);
-              img_parent_box.style.left = distance + "px";
-          } 
-      },3);
-    },
-    RollPrev(distance){ //参数distance：滚动的目标点（必为图片宽度的倍数）
-      this.autoRun()
-      let img_parent_box = this.$refs.parent
-      clearInterval(img_parent_boxTime);  //每次运行该函数必须清除之前的定时器！
-      var speed = img_parent_box.offsetLeft < distance ?  this.rate : (0-this.rate);//判断图片移动的方向  此处用了三元运算符  ？ 前面的不等式成立时为rate,不成立时为0-rete
-      let img_parent_boxTime = setInterval(function(){ //设置定时器，每隔10毫秒，调用一次该匿名函数
-          img_parent_box.style.left = img_parent_box.offsetLeft + speed + "px";//每一次调用滚动到的地方 (速度为 speed px/5 ms) offsetLeft为元素边框外侧到父元素边框内侧的距离    
-          var leave = distance - img_parent_box.offsetLeft;//距目标点剩余的px值      
-          if (Math.abs(leave) <= Math.abs(speed)) {                    
-              clearInterval(img_parent_boxTime);
-              img_parent_box.style.left = distance + "px";
-          } 
-      },3);
-    },
-    autoRun(){
-      let len = this.$refs.item.length
-      this.picN = ++this.picN
-      //如果轮播完克隆项应该轮播回第二张照片上，因为克隆项和第一张图片一样
-      // console.log(this.picN)
-      // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
-      if (this.picN == len+1) {
-        this.picN = 1
-      }
-      this.timer = setTimeout( () => {
-        this.RollNext(-this.picN*1190)
-        this.cirN == this.cirN++
-        if (this.cirN == this.$refs.item.length) {
-          //判断是否到了最后一个圆点，当圆点到了最后一个时，应该变回第一个点进行轮播
-            this.cirN = 0;
-        } 
-      }, 3500)
-    },
-    clickCirN(index) {
-      clearTimeout(this.timer)
-      this.$refs.parent.style.left = -1190*(index) + 'px';//改变left至真正的第一项处，这个过程是时间太快太短所以可以忽略不计然后立刻
-      this.cirN = index
-      this.picN = index
-      this.autoRun()
-    },
-    clickNext() {
-      clearTimeout(this.timer)
-      ++this.cirN
-      // console.log(this.cirN, '++++');
-      if (this.cirN == this.$refs.item.length) {
-        //判断是否到了最后一个圆点，当圆点到了最后一个时，应该变回第一个点进行轮播
-          this.cirN = 0;
-      } 
-      this.RollNext(-this.picN*1190)
-    },
-    clickPrev() {
-      clearTimeout(this.timer)
-      --this.cirN
-      if (this.cirN == -1) {
-        //判断是否到了最后一个圆点，当圆点到了最后一个时，应该变回第一个点进行轮播
-          this.cirN = this.$refs.item.length - 1;
-      }
-      if (this.picN == 1) {
-        this.picN = this.$refs.item.length - 1
-        this.$refs.parent.style.left = -1190*(this.picN+1) + 'px';
-        this.RollNext(-this.picN*1190)
-      } else if (this.picN === 3){
-        this.picN = --this.picN
-        this.picN = --this.picN
-        this.RollPrev(-this.picN*1190)
-      } else {
-        this.picN = --this.picN
-        this.picN = --this.picN
-        this.RollNext(-this.picN*1190)
-      }
-    }
-  },
-  destroyed:function () { // 离开当前路由之前的钩子函数 beforeRouteLeave
-
-    console.log('我离开了')
-    this.stopTimer();
-    clearTimeout(this.timer)
   }
 }
 </script>
