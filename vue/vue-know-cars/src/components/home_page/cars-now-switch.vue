@@ -96,7 +96,7 @@ export default {
               clearInterval(img_parent_box.timer);
               img_parent_box.style.left = distance + "px";
           } 
-      },4);
+      },3);
       this.autoRun()
       } else if (this.picN === 1) {
         // clearInterval()
