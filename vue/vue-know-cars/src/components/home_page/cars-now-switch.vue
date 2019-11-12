@@ -91,6 +91,16 @@ export default {
   },
   methods: {
     RollNext(distance){ //参数distance：滚动的目标点（必为图片宽度的倍数）
+    // 监听是否在当前页，并置为已读
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {   // 当前页面隐藏
+          console.log('我离开了1')
+          clearTimeout(this.timer)
+           console.log('我离开了2')
+        } else if (document.visible){ //处于当前页面
+          console.log('我进来了')
+        }
+      });
       if (this.picN > 1) {
         // console.log('1111')
         this.autoRun()
@@ -101,7 +111,7 @@ export default {
         this.$refs.parent.style.left = 0;//改变left至真正的第一项处，这个过程是时间太快太短所以可以忽略不计然后立刻
         this.autoRun()
       }
-       let img_parent_box = this.$refs.parent
+      let img_parent_box = this.$refs.parent
       clearInterval(img_parent_boxTime);  //每次运行该函数必须清除之前的定时器！
       var speed = img_parent_box.offsetLeft < distance ?  this.rate : (0-this.rate);//判断图片移动的方向  此处用了三元运算符  ？ 前面的不等式成立时为rate,不成立时为0-rete
           // console.log(speed)
@@ -115,7 +125,7 @@ export default {
               clearInterval(img_parent_boxTime);
               img_parent_box.style.left = distance + "px";
           } 
-      },3);
+      },4);
     },
     RollPrev(distance){ //参数distance：滚动的目标点（必为图片宽度的倍数）
       this.autoRun()
@@ -129,7 +139,7 @@ export default {
               clearInterval(img_parent_boxTime);
               img_parent_box.style.left = distance + "px";
           } 
-      },3);
+      },4);
     },
     autoRun(){
       let len = this.$refs.item.length
@@ -139,7 +149,7 @@ export default {
       // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
       if (this.picN == len+1) {
         this.picN = 1
-        // console.log('left至真正的第一项处')
+        console.log('left至真正的第一项处')
         // console.log(this.picN)
       }
       this.timer = setTimeout( () => {

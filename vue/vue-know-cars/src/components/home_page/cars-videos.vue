@@ -125,7 +125,8 @@ export default {
     currentIndex() {
       return this.cirN
     }
-  },methods: {
+  },
+  methods: {
     RollNext(distance){ //参数distance：滚动的目标点（必为图片宽度的倍数）
       if (this.picN > 1) {
         // console.log('1111')
@@ -175,8 +176,6 @@ export default {
       // 自动轮播，当图片为第一张时应该自动到第二张上去，所以要传入第二张的picN值，以次类推
       if (this.picN == len+1) {
         this.picN = 1
-        // console.log('left至真正的第一项处')
-        // console.log(this.picN)
       }
       this.timer = setTimeout( () => {
         this.RollNext(-this.picN*1190)
@@ -225,6 +224,12 @@ export default {
         this.RollNext(-this.picN*1190)
       }
     }
+  },
+  destroyed:function () { // 离开当前路由之前的钩子函数 beforeRouteLeave
+
+    console.log('我离开了')
+    this.stopTimer();
+    clearTimeout(this.timer)
   }
 }
 </script>
