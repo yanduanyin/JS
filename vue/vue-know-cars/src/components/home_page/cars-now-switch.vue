@@ -83,7 +83,6 @@ export default {
       }
       this.autoRun()
     })
-
   },
   computed: {
     currentIndex() {
