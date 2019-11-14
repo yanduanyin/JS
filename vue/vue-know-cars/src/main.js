@@ -8,6 +8,9 @@ import './common/stylus/index.styl'
 import './common/font_iconfont/iconfont.css'
 // 使用axios请求数据
 import axios from 'axios'
+import VueLazyload from 'vue-lazyload'  //引入这个懒加载插件
+
+Vue.use(VueLazyload)
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false

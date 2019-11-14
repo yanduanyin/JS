@@ -1,25 +1,6 @@
 <template>
   <div class="wrapper clearfix">
     <div class="fl wrapper-switch">
-      <!-- <div class="swiper-container">
-        <div class="img-wrapper">
-          <div class="img-parent-box" ref="parent">
-            <a href="https://www.dcdapp.com/article/6756500835833741836" class="img-item-box fl" v-for="(item, index) in url" :key="index" ref="item">
-              <img :src="item.url" alt="" class="img-item" >
-            </a>
-          </div>
-        </div>
-        <div class="swiper-pagination" ref="pagination">
-          <span :class="['swiper-pagination-bullet', {'active':currentIndex === index}]"
-           v-for="(item, index) in cirArr" :key="index" @click="clickCirN(index)"></span>
-        </div>
-        <div class="swiper-button-next button" @click="clickNext">
-          <span></span>
-        </div>
-        <div class="swiper-button-prev button" @click="clickPrev">
-          <span></span>
-        </div>
-      </div> -->
       <digSlider :sliderList="sliderListData" :outClass="'swiper-container'"/>
     </div>
     <div class="today-news fl">
@@ -61,11 +42,11 @@ export default {
         }
       ],
       sliderListData: [
-        {url: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'},
-        {url: 'https://p3.pstatp.com/obj/1749500001118411c9039.jpg'},
-        {url: 'https://p3.pstatp.com/obj/174950000111a0d8a692e.jpg'},
-        {url: 'https://p3.pstatp.com/obj/1749500001119e5971af9.jpg'},
-        {url: 'https://p3.pstatp.com/obj/17492000011e4cd85d7fe.jpg'}
+        {imgUrl: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'},
+        {imgUrl: 'https://p3.pstatp.com/obj/1749500001118411c9039.jpg'},
+        {imgUrl: 'https://p3.pstatp.com/obj/174950000111a0d8a692e.jpg'},
+        {imgUrl: 'https://p3.pstatp.com/obj/1749500001119e5971af9.jpg'},
+        {imgUrl: 'https://p3.pstatp.com/obj/17492000011e4cd85d7fe.jpg'}
       ]
     }
   },
@@ -104,53 +85,6 @@ export default {
       list-style none
       padding 0
       z-index 1
-      .img-wrapper
-        position relative
-        width: 800px;
-        min-width: 800px;
-        height: 316px;
-        min-height: 316px;
-        overflow hidden
-        padding 0
-        .img-parent-box
-          position absolute
-          left 0
-          top 0
-          width 3200px
-          .img-item-box
-            width: 800px;
-            .img-item
-              width: 800px;
-              min-width: 800px;
-              height: 316px;
-              min-height: 316px;
-              background-size: cover;
-              overflow: hidden;
-      .swiper-pagination
-        line-height 20px
-        bottom: 0px
-        left: 0
-        width: 100%
-        position: absolute
-        text-align: center
-        -webkit-transition: 300ms opacity
-        transition: 300ms opacity
-        -webkit-transform: translate3d(0, 0, 0)
-        transform: translate3d(0, 0, 0)
-        z-index: 10
-        .swiper-pagination-bullet
-          display: inline-block
-          margin: 0 4px
-          cursor: pointer
-          width: 8px
-          height: 8px
-          border-radius: 100%
-          background-color: #e6e6e6
-        .active
-          width: 24px
-          height: 8px
-          border-radius: 4px
-          background-color: #ffe100
       .button
         position: absolute
         top: 50%

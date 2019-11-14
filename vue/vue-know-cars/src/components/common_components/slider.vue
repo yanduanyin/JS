@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="slide-ul">
+    <div>
       <slot
         v-if="showInfoList && showInfoList.length > 0"
         name="showArea"
         :currItem="currItem"
       ></slot>
     </div>
-    <div :class="olClass ? olClass : 'slide-ol'">
+    <div :class="olClass ? olClass : 'swiper-pagination'">
       <div
         v-for="(item, index) in showInfoList"
         :key="index + item"
-        @click="selectItem(index)">
+        @click="selectItem(index)" style="display: inline-block;">
         <slot
           v-if="showInfoList && showInfoList.length > 0"
           name="clickArea"
@@ -44,7 +44,7 @@ export default {
     }
   },
   mounted () {
-    this.ivTimer = setInterval(this.loopItem, 10000)
+    this.ivTimer = setInterval(this.loopItem, 5000)
   },
   methods: {
     selectItem (val) {
@@ -66,21 +66,17 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-// .slide-ul
-//   position absolute
-//   left 0
-//   top 0
-//   width 100%
-//   height 100%
-// .slide-ol
-//   display inline-block
-//   position absolute
-//   right 14px
-//   top 120px
-//   width 90px
-// .glslide-ol
-//   position absolute
-//   right 26px
-//   bottom 24px
-//   width 140px
+.swiper-pagination
+  line-height 20px
+  bottom: 0px
+  left: 0
+  width: 100%
+  position: absolute
+  text-align: center
+  -webkit-transition: 300ms opacity
+  transition: 300ms opacity
+  -webkit-transform: translate3d(0, 0, 0)
+  transform: translate3d(0, 0, 0)
+  z-index: 10
+    
 </style>
