@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper clearfix">
     <div class="fl wrapper-switch">
-      <div class="swiper-container">
+      <!-- <div class="swiper-container">
         <div class="img-wrapper">
           <div class="img-parent-box" ref="parent">
             <a href="https://www.dcdapp.com/article/6756500835833741836" class="img-item-box fl" v-for="(item, index) in url" :key="index" ref="item">
@@ -19,7 +19,8 @@
         <div class="swiper-button-prev button" @click="clickPrev">
           <span></span>
         </div>
-      </div>
+      </div> -->
+      <digSlider :sliderList="sliderListData" :outClass="'swiper-container'"/>
     </div>
     <div class="today-news fl">
       <span class="today-news-title"></span>
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+import digSlider from '../common_components/digSlider.vue'
 export default {
   data() {
     return {
@@ -58,7 +60,7 @@ export default {
           newsTitle: '家族全新风格，拉低门槛价格，马自达新款CX-4今晚上市'
         }
       ],
-      url: [
+      sliderListData: [
         {url: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'},
         {url: 'https://p3.pstatp.com/obj/1749500001118411c9039.jpg'},
         {url: 'https://p3.pstatp.com/obj/174950000111a0d8a692e.jpg'},
@@ -66,6 +68,9 @@ export default {
         {url: 'https://p3.pstatp.com/obj/17492000011e4cd85d7fe.jpg'}
       ]
     }
+  },
+  components: {
+    digSlider
   },
   created() {
     this.$nextTick(() => {

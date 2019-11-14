@@ -104,6 +104,6 @@ export default {
           background-position -888px -84px
       .icon8
         background-position -1036px 0px
-      &:hover
-        background-position -1036px -84px
+        &:hover
+          background-position -1036px -84px
 </style>

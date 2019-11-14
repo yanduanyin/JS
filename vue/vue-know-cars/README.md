@@ -1,21 +1,5 @@
-# vue-know-cars
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 项目笔记
+1. 碰到一个有意思的问题： 使用原生js和vue结合写的轮播图，出现了离开当前页面后，页面停止渲染，但是js这样运行，回来后轮播图出现异常
+  解决办法： 使用组件化思想，用纯vue的语法来写轮播图
+2. 使用scorll事件，必须在滚轮所在容器添加事件scorll
+ 
