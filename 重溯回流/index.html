@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<!--   
+  <div style="width: 50%;background: green;">
+    <div style="width: 50%;">hello world</div>
+  </div> -->
+
+  <div id="test"></div>
+  <script>
+    // 最小化回流和重绘
+    const el = document.getElementById(test)
+    // el.style.padding ='5px'
+    // el.style.borderLeft ='1px'
+    // el.style.borderRight ='1px'
+
+    // el.style.cssText += 'border-left: 1px; border-right: 1px;padding: 5px;'
+
+    el.className += 'active'
+  </script>
+</body>
+</html>
