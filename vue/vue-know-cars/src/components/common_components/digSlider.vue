@@ -21,7 +21,7 @@
       <template v-slot:clickArea="{scopeItem}">
         <div class="swiper-pagination">
           <span :class="['swiper-pagination-bullet', {'active': scopeItem.currIndex === scopeItem.index}]"
-          v-for="(item, index) in cirArr" :key="index" @click="clickCirN(index)"></span>
+          @click="clickCirN(index)"></span>
         </div>
       </template>
     </slider>
