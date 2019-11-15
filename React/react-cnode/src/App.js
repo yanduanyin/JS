@@ -33,10 +33,11 @@ class App extends React.Component {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/topic">
+            {/* 防盗链 */}
+            <Route path="/topic/:id">
               <Topic />
             </Route>
-            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
+            {/* <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div> */}
           </Content>
           <Footer style={{ textAlign: 'center' }}>Ant Design 2018 Created by Ant UED</Footer>
         </Layout>

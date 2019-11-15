@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from './axios';
 import { Pagination } from 'antd';
 import { Spin } from 'antd';
+import { Link } from 'react-router-dom';
+import './App.css';
 
 
 const perSize = 40;
@@ -38,10 +40,19 @@ class Home extends Component {
   componentDidMount() {
     this.handleRequestList();
   }
+  // onClick
+  // 高阶组件 组件之间 共同的逻辑
   handleChangetab = (key) => (e) => {
+    // setState是异步的
+    // 事务  全部收在事务中 
+    // react setState借鉴了这个概念
+    // Promise.all()
     this.setState({
       tab: key
+    }, () => {
+      this.handleRequestList();
     })
+    // tab可能不是最新的tab
   }
   // handleChangetab = (key) => {
        // return 的才是onClick触发的方法
@@ -53,6 +64,8 @@ class Home extends Component {
     // console.log(page);
     this.setState({
       current: page
+    }, () => {
+      this.handleRequestList();
     });
   };
   render() {
@@ -76,11 +89,13 @@ class Home extends Component {
            {
              list.data && list.data.map((dis, i) => {
                return (
-                 <li key = {`dis${i}`}>
-                    <img src={dis.author.avatar_url} alt=""/>
-                    <span>{dis.author.loginname}</span>
-                    <h2>{dis.title}</h2>
-                 </li>
+                 <Link to={`/topic/${dis.id}`} >
+                  <li key = {`dis${i}`}>
+                      <img src={dis.author.avatar_url} alt=""/>
+                      <span>{dis.author.loginname}</span>
+                      <h2>{dis.title}</h2>
+                  </li>
+                 </Link>
                )
              })
            }
