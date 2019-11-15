@@ -1,20 +1,28 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
+import withLoading from './withLoding';
 import axios from './axios';
 
 class Topic extends Component {
   state = {
     content: ''
   }
-  componentDidMount() {
-    console.log(this.props);
+  initLoading = () => {
+    // 返回Promise
     const { id } = this.props.match.params;
-    axios.get('/topic/' + id)
-    .then( res => {
+    return axios.get('/topic/' + id)
+    .then(res => {
       this.setState({
         content: res.data.data.content
       })
+      return Promise.resolve(true)
     })
+    .catch(err => {
+      return Promise.reject(false)
+    })
+  }
+
+  componentDidMount() {
   }
   render() {
     const { content } = this.state;
@@ -29,4 +37,4 @@ class Topic extends Component {
   }
 }
 
-export default withRouter(Topic)
+export default withRouter(withLoading(Topic));
