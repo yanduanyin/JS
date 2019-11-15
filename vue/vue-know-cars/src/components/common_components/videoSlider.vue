@@ -8,28 +8,28 @@
               <!-- <router-link to="" tag="a">
                 <img v-lazy="currItem.imgUrl" width="800" height="316" alt="">
               </router-link> -->
-            <div class="left-section fl">
-              <a href="https://www.dcdapp.com/article/6757993213706928648" target="_blank" rel="noopener noreferrer">
-                <div class="big-video-transition">
-                  <div class="big-video">
-                    <div class="big-video-icon"></div>
-                  </div>
-                </div>
-                <div class="pic-title line-1">雷克萨斯LC：超百万的豪华GT，看完你还买911吗？</div>
-              </a>
-            </div>
-            <div class="right-section">
-              <div class="small-video-wrapper">
-                <a href="https://www.dcdapp.com/article/6758036180266140163" target="_blank" rel="noopener noreferrer">
-                  <div class="small-video-transition">
-                    <div class="small-video" style="background-image:url(//p7.pstatp.com/large/bef6000073572249b645)">  
-                      <div class="small-video-icon">16:50</div>
+              <div class="left-section fl">
+                <a href="https://www.dcdapp.com/article/6757993213706928648" target="_blank">
+                  <div class="big-video-transition">
+                    <div class="big-video">
+                      <div class="big-video-icon"></div>
                     </div>
                   </div>
-                  <div class="pic-title line-1">情怀不敌硬实力？背靠大众的捷达VS5是否德味儿依旧？</div>
+                  <div class="pic-title line-1">雷克萨斯LC：超百万的豪华GT，看完你还买911吗？</div>
                 </a>
               </div>
-            </div>
+              <div class="right-section">
+                <div class="small-video-wrapper">
+                  <a href="https://www.dcdapp.com/article/6758036180266140163" target="_blank">
+                    <div class="small-video-transition">
+                      <div class="small-video" style="background-image:url(//p7.pstatp.com/large/bef6000073572249b645)">  
+                        <div class="small-video-icon">16:50</div>
+                      </div>
+                    </div>
+                    <div class="pic-title line-1">情怀不敌硬实力？背靠大众的捷达VS5是否德味儿依旧？</div>
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="swiper-button-next button" @click="slideRight">
               <span></span>
@@ -94,8 +94,107 @@ export default {
     overflow hidden
     padding 0
     .image
-      height 442px
-      overflow hidden
+      position relative
+      width 1190px
+      margin-right 30px
+      height 355px
+      .left-section
+        width 483px
+        a 
+          text-decoration none
+          .big-video-transition
+            overflow hidden
+            .big-video
+              width: 483px
+              height: 298px
+              background-size: cover
+              -webkit-transition: -webkit-transform 0.3s ease-in-out
+              -webkit-transition: transform 0.3s ease-in-out
+              transition: transform 0.3s ease-in-out
+              position: relative
+              .big-video-icon
+                width: 100px
+                height: 100px
+                border-radius: 50%
+                background-color: rgba(0,0,0,0.6)
+                position: absolute
+                top: 50%
+                left: 50%
+                -webkit-transform: translate(-50%,-50%)
+                -ms-transform: translate(-50%,-50%)
+                transform: translate(-50%,-50%)
+                &::before
+                  content: ''
+                  display: inline-block
+                  position: absolute
+                  top: 50%
+                  left: 54%
+                  -webkit-transform: translate(-50%,-50%)
+                  -ms-transform: translate(-50%,-50%)
+                  transform: translate(-50%,-50%)
+                  background: url('https://sf1-ttcdn-tos.pstatp.com/obj/motor-img/81c16ecb55fae398c44652173375536b')  center / cover no-repeat
+                  width: 30.8px
+                  height: 34.3px
+          .pic-title
+            width: 100%
+            margin-top: 8px
+            font-size: 16px
+            color: #333333
+          .line-1
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+      .right-section
+        width 705px
+        display flex
+        flex-wrap wrap
+        float right
+        .small-video-wrapper
+          width: 225px
+          height: 156px
+          margin-left: 10px
+          margin-bottom: 16px
+          a
+            .small-video-transition
+              overflow hidden
+              .small-video
+                width: 226px
+                height: 126px
+                background-size: cover
+                overflow: hidden
+                position: relative
+                font-size: 10px
+                color: #ffffff
+                -webkit-transition: -webkit-transform 0.3s ease-in-out
+                -webkit-transition: transform 0.3s ease-in-out
+                transition: transform 0.3s ease-in-out
+                .small-video-icon
+                  padding: 0 4px
+                  position: absolute
+                  bottom: 8px
+                  right: 8px
+                  height: 20px
+                  line-height: 20px
+                  border-radius: 15px
+                  background-color: rgba(0,0,0,0.4)
+                  text-align: center
+                  min-width: 47px
+                  &:before
+                    content: ''
+                    display: inline-block
+                    background: url('https://p.pstatp.com/origin/dc14000d8e436aea872a') center / cover no-repeat
+                    width: 12px
+                    height: 12px
+          .pic-title
+            width: 100%
+            margin-top: 8px
+            font-size: 16px
+            color: #333333
+          .line-1
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+
     .button
       position: absolute
       top: 50%

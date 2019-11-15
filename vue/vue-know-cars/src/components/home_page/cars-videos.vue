@@ -14,36 +14,6 @@
         </a>
       </div>
     </div>
-    <!-- <div class="swiper-container">
-      <div class="img-wrapper">
-        <div class="img-parent-box" ref="parent">
-          <div class="img-item-box fl" v-for="(item, index) in sliderList" :key="index" ref="item">
-            <div class="left-section fl">
-              <a href="https://www.dcdapp.com/article/6757993213706928648" target="_blank" rel="noopener noreferrer">
-                <div class="big-video-transition">
-                  <div class="big-video">
-                    <div class="big-video-icon"></div>
-                  </div>
-                </div>
-                <div class="pic-title line-1">雷克萨斯LC：超百万的豪华GT，看完你还买911吗？</div>
-              </a>
-            </div>
-            <div class="right-rection">
-              <div class="small-video-wrapper">
-                <a href="https://www.dcdapp.com/article/6758036180266140163" target="_blank" rel="noopener noreferrer">
-                  <div class="small-video-transition">
-                    <div class="small-video">
-                      <div class="small-video-icon">16:50</div>
-                    </div>
-                  </div>
-                  <div class="pic-title line-1">情怀不敌硬实力？背靠大众的捷达VS5是否德味儿依旧？</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <videoSlider :sliderList="sliderListData" :outClass="'swiper-container'"/>
   </div>
 </template>
@@ -87,13 +57,7 @@ export default {
           text: '驶向荒野之旅第二季'
         }
       ],
-      sliderListData: [
-        {imgUrl: 'https://p3.pstatp.com/obj/17492000011dd357938ac.jpg'},
-        {imgUrl: 'https://p3.pstatp.com/obj/1749500001118411c9039.jpg'},
-        {imgUrl: 'https://p3.pstatp.com/obj/174950000111a0d8a692e.jpg'},
-        {imgUrl: 'https://p3.pstatp.com/obj/1749500001119e5971af9.jpg'},
-        {imgUrl: 'https://p3.pstatp.com/obj/17492000011e4cd85d7fe.jpg'}
-      ]
+      sliderListData: []
     }
   },
   components: {
@@ -101,6 +65,10 @@ export default {
   },
   created() {
     this.$nextTick(() => {
+      this.$http.get('http://localhost:8080/static/Data/shouye/videosData.json')
+      .then((res) => {
+        this.sliderListData = res.data
+      })
     })
   },
   computed: {
