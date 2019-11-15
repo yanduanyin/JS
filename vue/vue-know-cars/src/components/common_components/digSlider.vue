@@ -3,7 +3,7 @@
     <slider @slideToRight="slideRight" @slideToLeft="slideLeft" :showInfoList="sliderList" >
       <template v-slot:showArea="{currItem}">
         <transition tag="div" :name="slideDec">
-          <div :key="currItem.title" class="slide-li">
+          <div :key="currItem.imgUrl" class="slide-li">
             <div class="image">
               <router-link to="" tag="a">
                 <img v-lazy="currItem.imgUrl" width="800" height="316" alt="">
@@ -64,7 +64,6 @@ export default {
   min-width: 800px;
   list-style none
   .slide-li
-    position relative
     width: 800px;
     min-width: 800px;
     height: 316px;

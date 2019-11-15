@@ -3,30 +3,30 @@
     <slider @slideToRight="slideRight" @slideToLeft="slideLeft" :showInfoList="sliderList" >
       <template v-slot:showArea="{currItem}">
         <transition tag="div" :name="slideDec">
-          <div :key="currItem.title" class="slide-li">
+          <div :key="currItem.bigvideo_href" class="slide-li">
             <div class="image">
               <!-- <router-link to="" tag="a">
                 <img v-lazy="currItem.imgUrl" width="800" height="316" alt="">
               </router-link> -->
               <div class="left-section fl">
-                <a href="https://www.dcdapp.com/article/6757993213706928648" target="_blank">
+                <a :href="'https://www.dcdapp.com' + currItem.bigvideo_href" target="_blank">
                   <div class="big-video-transition">
-                    <div class="big-video">
+                    <div class="big-video" :style="'background-image:url(' + currItem.bigvideo_imageUrl + ')'">
                       <div class="big-video-icon"></div>
                     </div>
                   </div>
-                  <div class="pic-title line-1">雷克萨斯LC：超百万的豪华GT，看完你还买911吗？</div>
+                  <div class="pic-title line-1">{{currItem.bigvideo_title}}</div>
                 </a>
               </div>
               <div class="right-section">
-                <div class="small-video-wrapper">
-                  <a href="https://www.dcdapp.com/article/6758036180266140163" target="_blank">
+                <div class="small-video-wrapper" v-for="(item, idx) in currItem.smallvideo" :key="'info1'+idx">
+                  <a :href="'https://www.dcdapp.com' + item.smallvideo_href" target="_blank">
                     <div class="small-video-transition">
-                      <div class="small-video" style="background-image:url(//p7.pstatp.com/large/bef6000073572249b645)">  
-                        <div class="small-video-icon">16:50</div>
+                      <div class="small-video" :style="'background-image:url(' + item.smallvideo_imageUrl + ')'">  
+                        <div class="small-video-icon">{{item.smallvideo_time}}</div>
                       </div>
                     </div>
-                    <div class="pic-title line-1">情怀不敌硬实力？背靠大众的捷达VS5是否德味儿依旧？</div>
+                    <div class="pic-title line-1">{{item.smallvideo_title}}</div>
                   </a>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     slideRight () {
-      this.slideDec = 'slideRight'
+      
     },
     slideLeft () {
       this.slideDec = 'slideLeft'
@@ -86,11 +86,10 @@ export default {
   min-width: 1190pxpx;
   list-style none
   .slide-li
-    position relative
-    width: 1190pxpx;
-    min-width: 1190pxpx;
-    height: 442px;
-    min-height: 442px;
+    width: 1190px;
+    min-width: 1190px;
+    height: 355px;
+    min-height: 355px;
     overflow hidden
     padding 0
     .image
@@ -112,6 +111,8 @@ export default {
               -webkit-transition: transform 0.3s ease-in-out
               transition: transform 0.3s ease-in-out
               position: relative
+              &:hover
+                transform: scale(1.1)
               .big-video-icon
                 width: 100px
                 height: 100px
@@ -168,6 +169,8 @@ export default {
                 -webkit-transition: -webkit-transform 0.3s ease-in-out
                 -webkit-transition: transform 0.3s ease-in-out
                 transition: transform 0.3s ease-in-out
+                &:hover
+                  transform: scale(1.1)
                 .small-video-icon
                   padding: 0 4px
                   position: absolute

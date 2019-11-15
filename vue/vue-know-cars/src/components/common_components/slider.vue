@@ -48,11 +48,12 @@ export default {
   },
   methods: {
     selectItem (val) {
-      if (val > this.currIndex) {
+      // if (val > this.currIndex) {
         this.$emit('slideToRight')
-      } else {
-        this.$emit('slideToLeft')
-      }
+      // } 
+      // else {
+      //   this.$emit('slideToLeft')
+      // }
       this.currIndex = val
     },
     loopItem () {
