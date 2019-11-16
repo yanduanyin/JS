@@ -52,7 +52,7 @@ export default {
         this.$emit('slideToRight')
       // } 
       // else {
-      //   this.$emit('slideToLeft')
+        this.$emit('slideToLeft')
       // }
       this.currIndex = val
     },

@@ -5,9 +5,6 @@
         <transition tag="div" :name="slideDec">
           <div :key="currItem.bigvideo_href" class="slide-li">
             <div class="image">
-              <!-- <router-link to="" tag="a">
-                <img v-lazy="currItem.imgUrl" width="800" height="316" alt="">
-              </router-link> -->
               <div class="left-section fl">
                 <a :href="'https://www.dcdapp.com' + currItem.bigvideo_href" target="_blank">
                   <div class="big-video-transition">
@@ -66,7 +63,6 @@ export default {
   },
   methods: {
     slideRight () {
-      
     },
     slideLeft () {
       this.slideDec = 'slideLeft'
