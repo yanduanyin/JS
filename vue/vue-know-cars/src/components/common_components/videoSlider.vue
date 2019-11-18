@@ -81,12 +81,12 @@ export default {
   width: 1190pxpx;
   min-width: 1190pxpx;
   list-style none
+  overflow hidden
   .slide-li
     width: 1190px;
     min-width: 1190px;
     height: 355px;
     min-height: 355px;
-    overflow hidden
     padding 0
     .image
       position relative
