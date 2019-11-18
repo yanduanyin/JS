@@ -8,15 +8,15 @@
               <router-link to="" tag="a">
                 <img v-lazy="currItem.imgUrl" width="800" height="316" alt="">
               </router-link>
-            </div>
-            <div class="swiper-button-next button" @click="nextIndex">
-              <span></span>
-            </div>
-            <div class="swiper-button-prev button" @click="preIndex">
-              <span></span>
-            </div>
+            </div> 
           </div>
         </transition>
+        <div class="swiper-button-next button" @click="nextIndex">
+          <span></span>
+        </div>
+        <div class="swiper-button-prev button" @click="preIndex">
+          <span></span>
+        </div>
       </template>
       <template v-slot:clickArea="{scopeItem}">
         <span :class="['swiper-pagination-bullet', {'active': scopeItem.currIndex === scopeItem.index}]"></span>
