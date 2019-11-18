@@ -63,7 +63,9 @@ export default {
       this.ivTimer = setInterval(this.loopItem, 5000)
     },
     preIndex () {
+      clearInterval(this.ivTimer)
       this.selectItem((this.currIndex - 1 + this.showInfoList.length) % this.showInfoList.length)
+      this.ivTimer = setInterval(this.loopItem, 5000)
     }
   },
   beforeDestroy () {
