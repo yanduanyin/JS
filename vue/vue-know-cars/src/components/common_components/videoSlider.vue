@@ -78,8 +78,8 @@ export default {
 .digslidebox
   margin 0 auto 
   position relative
-  width: 1190pxpx;
-  min-width: 1190pxpx;
+  width: 1190px;
+  min-width: 1190px;
   list-style none
   overflow hidden
   .slide-li

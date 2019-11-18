@@ -1,6 +1,6 @@
 <template>
   <div class="digslidebox" :class="outClass">
-    <slider @slideToRight="slideRight" @slideToLeft="slideLeft" :showInfoList="sliderList" >
+    <slider @slideToRight="slideRight" @slideToLeft="slideLeft" :showInfoList="sliderList" ref="slider">
       <template v-slot:showArea="{currItem}">
         <transition tag="div" :name="slideDec">
           <div :key="currItem.imgUrl" class="slide-li">
@@ -9,10 +9,10 @@
                 <img v-lazy="currItem.imgUrl" width="800" height="316" alt="">
               </router-link>
             </div>
-            <div class="swiper-button-next button" @click="slideRight">
+            <div class="swiper-button-next button" @click="nextIndex">
               <span></span>
             </div>
-            <div class="swiper-button-prev button" @click="slideLeft">
+            <div class="swiper-button-prev button" @click="preIndex">
               <span></span>
             </div>
           </div>
@@ -48,6 +48,12 @@ export default {
     },
     slideLeft () {
       this.slideDec = 'slideLeft'
+    },
+    nextIndex () {
+      this.$refs.slider.nextIndex()
+    },
+    preIndex () {
+      this.$refs.slider.preIndex()
     }
   },
   components: {

@@ -57,7 +57,17 @@ export default {
       this.currIndex = val
     },
     loopItem () {
+      clearInterval(this.ivTimer)
       this.selectItem((this.currIndex + 1) % this.showInfoList.length)
+      this.ivTimer = setInterval(this.loopItem, 5000)
+    },
+    nextIndex () {
+      clearInterval(this.ivTimer)
+      this.selectItem(this.currIndex + 1 % this.showInfoList.length)
+      this.ivTimer = setInterval(this.loopItem, 5000)
+    },
+    preIndex () {
+      this.selectItem((this.currIndex - 1 + this.showInfoList.length) % this.showInfoList.length)
     }
   },
   beforeDestroy () {
