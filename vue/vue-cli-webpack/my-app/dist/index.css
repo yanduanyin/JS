@@ -1,0 +1,9 @@
+body {
+  width: 500px;
+  background-color: red;
+  height: 500px;
+}
+body #app {
+  background-color: #eee;
+}
+
