@@ -34,7 +34,7 @@ let allServies = {
 
 // 读取所有recommend表数据， 测试数据连接
 let getAllRecommend = function () {
-  let _sql = `select * from recommend`
+  let _sql = `select * from cars`
   return allServies.query(_sql)
 }
 
