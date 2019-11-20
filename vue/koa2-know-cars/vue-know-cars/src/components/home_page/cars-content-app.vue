@@ -71,6 +71,14 @@ export default {
     clickIn(index) {
       console.log(index)
       this.clickIndex = index
+      this.$http({
+        method: 'get',
+        url: 'http://localhost:3000/users/recommend'
+      }).then((res) => {
+        console.log(res);
+      }).catch((err) => {
+       console.log(err)
+     })
     }
   },
   created() {
