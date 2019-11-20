@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import Drag1 from './Drag1.jsx';
 import './App.css';
 import withDragAble from './withDragAble';
+import useDrag from './useDragable';
 
 // hooks
 // react15 function 组件没有 state this 没有生命周期
@@ -21,10 +22,15 @@ function Header() {
 }
 function Footer() {
   const [ count, setCount ] = useState(0); 
+  const { style, handleDown } = useDrag();
   // state={ 0 }
   return (
-    <div>
-
+    <div style={style} onMouseDown={handleDown} className="drag">
+      foot: {count}
+      <button onClick={() => {
+        let count1 = count + 1
+        setCount(count1)
+      }}>+</button>
     </div>
   )
 }
@@ -32,8 +38,9 @@ const DragH2 = withDragAble(Header);
 function App() {
   return (
     <>
-      <Drag1/>
+      <Drag1 />
       <DragH2 />
+      <Footer />
     </>
   );
 }
