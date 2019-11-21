@@ -1,18 +1,18 @@
 <template>
   <div>
     <div class="box clearfix" v-for="(item, index) in newsList" :key="index">
-      <a href="" class="photo fl">
-        <span class="image"></span>
-        <span class="duration">
+      <a :href="'https://www.dcdapp.com'+item.href_logo" class="photo fl">
+        <span class="image" :style="'background-image: url('+item.imgUrl+')'"></span>
+        <span class="duration" v-show="item.video_time">
           <i class="icon"></i>
-          19:06
+          {{item.video_time}}
         </span>
       </a>
       <div class="info">
-        <a href="" class="title" target="_blank">38号车评中心 测评捷达VS5</a>
-        <a href="" class="name" target="_blank">
-          <span></span>
-          <span></span>
+        <a :href="'https://www.dcdapp.com'+item.href_title" class="title" target="_blank">{{item.text_title}}</a>
+        <a :href="'https://www.dcdapp.com'+item.href_name" class="name" target="_blank">
+          <span>{{item.text_name}}</span>
+          <span>{{item.text_time}}</span>
         </a>
       </div>
     </div>

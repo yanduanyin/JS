@@ -71,23 +71,27 @@ export default {
     clickIn(index) {
       // console.log(index)
       this.clickIndex = index
-      switch (index)
+      switch (this.clickIndex)
       {
-        case '1': let url = 'http://localhost:3000/knowcars/new'
-        case '2': let url = 'http://localhost:3000/knowcars/use'
-        case '3': let url = 'http://localhost:3000/knowcars/shopping'
-        case '4': let url = 'http://localhost:3000/knowcars/SUV'
-        case '5': let url = 'http://localhost:3000/knowcars/tarvel'
-        case '6': let url = 'http://localhost:3000/knowcars/newResources'
-        case '7': let url = 'http://localhost:3000/knowcars/task'
-        case '8': let url = 'http://localhost:3000/knowcars/evaluation'
-        default: let url = 'http://localhost:3000/knowcars/recommend'
+        case 1: var url = 'http://localhost:3000/knowcars/new'; break;
+        case 2: var url = 'http://localhost:3000/knowcars/usecars'; break;
+        case 3: var url = 'http://localhost:3000/knowcars/shopping'; break;
+        case 4: var url = 'http://localhost:3000/knowcars/SUV'; break;
+        case 5: var url = 'http://localhost:3000/knowcars/tarvel'; break;
+        case 6: var url = 'http://localhost:3000/knowcars/newResources'; break;
+        case 7: var url = 'http://localhost:3000/knowcars/task'; break;
+        case 8: var url = 'http://localhost:3000/knowcars/evaluation'; break;
+        default: var url = 'http://localhost:3000/knowcars/recommend'
       }
       this.$http({
         method: 'get',
-        url: url
+        url: url,
+        data: {
+          idx: idx
+        }
       }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+        this.newsListData = res.data
       }).catch((err) => {
        console.log(err)
      })
