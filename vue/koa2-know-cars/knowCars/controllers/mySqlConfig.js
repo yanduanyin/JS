@@ -36,7 +36,7 @@ let allServies = {
 let getAllRecommend = function (idx) {
   console.log(idx,2222);
   
-  let _sql = `select * from recommend limit idx`
+  let _sql = `select * from recommend limit ${idx}`
   return allServies.query(_sql)
 }
 // 读取所有new表数据， 测试数据连接
