@@ -1,6 +1,6 @@
 const config = {
   database: {
-    DATABASE: 'test',
+    DATABASE: 'knowcars', // DATABASE 是设置连接数据库的
     USERNAME: 'root',
     PASSWORD: '123456',
     PORT: '3306',

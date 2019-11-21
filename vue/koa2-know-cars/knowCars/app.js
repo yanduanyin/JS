@@ -1,4 +1,5 @@
 const Koa = require('koa')
+const cors = require('koa2-cors')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
@@ -11,17 +12,20 @@ const users = require('./routes/users')
 
 // error handler
 onerror(app)
+// CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）。
+// 下面以koa2-cors为例，
+// 我们可以用下面的中间件理解app.use(cors({}))
+app.use(cors({
+  origin:function(ctx){
+    return '*'
+  },
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept']
+}))
 
-// app.use(cors({
-//   origin:function(ctx){
-//     return '*'
-//   },
-//   exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
-//   maxAge: 5,
-//   credentials: true,
-//   allowMethods: ['GET', 'POST', 'DELETE'],
-//   allowHeaders: ['Content-Type', 'Authorization', 'Accept']
-// }))
 // middlewares
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']

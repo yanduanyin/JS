@@ -34,10 +34,58 @@ let allServies = {
 
 // 读取所有recommend表数据， 测试数据连接
 let getAllRecommend = function () {
-  let _sql = `select * from cars`
+  let _sql = `select * from recommend`
+  return allServies.query(_sql)
+}
+// 读取所有new表数据， 测试数据连接
+let getAllNew = function () {
+  let _sql = `select * from new`
+  return allServies.query(_sql)
+}
+// 读取所有newResources表数据， 测试数据连接
+let getAllNewResources = function () {
+  let _sql = `select * from newResources`
+  return allServies.query(_sql)
+}
+// 读取所有evaluation表数据， 测试数据连接
+let getAllEvaluation = function () {
+  let _sql = `select * from evaluation`
+  return allServies.query(_sql)
+}
+// 读取所有shopping表数据， 测试数据连接
+let getAllShopping = function () {
+  let _sql = `select * from shopping`
+  return allServies.query(_sql)
+}
+// 读取所有SUV表数据， 测试数据连接
+let getAllSuv = function () {
+  let _sql = `select * from SUV`
+  return allServies.query(_sql)
+}
+// 读取所有tarvel表数据， 测试数据连接
+let getAllTarvel = function () {
+  let _sql = `select * from tarvel`
+  return allServies.query(_sql)
+}
+// 读取所有task表数据， 测试数据连接
+let getAllTask = function () {
+  let _sql = `select * from task`
+  return allServies.query(_sql)
+}
+// 读取所有use表数据， 测试数据连接
+let getAllUse = function () {
+  let _sql = `select * from use`
   return allServies.query(_sql)
 }
 
 module.exports = {
-  getAllRecommend
+  getAllRecommend,
+  getAllNew,
+  getAllNewResources,
+  getAllEvaluation,
+  getAllShopping,
+  getAllSuv,
+  getAllTarvel,
+  getAllTask,
+  getAllUse
 }

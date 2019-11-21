@@ -69,13 +69,25 @@ export default {
   },
   methods: {
     clickIn(index) {
-      console.log(index)
+      // console.log(index)
       this.clickIndex = index
+      switch (index)
+      {
+        case '1': let url = 'http://localhost:3000/knowcars/new'
+        case '2': let url = 'http://localhost:3000/knowcars/use'
+        case '3': let url = 'http://localhost:3000/knowcars/shopping'
+        case '4': let url = 'http://localhost:3000/knowcars/SUV'
+        case '5': let url = 'http://localhost:3000/knowcars/tarvel'
+        case '6': let url = 'http://localhost:3000/knowcars/newResources'
+        case '7': let url = 'http://localhost:3000/knowcars/task'
+        case '8': let url = 'http://localhost:3000/knowcars/evaluation'
+        default: let url = 'http://localhost:3000/knowcars/recommend'
+      }
       this.$http({
         method: 'get',
-        url: 'http://localhost:3000/users/recommend'
+        url: url
       }).then((res) => {
-        console.log(res);
+        console.log(res.data);
       }).catch((err) => {
        console.log(err)
      })
