@@ -24,7 +24,7 @@ let allServies = {
             } else {
               resolve(rows)
             }
-            connection.release() // 释放连接池
+            connection.release(idx) // 释放连接池
           })
         }
       })
@@ -33,48 +33,50 @@ let allServies = {
 }
 
 // 读取所有recommend表数据， 测试数据连接
-let getAllRecommend = function () {
-  let _sql = `select * from recommend`
+let getAllRecommend = function (idx) {
+  console.log(idx,2222);
+  
+  let _sql = `select * from recommend limit idx`
   return allServies.query(_sql)
 }
 // 读取所有new表数据， 测试数据连接
-let getAllNew = function () {
-  let _sql = `select * from new`
+let getAllNew = function (idx) {
+  let _sql = `select * from new limit 10`
   return allServies.query(_sql)
 }
 // 读取所有newResources表数据， 测试数据连接
-let getAllNewResources = function () {
-  let _sql = `select * from newResources`
+let getAllNewResources = function (idx) {
+  let _sql = `select * from newResources limit 10`
   return allServies.query(_sql)
 }
 // 读取所有evaluation表数据， 测试数据连接
-let getAllEvaluation = function () {
-  let _sql = `select * from evaluation`
+let getAllEvaluation = function (idx) {
+  let _sql = `select * from evaluation limit 10`
   return allServies.query(_sql)
 }
 // 读取所有shopping表数据， 测试数据连接
-let getAllShopping = function () {
-  let _sql = `select * from shopping`
+let getAllShopping = function (idx) {
+  let _sql = `select * from shopping limit 10`
   return allServies.query(_sql)
 }
 // 读取所有SUV表数据， 测试数据连接
-let getAllSuv = function () {
-  let _sql = `select * from SUV`
+let getAllSuv = function (idx) {
+  let _sql = `select * from SUV limit 10`
   return allServies.query(_sql)
 }
 // 读取所有tarvel表数据， 测试数据连接
-let getAllTarvel = function () {
-  let _sql = `select * from tarvel`
+let getAllTarvel = function (idx) {
+  let _sql = `select * from tarvel limit 10`
   return allServies.query(_sql)
 }
 // 读取所有task表数据， 测试数据连接
-let getAllTask = function () {
-  let _sql = `select * from task`
+let getAllTask = function (idx) {
+  let _sql = `select * from task limit 10`
   return allServies.query(_sql)
 }
 // 读取所有use表数据， 测试数据连接
-let getAllUse = function () {
-  let _sql = `select * from use`
+let getAllUsecars = function (idx) {
+  let _sql = `select * from usecars limit 10`
   return allServies.query(_sql)
 }
 
@@ -87,5 +89,5 @@ module.exports = {
   getAllSuv,
   getAllTarvel,
   getAllTask,
-  getAllUse
+  getAllUsecars
 }

@@ -59,7 +59,10 @@ export default {
       ],
       clickIndex: 0,
       leaderboardData: [],
-      newsListData: []
+      newsListData: [],
+      scroll: true, // 控制loding的展示
+      pagenum: 1, // 当前页数
+      totalnum: ''
     }
   },
   computed: {
@@ -71,6 +74,11 @@ export default {
     clickIn(index) {
       // console.log(index)
       this.clickIndex = index
+      this.pagenum = 1
+      var idx = this.pagenum
+      console.log(idx);
+      
+
       switch (this.clickIndex)
       {
         case 1: var url = 'http://localhost:3000/knowcars/new'; break;
@@ -84,7 +92,7 @@ export default {
         default: var url = 'http://localhost:3000/knowcars/recommend'
       }
       this.$http({
-        method: 'get',
+        method: 'post',
         url: url,
         data: {
           idx: idx
