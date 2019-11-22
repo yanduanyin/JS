@@ -8,6 +8,7 @@
           </li>
         </ul>
         <NewsList :newsList="newsListData"/>
+        <Loading v-show="scroll"/>
       </div>
     </div>
     <div class="leaderboard">
@@ -40,9 +41,11 @@
 
 <script>
 import NewsList from '../common_components/newsList'
+import Loading from '../common_components/loading'
 export default {
   components: {
-    NewsList
+    NewsList,
+    Loading
   },
   data() {
     return {
@@ -74,7 +77,7 @@ export default {
     clickIn(index) {
       console.log(index, '1')
       console.log(this.clickIndex, '2');
-      
+      this.scroll = true
       // this.clickIndex = index
       if (this.clickIndex === index) {
         var idx = this.pagenum
@@ -107,6 +110,7 @@ export default {
       }).then((res) => {
         // console.log(res.data);
         this.newsListData = res.data
+        // this.scroll = false
       }).catch((err) => {
        console.log(err)
      })
