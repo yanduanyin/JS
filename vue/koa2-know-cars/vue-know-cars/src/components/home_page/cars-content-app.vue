@@ -94,7 +94,7 @@ export default {
       this.$http({
         method: 'post',
         url: url,
-        data: {
+         data: {
           idx: idx
         }
       }).then((res) => {
