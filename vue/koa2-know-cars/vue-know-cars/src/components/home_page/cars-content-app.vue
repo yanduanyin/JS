@@ -1,5 +1,5 @@
 <template>
-  <div class="clearfix content">
+  <div class="clearfix content" ref="content">
     <div class="feed fl">
       <div class="fl title-list-box">
         <ul class="title-list">
@@ -72,12 +72,19 @@ export default {
   },
   methods: {
     clickIn(index) {
-      // console.log(index)
-      this.clickIndex = index
-      this.pagenum = 1
-      var idx = this.pagenum
-      console.log(idx);
+      console.log(index, '1')
+      console.log(this.clickIndex, '2');
       
+      // this.clickIndex = index
+      if (this.clickIndex === index) {
+        var idx = this.pagenum
+        this.clickIndex = index
+      } if (this.clickIndex != index){
+        var idx = 1
+        // this.$refs.content  = 1252 + 'px'
+        
+        this.clickIndex = index
+      }
 
       switch (this.clickIndex)
       {
@@ -103,9 +110,22 @@ export default {
       }).catch((err) => {
        console.log(err)
      })
+    },
+    // 滚动事件的监听
+    handleScroll() {
+      // 当滚动的距离加窗口高度等于可视区域的时候，也就是触底时
+      if ((document.documentElement.scrollTop + window.innerHeight) === document.body.offsetHeight) {
+        this.pagenum = ++this.pagenum
+        // console.log(this.pagenum);
+        this.clickIn(this.clickIndex)
+      }
     }
   },
   created() {
+    this.clickIn(this.clickIndex)
+  },
+  mounted() {
+   window.addEventListener('scroll', this.handleScroll) 
   }
 }
 </script>
