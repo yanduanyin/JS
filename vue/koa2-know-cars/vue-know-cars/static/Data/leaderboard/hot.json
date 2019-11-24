@@ -1,0 +1,32 @@
+{
+	"status": "success",
+	"message": "success",
+	"data": [{
+		"count": null,
+		"image": "http://p6-dcd.byteimg.com/img/mosaic-legacy/1767500004009911bb03d~tplv-resize:480:0.png",
+		"series_name": "领克03",
+		"rank": 1,
+		"series_id": 1623,
+		"min_price": 10.88,
+		"last_rank": 1,
+		"max_price": 22.88
+	}, {
+		"count": null,
+		"image": "http://p1-dcd.byteimg.com/img/mosaic-legacy/bef800002b14569704f8~tplv-resize:480:0.png",
+		"series_name": "思域",
+		"rank": 2,
+		"series_id": 276,
+		"min_price": 11.69,
+		"last_rank": 2,
+		"max_price": 16.98
+	}, {
+		"count": null,
+		"image": "http://p6-dcd.byteimg.com/img/motor-img/5579b47cd492517b912a66ca2af944e4~tplv-resize:480:0.png",
+		"series_name": "轩逸",
+		"rank": 3,
+		"series_id": 1145,
+		"min_price": 8.88,
+		"last_rank": 3,
+		"max_price": 14.3
+	}]
+}
