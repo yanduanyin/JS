@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>diff算法</title>
+</head>
+<body>
+  <ul id="list">
+    <li class="item">item1</li>
+    <li class="item">item2</li>
+    <li class="item">item3</li>
+  </ul> 
+
+  <script src="./index.js"></script>
+  <script>
+    var element = {
+      tagName: 'ul',
+      props: {
+        id: 'list'
+      },
+      children: [
+        {
+          tagName: 'li',
+          props: {
+            class: 'item'
+          },
+          children: [ 'item1']
+        },
+        {
+          tagName: 'li',
+          props: {
+            class: 'item'
+          },
+          children: [ 'item2']
+        },
+        {
+          tagName: 'li',
+          props: {
+            class: 'item'
+          },
+          children: [
+            {
+              tagName: 'span',
+              props: {
+                class: 'title'
+              },
+              children: ['hello']
+            }
+          ]
+        }
+      ]
+    }
+    let ul = new Element(element.tagName, element.props, element.children)
+    let ulRoot = ul.render()
+    document.body.appendChild(ulRoot)
+  </script>
+</body>
+</html>
