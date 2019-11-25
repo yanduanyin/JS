@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hotspot" v-if="listData[0].rank">
+    <div class="hotspot" v-if="Ranking">
       <div class="header">
         <span class="title">{{LbName}}</span>
         <span class="more">
@@ -10,12 +10,14 @@
       </div>
       <div class="list">
         <div class="series clearfix" v-for="(item, index) in listData" :key="index">
-          <span class="icon" v-if="Ranking" style="background-image:url('http://localhost:8080/static/know-cars-image/0_img.png')"></span>
-          <span class="month"  v-else></span>
+          <span class="icon" v-if="item.rank==1" style="background-image:url('http://localhost:8080/static/know-cars-image/0_img.png')"></span>
+          <span class="icon" v-if="item.rank==2" style="background-image:url('http://localhost:8080/static/know-cars-image/1_img.png')"></span>
+          <span class="icon" v-if="item.rank==3" style="background-image:url('http://localhost:8080/static/know-cars-image/2_img.png')"></span>
           <a href="" class="cars-name" target="_blank" title="">
-            <span class="photo"></span>
-            <span class="name line-1">沃尔沃S60</span>
-            <span class="active price">19.05万起</span>
+            <span class="photo" :style="'background-image:url('+item.image+')'"></span>
+            <span class="name line-1">{{item.series_name}}</span>
+            <span class="active price" v-if="item.min_price">{{item.min_price}}-{{item.max_price}}万</span>
+            <span class="price" v-else>总销量{{item.num}}</span>
           </a>
         </div>
       </div>
@@ -29,12 +31,13 @@
         </span>
       </div>
       <div class="list">
-        <div class="series clearfix">
-          <span class="month"></span>
+        <div class="series clearfix" v-for="(item, index) in listData" :key="index">
+          <span class="month">{{item.month}}月</span>
           <a href="" class="cars-name" target="_blank" title="">
-            <span class="photo"></span>
-            <span class="name line-1">沃尔沃S60</span>
-            <span class="active price">19.05万起</span>
+            <span class="photo" :style="'background-image:url('+item.image+')'"></span>
+            <span class="name line-1">{{item.series_name}}</span>
+            <span class="active price" v-if="item.price">{{item.price}}万起</span>
+            <span class="active price" v-else>{{item.text}}</span>
           </a>
         </div>
       </div>
@@ -107,6 +110,8 @@ export default {
           height: 60px
           margin-right: 12px
           vertical-align: middle
+          background-size: cover
+          transition: transform 0.3s ease-in-out 0s
           &:hover 
             transform: scale(1.1)
         .name
@@ -127,6 +132,8 @@ export default {
         .price
           float: right
           margin-top: 20px
+          &:hover 
+            color: #406599
         .active
           color: #ff9100
           font-weight: 500
@@ -179,6 +186,8 @@ export default {
           height: 60px
           margin-right: 12px
           vertical-align: middle
+          background-size: cover
+          transition: transform 0.3s ease-in-out 0s
           &:hover 
             transform: scale(1.1)
         .name
@@ -199,6 +208,8 @@ export default {
         .price
           float: right
           margin-top: 20px
+          &:hover 
+            color: #406599
         .active
           color: #ff9100
           font-weight: 500

@@ -16,7 +16,33 @@
       <Leaderboard :LbName="'热门排行榜'" :Ranking="true" :listData="hotList"/>
       <Leaderboard :LbName="'新车发布'" :Ranking="false" :listData="newCarList"/>
       <Leaderboard :LbName="'销量排行榜'" :Ranking="true" :listData="xiaoliangList"/>
+      <div class="statement">
+        <p class="textp"> © 2019 懂车帝 www.dcdapp.com</p>
+        <p class="textp">
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802026035" target="_blank" rel="noopener noreferrer" class="atext">京公网安备 11010802026035号</a>
+        </p>
+        <p class="textp">
+          <a href="http://www.miibeian.gov.cn/" target="_blank" rel="noopener noreferrer" class="atext">京ICP备17027026号-2</a>
+        </p>
+        <p class="textp">
+          <a href="http://sf1-ttcdn-tos.pstatp.com/obj/ttfe/motor/pc/ICP.pdf" target="_blank" rel="noopener noreferrer" class="atext">增值电信业务经营许可证（京B2-20180202）</a>
+        </p>
+        <p class="textp">
+          <a href="http://sf1-ttcdn-tos.pstatp.com/obj/ttfe/motor/pc/radio-tv-License.pdf" target="_blank" rel="noopener noreferrer" class="atext">广播电视节目制作经营许可证</a>
+        </p>
+        <p class="textp">公司名称：北京空间变换科技有限公司</p>
+        <p class="textp">
+          <a href="http://www.12377.cn/" target="_blank" rel="noopener noreferrer" class="atext">中央网信办违法和不良信息举报中心</a>
+        </p>
+        <p class="textp">违法和不良信息举报电话：400-140-2108</p>
+        <p class="textp">
+          <a href="http://www.dongchediapp.com/cloud/page/agreement.html" class="atext">懂车帝用户协议</a><!-- -->|<!-- --> 
+          <a href="http://www.dongchediapp.com/cloud/page/privacy.html" class="atext">懂车帝隐私政策</a><!-- -->|<!-- --> 
+          <a href="http://sf1-ttcdn-tos.pstatp.com/obj/ttfe/motor/pc/business-License.pdf" target="_blank" rel="noopener noreferrer" class="atext">营业执照</a>
+        </p>
+      </div>
     </div>
+    
   </div>
 </template>
 
@@ -183,5 +209,14 @@ export default {
     width: 340px
     margin-left: 10px
     float right
-    
+    .statement
+      line-height: 20px;
+      padding: 16px 20px;
+      font-size: 12px;
+      color: #666;
+      .textp
+        .atext
+          &:hover
+            cursor: pointer
+            color: #406599
 </style>
