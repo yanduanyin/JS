@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hotspot" v-if="rank">
+    <div class="hotspot" v-if="listData[0].rank">
       <div class="header">
         <span class="title">{{LbName}}</span>
         <span class="more">
@@ -9,7 +9,7 @@
         </span>
       </div>
       <div class="list">
-        <div class="series clearfix">
+        <div class="series clearfix" v-for="(item, index) in listData" :key="index">
           <span class="icon" v-if="Ranking" style="background-image:url('http://localhost:8080/static/know-cars-image/0_img.png')"></span>
           <span class="month"  v-else></span>
           <a href="" class="cars-name" target="_blank" title="">
