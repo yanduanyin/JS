@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>  
-    <div class="newcar">
+    <!-- <div class="newcar">
       <div class="header">
         <span class="title">{{LbName}}</span>
         <span class="more">
@@ -38,7 +38,7 @@
           </a>
         </div>
       </div>
-    </div>  
+    </div>   -->
   </div>
 </template>
 
