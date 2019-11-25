@@ -13,9 +13,9 @@
     </div>
     <div class="leaderboard">
       <!-- 排行榜模板 -->
-      <Leaderboard :LbName="'热门排行榜'" :Ranking="true"/>
-      <Leaderboard :LbName="'新车发布'" :Ranking="false"/>
-      <Leaderboard :LbName="'销量排行榜'" :Ranking="true"/>
+      <Leaderboard :LbName="'热门排行榜'" :Ranking="true" :listData="hotList"/>
+      <Leaderboard :LbName="'新车发布'" :Ranking="false" :listData="newCarList"/>
+      <Leaderboard :LbName="'销量排行榜'" :Ranking="true" :listData="xiaoliangList"/>
     </div>
   </div>
 </template>

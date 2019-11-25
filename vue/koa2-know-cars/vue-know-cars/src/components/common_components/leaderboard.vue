@@ -51,6 +51,9 @@ export default {
     },
     Ranking: {
       type: Boolean
+    },
+    listData: {
+      type: Array
     }
   }
 }
