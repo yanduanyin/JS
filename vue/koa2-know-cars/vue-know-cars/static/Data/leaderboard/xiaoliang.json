@@ -1,0 +1,29 @@
+{
+	"status": "success",
+	"message": "success",
+	"data": [{
+		"count": null,
+		"image": "https://p9-dcd.byteimg.com/img/motor-img/5579b47cd492517b912a66ca2af944e4~tplv-resize:480:0.webp",
+		"series_name": "轩逸",
+		"rank": 1,
+		"series_id": 1623,
+		"num": 58869,
+		"last_rank": 1
+	}, {
+		"count": null,
+		"image": "https://p9-dcd.byteimg.com/img/motor-img/99576627939489e1e24dc3a627f0f305~tplv-resize:480:0.webp",
+		"series_name": "朗逸",
+		"rank": 2,
+		"series_id": 276,
+		"num": 48868,
+		"last_rank": 2
+	}, {
+		"count": null,
+		"image": "https://p3-dcd.byteimg.com/img/motor-img/11852dabf4c247bc4110bf87de53d9de~tplv-resize:480:0.webp",
+		"series_name": "卡罗拉",
+		"rank": 3,
+		"series_id": 1145,
+		"num": 38868,
+		"last_rank": 3
+	}]
+}

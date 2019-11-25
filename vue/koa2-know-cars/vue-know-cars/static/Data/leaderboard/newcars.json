@@ -1,0 +1,26 @@
+{
+	"status": "success",
+	"message": "success",
+	"data": [{
+		"count": null,
+		"image": "https://p3-dcd.byteimg.com/img/motor-img/a1cdcd6ffa95151c05e96d0540732693~tplv-resize:480:0.webp",
+		"series_name": "沃尔沃S60 PHEV",
+		"month": 12,
+		"series_id": 1623,
+		"text": "暂无报价"
+	}, {
+		"count": null,
+		"image": "https://p9-dcd.byteimg.com/img/motor-img/3dd1cfc03beaf7097c3c90e220afc0c0~tplv-resize:480:0.webp",
+		"series_name": "沃尔沃S60",
+		"month": 12,
+		"series_id": 276,
+		"price": 11.69
+	}, {
+		"count": null,
+		"image": "https://p1-dcd.byteimg.com/img/motor-img/a301cb0dd160021484bb148ec2306289~tplv-resize:480:0.webp",
+		"series_name": "探影",
+		"month": 12,
+		"series_id": 1145,
+		"text": "暂无报价"
+	}]
+}

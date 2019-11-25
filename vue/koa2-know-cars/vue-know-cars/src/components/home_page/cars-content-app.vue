@@ -48,7 +48,10 @@ export default {
       newsListData: [],
       scroll: true, // 控制loding的展示
       pagenum: 1, // 当前页数
-      totalnum: ''
+      totalnum: '',
+      hotList: [],
+      newCarList: [],
+      xiaoliangList: []
     }
   },
   computed: {
@@ -110,6 +113,21 @@ export default {
   },
   created() {
     this.clickIn(this.clickIndex)
+    this.$http.get('http://localhost:8080/static/Data/leaderboard/hot.json')
+    .then(res => {
+      console.log(res, hotList);
+      // this.hotList = res.data
+    })
+    this.$http.get('http://localhost:8080/static/Data/leaderboard/newcars.json')
+    .then(res => {
+      console.log(res, newCarList);
+      // this.newCarList = res.data
+    })
+    this.$http.get('http://localhost:8080/static/Data/leaderboard/xiaoliang.json')
+    .then(res => {
+      console.log(res, xiaoliangList);
+      // this.xiaoliangList = res.data
+    })
   },
   mounted() {
    window.addEventListener('scroll', this.handleScroll) 

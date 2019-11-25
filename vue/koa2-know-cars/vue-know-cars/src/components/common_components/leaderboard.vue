@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hotspot">
+    <div class="hotspot" v-if="rank">
       <div class="header">
         <span class="title">{{LbName}}</span>
         <span class="more">
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>  
-    <!-- <div class="newcar">
+    <div class="newcar" v-else>
       <div class="header">
         <span class="title">{{LbName}}</span>
         <span class="more">
@@ -38,7 +38,7 @@
           </a>
         </div>
       </div>
-    </div>   -->
+    </div>  
   </div>
 </template>
 
@@ -52,7 +52,7 @@ export default {
     Ranking: {
       type: Boolean
     }
-}
+  }
 }
 </script>
 
