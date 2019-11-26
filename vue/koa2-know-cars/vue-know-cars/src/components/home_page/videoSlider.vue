@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import slider from './slider.vue'
+import slider from '../common_components/slider.vue'
 export default {
   name: 'digSlider',
   props: {

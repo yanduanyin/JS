@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import videoSlider from '../common_components/videoSlider.vue'
+import videoSlider from './videoSlider.vue'
 export default {
  data() {
    return {

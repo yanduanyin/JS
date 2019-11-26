@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import digSlider from '../common_components/digSlider.vue'
+import digSlider from './digSlider.vue'
 export default {
   data() {
     return {
