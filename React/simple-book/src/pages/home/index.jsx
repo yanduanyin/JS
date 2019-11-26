@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import BaseComponent from '../../lib/BaseComponent.jsx';
 import { HomeWrapper, HomeLeft } from './style';
 import { actionCreators } from './store/index.js';
-import { Topic } from './components/Topic';
+import Topic from './components/Topic.jsx';
  
 class Home extends BaseComponent {
-  componentDidMount() {
+  componentDidMount() { 
     this.props.changeHomeData()
   }
   
