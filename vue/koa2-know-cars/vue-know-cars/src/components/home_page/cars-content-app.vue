@@ -141,17 +141,17 @@ export default {
     this.clickIn(this.clickIndex)
     this.$http.get('http://localhost:8080/static/Data/leaderboard/hot.json')
     .then(res => {
-      console.log(res, 'hotList');
+      // console.log(res, 'hotList');
       this.hotList = res.data.data
     })
     this.$http.get('http://localhost:8080/static/Data/leaderboard/newcars.json')
     .then(res => {
-      console.log(res, 'newCarList');
+      // console.log(res, 'newCarList');
       this.newCarList = res.data.data
     })
     this.$http.get('http://localhost:8080/static/Data/leaderboard/xiaoliang.json')
     .then(res => {
-      console.log(res, 'xiaoliangList');
+      // console.log(res, 'xiaoliangList');
       this.xiaoliangList = res.data.data
     })
   },

@@ -1,5 +1,5 @@
 <template>
-  <div id="home_page">
+  <div id="home_page" v-show="$route.meta.keepAlive">
     <div class="header_mg clearfix">
       <a href="http://localhost:8080/#/" class="dcd_login fl"></a>
       <router-link to="/" target="_blank" :class="['nav-alink', 'fl',  isActive1]">首页</router-link>
@@ -47,7 +47,7 @@ export default {
   },
   watch:{ // watch监听路由变化
     $route(to,from){
-      // console.log(to.path);
+      console.log(to.path, 'path--------------');
       switch(to.path) {
         case '/':
           this.isActive1 = 'nav-alink-color';
