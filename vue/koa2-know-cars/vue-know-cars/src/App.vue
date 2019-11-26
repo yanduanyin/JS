@@ -1,8 +1,13 @@
 <template>
   <div id="app">
-    <navigationBar />
-    <div class="main-mg">
-      <router-view/>
+    <div v-if="$route.meta.keepAlive">
+      <navigationBar />
+      <div class="main-mg">
+        <router-view />
+      </div>
+    </div>
+    <div class="main-mg" v-else>
+      <router-view />
     </div>
   </div>
 </template>

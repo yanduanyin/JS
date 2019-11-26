@@ -100,7 +100,7 @@ export default {
         
         this.clickIndex = index
       }
-
+      // 根据点击事件传的不同的索引来请求不同的数据
       switch (this.clickIndex)
       {
         case 1: var url = 'http://localhost:3000/knowcars/new'; break;

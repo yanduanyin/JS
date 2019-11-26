@@ -6,13 +6,15 @@
       <router-link to="/auto" target="_blank" :class="['nav-alink', 'fl', isActive2]">车型库</router-link>
       <router-link to="/video" target="_blank" :class="['nav-alink', 'fl', isActive3]">视频</router-link>
       <!-- 搜索框 -->
-      <div class="search-container fl clearfix">
+      <div class="search-container fl clearfix" v-show="isSearch">
         <i class="search-icon-box fl">
           <span class="search-icon iconfont icon-fangdajing fl"></span>
         </i>
         <input type="search" placeholder="请输入你要搜索的内容" class="searchInput fl">
         <button type="submit" class="searchBt">搜索</button>
       </div>
+      <!-- 进入懂车号 -->
+      <a href="#/entrance" target="_blank" rel="noopener noreferrer" class="dcdmp" v-show="isActive">进入懂车号</a>
       <!-- 二维码部分 -->
       <a href="https://www.dcdapp.com/download/" class="nav-qrcodeWrap">
         <span class="nav-qrcode-bt iconfont icon-erweima">
@@ -33,7 +35,8 @@ import siteBar from './siteBar'
 export default {
   data() {
     return {
-      // isActive: true,
+      isActive: true,
+      isSearch: true,
       isActive1: '',
       isActive2: '',
       isActive3: ''
@@ -135,6 +138,13 @@ export default {
         .qrcode
           width 240px
           height 240px
+    .dcdmp
+      float: right
+      color: #fff
+      font-size: 16px
+      margin-left: 24px
+      &:hover
+        color #ffe733
     .search-container
       position relative
       width 301px

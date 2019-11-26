@@ -13,7 +13,8 @@ export default new Router({
       name: 'Home',
       component: __import__('home/home'),
       meta: {
-        title: '[首页]懂车帝_看车选车买车!!!'
+        title: '[首页]懂车帝_看车选车买车!!!',
+        keepAlive: true // 指定导航条显示与否
       }
     },
     {
@@ -21,7 +22,8 @@ export default new Router({
       name: 'auto',
       component: __import__('auto/auto'),
       meta: {
-        title: '[车型库]懂车帝_看车选车买车!!!'
+        title: '[车型库]懂车帝_看车选车买车!!!',
+        keepAlive: true // 指定导航条显示与否
       }
     },
     {
@@ -29,7 +31,17 @@ export default new Router({
       name: 'video',
       component: __import__('video/video'),
       meta: {
-        title: '[汽车视频]懂车帝_看车选车买车!!!'
+        title: '[汽车视频]懂车帝_看车选车买车!!!',
+        keepAlive: true // 指定导航条显示与否
+      }
+    },
+    {
+      path: '/entrance',
+      name: 'entrance',
+      component: __import__('entrance/entrance'),
+      meta: {
+        title: '懂车号',
+        keepAlive: false // 指定导航条显示与否
       }
     }
   ]
