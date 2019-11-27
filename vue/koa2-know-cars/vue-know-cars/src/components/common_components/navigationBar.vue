@@ -47,7 +47,7 @@ export default {
   },
   watch:{ // watch监听路由变化
     $route(to,from){
-      console.log(to.path, 'path--------------');
+      // console.log(to.path, 'path--------------');
       switch(to.path) {
         case '/':
           this.isActive1 = 'nav-alink-color';
