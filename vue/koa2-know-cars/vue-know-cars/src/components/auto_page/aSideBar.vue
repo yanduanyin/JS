@@ -2,18 +2,15 @@
   <section :class="['clearfix']">
     <div class="listLt fl">
       <div :class="['listLt-item', {'active':currentIndex === index}]" v-for="(item,index) in asideList" :key="index"
-        @click="clickColor(index, $event)">
-        <span :data-letter="item.letter">A</span>
-      </div>
+        @click="clickColor(index, $event)">{{item.bigLetter}}</div>
     </div>
     <section class="listRt" @scroll.stop="handleScroll" >
       <div class="listRt-wrapper" ref="nameWrapper">
-        <div class="listRt-box" v-for="(Bitem, index) in asideList" :key="index" ref="nameList">
-          <div class="listRt-container" :data-letter="A" v-for="(items, index) in Bitem.child" :key="index">
-            <h4 class="listRtHitem">A</h4>
-            <div class="listRt-item-box">
-              <span class="listRt-item">ASS</span>
-            </div>
+        <div class="listRt-box" :data-letter="A" v-for="(Bitem, index) in asideList" :key="index" ref="nameList">
+          <h4 class="listRtHitem">{{Bitem.bigLetter}}</h4>
+          <div class="listRt-container" v-for="(items, index) in Bitem.child" :key="index">
+            <img src="" alt="" srcset="" class="pic">
+            <span class="listRt-item">{{items.text}}</span>
           </div>
         </div>
       </div>
@@ -104,5 +101,57 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+.listLt
+  width: 28px
+  padding: 11px 0px
+  -webkit-user-select: none
+  user-select: none
+  background-color: #333333
+  .listLt-item
+    height: 28px
+    line-height: 28px
+    font-size: 16px
+    text-align: center
+    color: #fff
+    &.active
+      color: #333333
+      -webkit-transition: all 0.3s ease-in-out
+      transition: all 0.3s ease-in-out
+      background-color: #ffe100
+    &:hover
+      background-color: rgba(255,255,255,0.2)
+      // -webkit-transition: background 0.3s ease-in-out;
+      // transition: background 0.3s ease-in-out;
+      cursor: pointer
+.listRt
+  height: 722px
+  overflow-x: hidden
+  overflow-y: auto
+  -webkit-transform: translateZ(0)
+  transform: translateZ(0)
+  border: 1px solid #e6e6e6
+  border-left: 0
+  .listRt-wrapper
+    .listRt-box
+      .listRtHitem
+        position: sticky
+        top: 0
+        line-height: 28px
+        padding-left: 16px
+        font-size: 12px
+        color: #666
+        background: #f8f8f8
+      .listRt-container
+        line-height: 52px
+        padding-left: 16px
+        cursor: pointer
+        font-size: 16px
+        &:hover
+          color: #406599
+        .pic
+          width: 36px
+          height: 36px
+          margin-right: 8px
+          border-radius: 50%
+          vertical-align: middle
 </style>
