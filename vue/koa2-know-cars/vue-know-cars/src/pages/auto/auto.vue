@@ -1,6 +1,5 @@
 <template>
   <div id="home_page">
-    2
     <aSideBar />
   </div>
 </template>
