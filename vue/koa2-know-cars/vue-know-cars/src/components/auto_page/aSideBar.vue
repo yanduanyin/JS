@@ -8,7 +8,7 @@
       <div class="listRt-wrapper" ref="nameWrapper">
         <div class="listRt-box" :data-letter="Bitem.bigLetter" v-for="(Bitem, index) in asideList" :key="index" ref="nameList">
           <h4 class="listRtHitem">{{Bitem.bigLetter}}</h4>
-          <p class="listRt-container" v-for="(items, index) in Bitem.child" :key="index">
+          <p :class="['listRt-container'. Bitem.brand_id]" v-for="(items, index) in Bitem.child" :key="index">
             <img :src="items.imgSrc" alt="" srcset="" class="pic">
             <span class="listRt-item">{{items.text}}</span>
           </p>
