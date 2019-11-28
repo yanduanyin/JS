@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import BaseComponent from './lib/BaseComponent.jsx';
 import store from './store/index.jsx';
 import Home from './pages/home/index.jsx';
+import Header from './common/header/index.jsx'
+import { GlobalStyle } from './statics/iconfont/iconfont.js'// 引入全局样式iconfont
+
 
 class App extends BaseComponent {
   render() {
@@ -14,7 +17,8 @@ class App extends BaseComponent {
         {/* BrowserRouter保存了全局的路由信息 */}
         <BrowserRouter>
           <div>
-            header
+            <GlobalStyle />
+            <Header />
             <Route exact path="/" component={Home}/>
           </div>
         </BrowserRouter>

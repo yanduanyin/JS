@@ -1,0 +1,1 @@
+export const SEARCH_FOCUS = 'header/SEARCH_FOCUS' // 定义一些变量，让action函数使用，reducer里面进行判断
