@@ -26,9 +26,11 @@ class Header extends Component {
             {/* classNames="" 类名切换 */}
             <CSSTransition timeout={200} in={focus} classNames="slide"> 
               <NavSearch
-              // onBlur={}
+              onBlur={() => {
+                this.props.handFocus(false)
+              }}
               onFocus={() => {
-                this.props.handFocus()
+                this.props.handFocus(true)
               }}/>
             </CSSTransition>
           </SearchWrapper>
@@ -40,6 +42,7 @@ class Header extends Component {
 							写文章
 						</Button>
 					</Link>
+          <Link to='/login'><NavItem className='right'><Button>登陆</Button></NavItem></Link>
 					<Button className='reg'>注册</Button>
 				</Addition>
 			</HeaderWrapper>
@@ -54,8 +57,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    handFocus() {
-      dispatch(actionCreators.searchFocus())
+    handFocus(focus) {
+      dispatch(actionCreators.searchFocus(focus))
     }
   }
 }

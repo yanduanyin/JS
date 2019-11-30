@@ -165,6 +165,7 @@ export const Button = styled.div`
 	border-radius: 19px;
 	border: 1px solid #ec6149;
 	font-siz: 14px;
+	color: #ec6149;
 	&.reg {
 		color: #ec6149;
 	}

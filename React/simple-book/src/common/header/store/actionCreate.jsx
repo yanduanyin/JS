@@ -1,7 +1,8 @@
 import * as CONTANTS from './constants';
-// JSON 规范
-export const searchFocus = () => {
+// JSON sheame 规范
+export const searchFocus = (focus) => {
   return {
-    type: CONTANTS.SEARCH_FOCUS
+    type: CONTANTS.SEARCH_FOCUS,
+    focus
   }
 }

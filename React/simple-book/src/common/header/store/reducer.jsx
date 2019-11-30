@@ -9,7 +9,7 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
   switch (action.type) {
     case CONTANTS.SEARCH_FOCUS:
-      return state.set('focus', true) // merge 也可以使用
+      return state.set('focus', action.focus) // merge 也可以使用
     default: 
       return state
   }

@@ -8,7 +8,14 @@ import store from './store/index.jsx';
 import Home from './pages/home/index.jsx';
 import Header from './common/header/index.jsx'
 import { GlobalStyle } from './statics/iconfont/iconfont.js'// 引入全局样式iconfont
+import PrivateRoute from './lib/PrivateRoute';
+import Login from './pages/login/index';
 
+function Write() {
+  return (
+    <div>写文章页面</div>
+  )
+}
 
 class App extends BaseComponent {
   render() {
@@ -20,6 +27,11 @@ class App extends BaseComponent {
             <GlobalStyle />
             <Header />
             <Route exact path="/" component={Home}/>
+            <Route exact path='/login' component={Login} />
+            {/* <PrivateRoute path="/write" Com={Write}/>   // 1*/} 
+            <PrivateRoute path="/write">
+              <Write />
+            </PrivateRoute>
           </div>
         </BrowserRouter>
       </Provider>
