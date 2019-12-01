@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>debounce</title>
+</head>
+<!-- bao kayup
+    b   ？
+    ba  ？
+    bao 宝
+    JS底层    多了一些无效的执行
+    服务器  keyup ajax(服务器)
+    怎么解决？
+    一定时间只执行一定的次数 -->
+<body>
+  <div>
+    <label for="">没有防抖的输入框</label>
+    <input type="text" class="unDebounce">
+  </div>
+  <div>
+    <label for="">有防抖的输入框</label>
+    <input type="text" class="debounce">
+  </div>
+  <script>
+  let inputA = document.querySelector('.unDebounce')
+  let inputDebounce = document.querySelector('.debounce')
+  let DebounceAjax = debounce(Ajax, 500) 
+  function Ajax(value) {
+    console.log(value);
+  }
+  inputA.addEventListener('keyup', function (e) {
+    let content = e.target.value
+    // 输入框把输入的内容拿去 Ajax 请求，这里就使用一下Ajax函数 伪造一下请求的的过程
+    Ajax(content)
+  })
+  inputDebounce.addEventListener('keyup', function (e) {
+    let content = e.target.value
+    // 使用了防抖函数DebounceAjax，怕Ajax的请求太频繁了，
+    DebounceAjax(content)
+  })
+  function debounce (func, delay) {
+   return function (args) {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      func.call(this, args)
+    }, delay)
+   }
+  }
+  </script>
+</body>
+</html>

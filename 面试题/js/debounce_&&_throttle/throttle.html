@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>throttle函数的手写实现</title>
+</head>
+<!-- 拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动
+      缩放场景：监控浏览器resize
+      动画场景：避免短时间内多次触发动画引起性能问题 -->
+<body>
+  <div>
+    <label for="">我是需要节流的组件，我不想频繁的执行函数</label>
+    <button id="throttle">随便你怎么点，我不会频繁的触发的</button>
+    <ul id="ul"></ul>
+  </div>
+  <script>
+    let Btn = document.getElementById('throttle')
+    let ul = document.getElementById('ul')
+
+    let throttleClick = throttle(targetFunc, 500)
+
+    Btn.addEventListener('click', function () {
+      throttleClick('我被执行了，我真开心！')  //  我被执行了，我真开心！ == args
+    })
+
+    function targetFunc (value) { // 需要被控制节流的目标函数
+      let eleNode = document.createElement('li');
+      let text = document.createTextNode(value)
+      eleNode.appendChild(text)
+      ul.appendChild(eleNode)
+    }
+    
+
+    function throttle (func, delay) {
+      var timer = null // 产生了闭包
+      return function (args) {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          func.call(this, args)
+        },delay)
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>边距重叠实例</title>
+  <style>
+  * {
+    margin: 0;
+    top: 0;
+  }
+  #preson {
+    width: 200px;
+    height: 200px;
+    background-color: #000;
+  }
+  #child {
+    width: 80px;
+    height: 80px;
+    background-color: red;
+    margin-top: 40px;
+  }
+  </style>
+</head>
+<body>
+   <!-- 解决边距重叠问题的方法是，给发生边距差距的盒子变成BFC容器 -->
+  <div id="preson" style="overflow: hidden;">
+    <div id="child">
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BFC解决边距重叠实例</title>
+  <style>
+  * {
+    margin: 0;
+    top: 0;
+  }
+  #box1 {
+    width: 200px;
+    height: 200px;
+    background-color: #000;
+    margin-bottom: 30px;
+    color: aliceblue;
+  }
+  #box2 {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    margin-top: 50px;
+    /* 变成BFC容器方法一  float属性不为none（脱离文档流）*/
+    /* float: left;   */
+    /* 变成BFC容器方法二 position为absolute或fixed, 相对整个window窗口定位了，自然不会发生边距重叠*/
+    /* position: absolute; */
+    /* 变成BFC容器方法三 display为inline-block,table-caption*/
+      /* display: inline-block; */
+    /* 变成BFC容器方法四 overflow不为visible*/
+    overflow: hidden;
+  }
+  
+  </style>
+</head>
+<body>
+   <!-- 解决边距重叠问题的方法是，给发生边距差距的盒子变成BFC容器 -->
+  <div id="box1">
+      <h3>上:margin-bottom: 30px;</h3>
+  </div>
+  <div id="box2">
+      <h3>下:margin-top: 50px;</h3>
+  </div>
+</body>
+</html>

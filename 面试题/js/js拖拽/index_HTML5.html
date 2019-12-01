@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>drop && drap</title>
+  <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+    .page {
+        width: 100%;
+        height: 100%;
+        background-color: #aaa;
+        position: relative;
+    }
+    #box {
+        width: 40px;
+        height: 40px;
+        background-color: brown;
+        cursor: pointer;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div id="box" draggable="true"></div>
+  </div>
+  <script>
+    let box = document.getElementById('box');
+    // let page = document.querySelector('.page')
+
+    box.ondragstart = handle_start
+    box.ondrag = handle_drag
+    box.ondragend = handle_end
+
+    function handle_start (e) {
+      console.log('dragstart: 选中了');
+    }
+    function handle_drag (e) {
+      // console.log(e);
+      // e.preventDefault(); // 阻止浏览器默认行为
+      box.style.top = e.clientY + 'px'
+      box.style.left = e.clientX + 'px'
+      
+    }
+    function handle_end (e) {
+      console.log('dragend: 释放');
+      // e.preventDefault(); // 阻止浏览器默认行为
+      box.style.top = e.clientY + 'px'
+      box.style.left = e.clientX + 'px'
+    }
+  </script>
+</body>
+</html>

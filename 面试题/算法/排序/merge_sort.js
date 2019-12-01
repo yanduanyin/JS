@@ -6,7 +6,7 @@ function  Merge(arr1, arr2) {
   let arr3 = new Array(arr1.length + arr2.length)
   let i = 0, j = 0;
   let k = 0;
-  arr1[arr1.length] = Infinity
+  arr1[arr1.length] = Infinity   // Infinity js 的最大安全数字
   arr2[arr2.length] = Infinity
   while( k < arr3.length) {
     if(arr1[i] < arr2[j]) {
@@ -17,15 +17,6 @@ function  Merge(arr1, arr2) {
       arr3[k] = arr2[j]
         j++;
         k++;
-        // 错误
-      // if (j === arr2.length) {
-      //   arr3[k] = arr1[i]
-      // } else {
-      //   arr3[k] = arr2[j]
-      //   j++;
-      //   k++;
-      // }
-     
     }
   }
   return arr3
@@ -43,7 +34,7 @@ function Merge_sort(arr) {
   let mid =Math.floor( arr.length / 2); // 取中间值
   let left = arr.slice(0, mid)  // 对半分数组， 左边的数组
   let right = arr.slice(mid) // 右边的数组
-  return Merge(Merge_sort(left), Merge_sort(right))
+  return Merge(Merge_sort(left), Merge_sort(right)) // 会先执行Merge_sort直到让数组变成有序数组，然后再调用二路归并子算法
 }
 
 
