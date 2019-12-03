@@ -4,7 +4,11 @@
 标准盒模型： 宽高 等于 内容的宽高
 IE盒模型： 宽高 等于 内容的宽高 + 填充 + 边框
 
-- img 是行内块级元素  padding 和 margin属性 top buttom 失效，但是left,right依然有效
+-  块级元素:默认独自占据一行，左右两边都没有元素；可以设置宽高，在不设置宽度的情况下，默认为父元素的宽度一致。 常见的块级元素：<h1></h1>; <p></p>; <div></div>等等。
+- 行内元素：左右两边都可以有元素，和其他元素在一行上；不可以设置宽高，其宽度就是内容的宽度。对margin仅设置左右方向有效，上下无效；padding设置上下左右都有效，但是padding上下对其他元素无影响。<span></span>; <a></a>; <img></img>
+- 替换元素：替换元素是浏览器根据元素的标签和属性，来决定元素的具体显示内容。<img>、<input>标签，<textarea>
+- 非替换元素：将内容直接告诉浏览器，将其显示出来<p>标签
+- img 是行内块级元素是替换元素  padding 和 margin属性 top buttom 失效，但是left,right依然有效
 
 - CSS如何设置这两种模型（通过css3的box-sizing属性）
 -   /* 标准模型 */  box-sizing:content-box;
@@ -30,14 +34,14 @@ IE盒模型： 宽高 等于 内容的宽高 + 填充 + 边框
 - 怎么取创建bfc
 1. float属性不为none（脱离文档流）
 2. position为absolute或fixed
-3. display为inline-block（脱离文档流）,table-caption，flex, table-cell
-4. overflow不为visible, 
+3. display为inline-block（脱离文档流）,table-caption，flex（容器内的所有项目都为行内块级元素）, table-cell
+4. overflow不为visible（可见）, 
 
 - 应用场景
-1. 自适应两栏布局
+1. 自适应两栏布局（float left + overflow hiddin）
 - 什么是自适应两栏布局
 　　当我们调整浏览器的宽度时，我们希望其中的一个比较重要的分栏保持不变；而另一个分栏能随着浏览器宽度的变化自动的调节自己的宽度，而其内容自动的换行，      不  会出现横向的滚动条或浏览器遮挡内容的情况。
 
-2. 清除内部浮动 
-3. 防止垂直margin重叠
+2. 清除内部浮动 （给浮动元素的相邻元素升级为BFC容器）
+3. 防止垂直margin重叠 （让其中一个元素变为BFC容器）
 

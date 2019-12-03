@@ -1,3 +1,7 @@
+数组的操作，
+会改变原数组：pop,shift,push,unshift,sort,reverse,splice,forEach
+不会改变原数组：concat,slice,join,toString,filter,map,reduce
+
 数组的常见的方法： 
 - push() 从后面添加元素，返回值为添加完后的数组的长度  pop() 从后面删除元素，只能是一个，返回值是删除的元素
 - shift() 从前面删除元素，只能删除一个 返回值是删除的元素  unshift()  从前面添加元素, 返回值是添加完后的数组的长度

@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Promise</title>
 </head>
+
 <body>
   <script>
     let xq = function () {
@@ -27,8 +28,8 @@
       })
     }
 
-    function sw() {
-      console.log('上一层resolve传下来的参数2', ...arguments)
+    function sw(args) {
+      console.log('上一层resolve传下来的参数2',args )
       console.log('猛哥当爸爸了！')
     }
 

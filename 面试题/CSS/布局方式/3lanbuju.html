@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>三栏中间自适应布局</title>
+  <style>
+  #left-right-center {
+    /* display: flex; */
+    display: grid;
+    /* grid-template-columns 设置列宽*/
+    grid-template-columns: 300px auto 300px; 
+    /* grid-template-rows 设置行高  */
+    grid-template-rows: 600px; 
+  }
+  .left {
+    /* width: 300px; */
+    background: red;
+  }
+  .center {
+    background: yellow;
+    /* flex: 1; */
+    /* flex-basis: 0%;
+    flex-grow: 1;
+    flex-shrink: 1; */
+  }
+  .right {
+    /* width: 300px; */
+    background: blue;
+  }
+  </style>
+</head>
+<body>
+  <div id="left-right-center">
+    <div class="left"></div>
+    <div class="center">
+        <h2>这是解决方案</h2>
+        1.这是三栏布局的解决方案； 2.这是三栏布局的解决方案； 3.这是三栏布局的解决方案； 4.这是三栏布局的解决方案； 5.这是三栏布局的解决方案； 6.这是三栏布局的解决方案；
+      </div>
+    <div class="right"></div>
+  </div>
+</body>
+</html>

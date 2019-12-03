@@ -1,7 +1,7 @@
 // rem单位所代表的尺寸大小和屏幕宽度成正比
 // 首先，设置rem单位所代表的尺寸大小和屏幕宽度成正比，有3中方案,先不必纠结其中的数值：
 
-// 媒体查询, 设定每种屏幕对应的font-size 1
+// 媒体查询, 设定每种屏幕对应的font-size    1
 
 @media screen and (min-width:240px) {
     html, body, button, input, select, textarea {
@@ -25,12 +25,12 @@
 	}
 }
 
-// js设置html的font-size大小 2
+// js设置html的font-size大小    2
 
 document.documentElement.style.fontSize = document.documentElement.clientWidth / 750 + 'px';
 
 
-// 使用vw设置，vw也是一个相对单位，100vw等于屏幕宽度 3
+// 使用vw设置，vw也是一个相对单位，100vw等于屏幕宽度   3
 
 html{
     font-size: 10vw;
