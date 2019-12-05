@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<script>
+function selectAllNullorReserve(obj,type){
+   if(obj!=null&&obj!=""){
+    if(document.getElementsByName(obj)!=undefined&&document.getElementsByName(obj).length>0){	//getElementsByName函数的作用按名字查找对象，返回一个数组。
+     var userids = document.getElementsByName(obj);
+     if(type=="全选"){
+      for(var i=0;i<userids.length;i++){
+       if(userids[i].checked == false){
+        userids[i].checked = true;
+       }
+      }
+     }else if(type=="全不选"){
+      for(var i=0;i<userids.length;i++){
+       if(userids[i].checked == true){
+        userids[i].checked = false;
+       }
+      }
+     }else if(type=="反选"){
+      for(var i=0;i<userids.length;i++){
+       if(userids[i].checked == true){
+        userids[i].checked = false;
+       }else{
+        userids[i].checked = true;
+       }
+      }
+     }
+    }
+   }  
+}
+</script>
+ 
+<body>
+<form>
+<input name="userid" type="checkbox" value="1" />
+    <input name="userid" type="checkbox" value="2" />
+    <input name="userid" type="checkbox" value="3" />
+    <input name="userid" type="checkbox" value="4" />
+    <input name="userid" type="checkbox" value="5" />
+    <input name="userid" type="checkbox" value="6" />
+    <br />
+    <input type="button" value="全选" οnclick="selectAllNullorReserve('userid','全选');" />
+<br />
+    <input type="button" value="全不选" οnclick="selectAllNullorReserve('userid','全不选');" />
+    <br />
+    <input type="button" value="反选" οnclick="selectAllNullorReserve('userid','反选');" />
+</form>
+</body>
+</html>

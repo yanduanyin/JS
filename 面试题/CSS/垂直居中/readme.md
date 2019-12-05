@@ -3,7 +3,7 @@
 - 行内元素的居中属性  
   1.  text-align: center
   2.  vertical-align: middle;
-
+  3. td 标签默认情况下就默认设置了 vertical-align 为 middle, 在 chrome、firefox 及 IE8 以上的浏览器下可以设置块级元素的 display 为 table-cell（设置为表格单元显示），激活 vertical-align 属性
 - 行内元素  垂直属性vertical-align：middle/top/bottom
 前提：1.给父元素设置行高 line-height
       2.子元素本身必须为行内块元素，若不是则必须设置display:inline-block;或dispaly:inline;vertical-align:不可继承。
