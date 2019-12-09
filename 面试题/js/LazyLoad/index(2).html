@@ -37,7 +37,7 @@
     data-original="http://img3.xiazaizhijia.com/walls/20160927/1440x900_dec5fdacc3059ca.jpg" />
 
   <script>
-    var viewHeight = document.documentElement.clientHeight
+    var viewHeight = document.documentElement.clientHeight || window.innerHeight
     // console.log(viewHeight, '++++++++++');
     
     function lazyload() {
@@ -48,14 +48,14 @@
         
         if (!item.dataset.original) return;
             // 监控pc 端滚轮滑动
-    //getBoundingClientRect()   这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离。
-    // 
-    // var box=document.getElementById('box');         // 获取元素
-    // alert(box.getBoundingClientRect().top);         // 元素上边距离页面上边的距离
-    // alert(box.getBoundingClientRect().right);       // 元素右边距离页面左边的距离
-    // alert(box.getBoundingClientRect().bottom);      // 元素下边距离页面上边的距离
-    // alert(box.getBoundingClientRect().left);        // 元素左边距离页面左边的距离
-    // 给每个需要懒加载的图片添加事件，如果原生上边距离页面上面距离小于页面高度，也就是在可视区域里，就立即执行给图片src属性。
+            //getBoundingClientRect()   这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离。
+            // 
+            // var box=document.getElementById('box');         // 获取元素
+            // alert(box.getBoundingClientRect().top);         // 元素上边距离页面上边的距离
+            // alert(box.getBoundingClientRect().right);       // 元素右边距离页面左边的距离
+            // alert(box.getBoundingClientRect().bottom);      // 元素下边距离页面上边的距离
+            // alert(box.getBoundingClientRect().left);        // 元素左边距离页面左边的距离
+            // 给每个需要懒加载的图片添加事件，如果原生上边距离页面上面距离小于页面高度，也就是在可视区域里，就立即执行给图片src属性。
         rect = item.getBoundingClientRect()
         if (rect.bottom >= 0 && rect.top < viewHeight) {
           !function(){

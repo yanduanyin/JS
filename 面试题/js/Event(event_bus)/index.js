@@ -1,3 +1,60 @@
+
+// node中的Events模块就是通过观察者模式来实现的：
+// var events=require('events');
+// var eventEmitter=new events.EventEmitter();
+// eventEmitter.on('say',function(name){
+// console.log('Hello',name);
+// })
+// eventEmitter.emit('say','Jony yu');
+
+
+// 实现一个 简单的 EventEmeitter  第一种
+
+function Events(){
+  this.on=function(eventName,callBack){
+    if(!this.handles){
+      this.handles={};
+    }
+    if(!this.handles[eventName]){
+      this.handles[eventName]=[];
+    }
+    this.handles[eventName].push(callBack);
+  }
+  this.emit=function(eventName,obj){
+    if(this.handles[eventName]){
+      for(var i=0;o<this.handles[eventName].length;i++){
+        this.handles[eventName][i](obj);
+      }
+    }
+  }
+    return this;
+}
+  // 这样我们就定义了Events，现在我们可以开始来调用：
+
+var events=new Events();
+events.on('say',function(name){
+  console.log('Hello',nama)
+});
+events.emit('say','Jony yu');
+//结果就是通过emit调用之后，输出了Jony yu
+// (2)每个对象是独立的
+// 因为是通过new的方式，每次生成的对象都是不相同的，因此：
+var event1=new Events();
+var event2=new Events();
+event1.on('say',function(){
+  console.log('Jony event1');
+});
+event2.on('say',function(){
+  console.log('Jony event2');
+})
+event1.emit('say');
+event2.emit('say');
+//event1、event2之间的事件监听互相不影响
+//输出结果为'Jony event1' 'Jony event2'
+
+
+
+// 实现版本二，比较难理解但是好
 class EventEmeitter {
   constructor() {
     // 我们选择了Map作为储存事件的结构,因为作为键值对的储存方式Map比一般对象
@@ -86,7 +143,6 @@ emitter.addListener('arson', man => {
 emitter.addListener('arson', man => {
   console.log(`save ${man}`);
 });
-
 emitter.addListener('arson', man => {
   console.log(`kill ${man}`);
 });

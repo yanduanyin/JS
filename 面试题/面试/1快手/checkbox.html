@@ -1,54 +1,149 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- 原生js实现 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		table tr{
+			height: 30px;
+			line-height: 30px;
+		}
+		table tr td{
+			width: 80px;
+		}
+	</style>
 </head>
-<script>
-function selectAllNullorReserve(obj,type){
-   if(obj!=null&&obj!=""){
-    if(document.getElementsByName(obj)!=undefined&&document.getElementsByName(obj).length>0){	//getElementsByName函数的作用按名字查找对象，返回一个数组。
-     var userids = document.getElementsByName(obj);
-     if(type=="全选"){
-      for(var i=0;i<userids.length;i++){
-       if(userids[i].checked == false){
-        userids[i].checked = true;
-       }
-      }
-     }else if(type=="全不选"){
-      for(var i=0;i<userids.length;i++){
-       if(userids[i].checked == true){
-        userids[i].checked = false;
-       }
-      }
-     }else if(type=="反选"){
-      for(var i=0;i<userids.length;i++){
-       if(userids[i].checked == true){
-        userids[i].checked = false;
-       }else{
-        userids[i].checked = true;
-       }
-      }
-     }
-    }
-   }  
-}
-</script>
- 
 <body>
-<form>
-<input name="userid" type="checkbox" value="1" />
-    <input name="userid" type="checkbox" value="2" />
-    <input name="userid" type="checkbox" value="3" />
-    <input name="userid" type="checkbox" value="4" />
-    <input name="userid" type="checkbox" value="5" />
-    <input name="userid" type="checkbox" value="6" />
-    <br />
-    <input type="button" value="全选" οnclick="selectAllNullorReserve('userid','全选');" />
-<br />
-    <input type="button" value="全不选" οnclick="selectAllNullorReserve('userid','全不选');" />
-    <br />
-    <input type="button" value="反选" οnclick="selectAllNullorReserve('userid','反选');" />
-</form>
+	<table>
+		<tr>
+			<td><input type="checkbox" onclick="checkAll(this)">全选</td>
+			<td>姓名</td>
+			<td>年龄</td>
+			<td>职业</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" onclick="checkOne()"></td>
+			<td>小明</td>
+			<td>18</td>
+			<td>学生</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" onclick="checkOne()"></td>
+			<td>小黄</td>
+			<td>25</td>
+			<td>医生</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" onclick="checkOne()"></td>
+			<td>小蓝</td>
+			<td>28</td>
+			<td>律师</td>
+		</tr>
+	</table>
+	<script>
+		function checkAll(obj){
+            console.log(obj);
+            
+			var lis=document.querySelectorAll("td input");
+			//遍历所有子选项将状态和全选状态保持一致
+			for(var i=1;i<lis.length;i++){
+				lis[i].checked=obj.checked;
+			}
+		}
+		function checkOne(){
+			var num=0;
+			var lis=document.querySelectorAll("td input");
+			//遍历子选项中选中的个数，如果全选中，就将全选的状态设置为true，有一个未选中全选的状态就为false
+			for(var i=1;i<lis.length;i++){
+				if(lis[i].checked){
+					num++;
+				}
+			}
+			if(num==lis.length-1){
+				lis[0].checked=true;
+			}else{
+				lis[0].checked=false;
+			}
+		}
+	</script>
+</body>
+</html> -->
+
+
+ <!-- VUE 实现 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		table tr{
+			height: 30px;
+			line-height: 30px;
+		}
+		table tr td{
+			width: 80px;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+<table>
+	<tr>
+		<td><input type="checkbox" @click="checkAll()" :checked="checkedBox.length===person.length"></td>
+		<td>姓名</td>
+		<td>年龄</td>
+		<td>职位</td>
+	</tr>
+	<tr v-if="person.length>0" v-for="(item,index) in person" :key="index">
+		<td><input type="checkbox" :checked="checkedBox.indexOf(item.id)>=0" @click=checkOne(item.id)></td>
+		<td>{{item.name}}</td>
+		<td>{{item.age}}</td>
+		<td>{{item.position}}</td>
+	</tr>
+	<tr v-if="person.length === 0">
+        <td colspan="4">暂无数据</td>
+    </tr>
+</table>
+</div>
+<script>
+//解决思路：操作数组，把所有子选项选中的放到一个数组里面，如果数组的长度等于数据长度，全选状态为true，如果数组中有选中的子选项时，再点击的时候就需要去掉。全部不选中的状态要把数组清空。
+new Vue({
+	el:'#app',
+	data:{
+		person:[
+			{id:'1',name:'小明',age:'19',position:'student'},
+			{id:'2',name:'小黄',age:'20',position:'teacher'},
+			{id:'3',name:'小蓝',age:'18',position:'student'}
+		],
+		isCheckedAll:false,
+		checkedBox:[] // 存储 选中状态的单选框的id
+	},
+	methods:{
+		checkAll() {
+			this.isCheckedAll=!this.isCheckedAll;
+			if(this.isCheckedAll){
+				this.checkedBox=[];
+				for(var i=0;i<this.person.length;i++){
+					this.checkedBox.push(this.person[i].id);
+				}
+				console.log(this.checkedBox);
+			}else{
+				this.checkedBox=[];
+			}
+		},
+		checkOne(id) {
+			var idIndex=this.checkedBox.indexOf(id);
+			if(idIndex>=0){
+				this.checkedBox.splice(idIndex,1);
+			}else{
+				this.checkedBox.push(id);
+			}
+		}
+	}
+})
+</script>
 </body>
 </html>

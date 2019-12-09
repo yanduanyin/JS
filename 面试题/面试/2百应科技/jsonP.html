@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jsonp实现原理（前端视角）</title>
+</head>
+<body>
+  <script>
+    // 1. 前端定义好方法
+    function cb(data) {
+      console.log(data);      
+    }  
+
+  </script>
+  <!-- 2. 请求后端,传入前端定义好的方法 -->
+  <script src="/api/abc?callback=cb"></script>
+  <!-- /api/abc?callback=cb
+    callback = cb
+  -->
+  <!-- 
+    后端拿到 cb()方法  当作js执行
+    cb([{name: '123'}])
+   -->
+   
+   
+</body>
+</html>

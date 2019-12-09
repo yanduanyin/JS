@@ -40,5 +40,5 @@ Grid布局，是一个基于网格的二维布局系统，目的是用来优化�
   4. 利用position 定位
 - 两列等高布局
 解决方案：
-  1. 利用padding-bottom的正值与margin-top的负值相互抵消即可，同时最外层设置overflow:hidden;
+  1. 利用padding-bottom的正值与margin-bottom的负值相互抵消即可，同时最外层设置overflow:hidden;
   2. flex 父容器为flex box 里面的项目会自调整高度，等高等宽

@@ -50,5 +50,37 @@ foo('我是传进去的实参')
 
 // new > apply/bind/call
 
+// 如何实现一个私有变量，用getName方法可以访问，不能直接访问
+// 1 使用defineProperty监听对象的属性，并且配置为不可枚举不可配置
+obj = {
+  name: 'ziyin',
+  getName:function () {
+    return this.name
+  }
+}
+
+Object.defineProperty(obj, 'name', {
+  //不可枚举不可配置
+})
+console.log(obj.name);
+console.log(obj.getName());
+
+// 2 
+function product() {
+  name: 'ziyin',
+  this.getName = function () {
+    return name
+  }
+}
+
+var obj = new product()
+// console.log(obj.name);
+console.log(obj.getName());
+
+
+
+
+
+
 
 

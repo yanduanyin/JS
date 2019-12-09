@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>双向数据流 数组 的 劫持重写</title>
+</head>
+<body>
+  <script>
+    var a = [1, 2, 3]
+    // a[1] = 10 vue 2.0 没办法做到的，数组索引改变值，
+    a.push(4);
+    //1.  保存一下原来的push
+    var oldPush = Array.prototype.push;
+    // 2. 改写数组的push方法
+    Array.prototype.push = function () {
+      // 
+      console.log('array change ');
+      // 3 恢复
+      oldPush();
+    }
+    // Proxy();
+  </script>
+</body>
+</html>

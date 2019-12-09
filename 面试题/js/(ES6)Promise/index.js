@@ -19,47 +19,53 @@
                           //   如果有一个 Promise 任务 rejected，则只返回 rejected 任务的结果。
 // Promise 对象存在以下三种状态：
 
-// Pending(进行中)
-
+// 定义Promise的三种状态常量
+//  Pending(进行中)
 // Fulfilled(已成功)
-
 // Rejected(已失败)
 
-
-// 定义Promise的三种状态常量
-const PENDING = 'PENDING'
-const FULFILLED = 'FULFILLED'
-const REJECTED = 'REJECTED'
-
-class MyPromise {
-  constructor(handle) {
-    if (!isFunction(handle)) {
-      throw new Error('MyPromise must accept a function as a parameter')
+// 1.v1.0 初始版本myPromise
+// （3）"value"是promise状态成功时的值
+// "reason"是promise状态失败时的值
+function myPromise(constructor){
+    let self=this;
+    self.status="pending" //定义状态改变前的初始状态
+    self.value=undefined;//定义状态为resolved的时候的状态
+    self.reason=undefined;//定义状态为rejected的时候的状态
+    function resolve(value){
+        //两个==="pending"，保证了状态的改变是不可逆的
+       if(self.status==="pending"){
+          self.value=value;
+          self.status="resolved";
+       }
     }
-    this._status = PENDING   // 添加状态
-    this.value = undefined // 添加状态
-
-    // 执行handle
-    try {
-      handle(this._resolve.bind(this), this._reject.bind(this))
-    } catch (err) {
-      this._reject(err)
+    function reject(reason){
+        //两个==="pending"，保证了状态的改变是不可逆的
+       if(self.status==="pending"){
+          self.reason=reason;
+          self.status="rejected";
+       }
     }
-  }
-  // 添加resovle时执行的函数
-  _resolve (val) {
-    if (this._status !== PENDING) return
-    this._status = FULFILLED
-    this._value = val
-  }
-  // 添加reject时执行的函数
-  _reject (err) {
-    if (this._status !== PENDING) return
-    this._status = REJECTED
-    this._value = err
-  }
-  // Promise 对象的 then 方法接受两个参数：
-  // promise.then(onFulfilled, onRejected)
-  
-
+    //捕获构造异常
+    try{
+       constructor(resolve,reject);
+    }catch(e){
+       reject(e);
+    }
 }
+// 同时，需要在myPromise的原型上定义链式调用的then方法：
+// Promise 对象的 then 方法接受两个参数：// promise.then(onFulfilled, onRejected)
+myPromise.prototype.then=function(onFullfilled,onRejected){
+   let self=this;
+   switch(self.status){
+      case "resolved":
+        onFullfilled(self.value);
+        break;
+      case "rejected":
+        onRejected(self.reason);
+        break;
+      default:       
+   }
+}
+// 上述就是一个初始版本的myPromise，在myPromise里发生状态改变，然后在相应的then方法里面根据不同的状态可以执行不同的操作
+
