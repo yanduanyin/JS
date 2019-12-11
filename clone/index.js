@@ -5,8 +5,8 @@
 //     price: '45'
 //   }
 // }
-// let b = a
-// // console.log(b)
+// let b = a // 浅拷贝
+// console.log(b)
 
 // a.name = '班族';
 // a.book.price = '55'
@@ -23,7 +23,7 @@
 // }
 
 // let b = {...a}
-// let b = Object.assign({}, a)
+// // let b = Object.assign({}, a) // 对象的解构 和 Object.assign 会让对象变成简单数据类型深拷贝， 复杂数据类型浅拷贝
 // console.log(b)
 
 // a.name = '班族'
