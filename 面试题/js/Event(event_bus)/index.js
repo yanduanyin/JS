@@ -22,7 +22,7 @@ function Events(){
   }
   this.emit=function(eventName,obj){
     if(this.handles[eventName]){
-      for(var i=0;o<this.handles[eventName].length;i++){
+      for(var i=0;i<this.handles[eventName].length;i++){
         this.handles[eventName][i](obj);
       }
     }
