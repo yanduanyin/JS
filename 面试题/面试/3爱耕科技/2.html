@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>编程题</title>
+</head>
+<!-- // 请用js实现下列逻辑，要求：
+// 1）不断两两移除重复的字母
+// 2）重复字符必须同时包含大小写字母
+// 3）请考虑时间复杂度和空间复杂度
+// 例子：
+// 输入: abCcBk
+// 其中：Bb bB 是需要移除的 而 BB 和 bb 不需要移除
+// 第一次移除 Cc
+// 得到 abBk
+// 第二次移除 bB
+// 最后得到 ak -->
+<body>
+  <span>输入框：</span>
+  <input type="text" id="input" placeholder="请在此输入值abCcBk">
+  <input type="submit" value="开始移除" onclick="remove()">
+  <script>
+  function remove() {
+    let inputValue = document.getElementById('input').value
+    // console.log(inputValue);
+    // [a, b, C, c, B, k]
+    var strArr = inputValue.split('')
+    // console.log(tarArr);
+    var newArr =[]
+    for (let i = 0; i < strArr.length; i++) {
+     const len = newArr.length
+     // 思路 边想边写的代码 使用压栈出栈的思想实现。
+    //  if (!len) {
+    //   newArr.push(strArr[i])
+    //  } else {
+    //    if (newArr[len - 1].toLowerCase() == strArr[i] || newArr[len - 1].toUpperCase() == strArr[i]) {
+    //      newArr.pop()
+    //    } else {
+    //      newArr.push(strArr[i])
+    //    }
+    //  }
+    // 优化代码后
+    let char1 = newArr[len - 1] && newArr[len - 1].toLowerCase();
+      if (char1 && char1 == strArr[i].toLowerCase()) newArr.pop()
+      else newArr.push(strArr[i])
+    }
+    // 让处理好的数组回到输入框中
+    document.getElementById('input').value = newArr.join('')
+  }
+  </script>
+</body>
+</html>
+

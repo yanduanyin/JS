@@ -1,0 +1,15 @@
+{
+  "name": "browser-composite-laver",
+  "version": "1.0.0",
+  "description": "响应头 cache-control expires\r - http1.1 cache-control：相对的  相对于当前时间加一段时间",
+  "main": "cache.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "md5": "^2.2.1"
+  }
+}
