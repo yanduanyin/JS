@@ -8,7 +8,7 @@
       <div class="listRt-wrapper" ref="nameWrapper">
         <div class="listRt-box" :data-letter="Bitem.bigLetter" v-for="(Bitem, index) in asideList" :key="index" ref="nameList">
           <h4 class="listRtHitem">{{Bitem.bigLetter}}</h4>
-          <p :class="['listRt-container'. Bitem.brand_id]" v-for="(items, index) in Bitem.child" :key="index">
+          <p :class="['listRt-container', items.brand_id]" v-for="(items, index) in Bitem.child" :key="index">
             <img :src="items.imgSrc" alt="" srcset="" class="pic">
             <span class="listRt-item">{{items.text}}</span>
           </p>
@@ -47,8 +47,11 @@ export default {
     aSideListShow () {
       this.$http.get('http://localhost:8080/static/Data/auto/asideData.json')
         .then(res => {
-          console.log('asideData:', res.data)
+          // console.log('asideData:', res.data)
           this.asideList = res.data 
+          this.$nextTick(() => { // 页面渲染完成才会执行
+            this._calculateHeight()
+          })
         })
         .catch((err)=>{
           console.log('err:请求数据失败！');
@@ -63,23 +66,24 @@ export default {
     // alert(box.getBoundingClientRect().bottom);      // 元素下边距离页面上边的距离
     // alert(box.getBoundingClientRect().left);        // 元素左边距离页面左边的距离
     handleScroll () {
-     //  console.log('滚动了一次')
+      // console.log('滚动了一次')
      let nameWrapper = this.$refs.nameWrapper
-      // console.log(nameWrapper.getBoundingClientRect().top)
+      console.log(nameWrapper.getBoundingClientRect().top)
       this.scrollTop = nameWrapper.getBoundingClientRect().top
       if (this.scrollTop >= 0) {
         this.scrollY = 80 - this.scrollTop
       } else if (this.scrollTop < 0) {
         this.scrollY = Math.abs(this.scrollTop) + 80
       }
+      //  nameList.style.top =(-this.scrollY)+'px'
       // console.log('滚动了:',this.scrollY) 
     },
     clickColor(index, event) {
       console.log(index, event)
       let el = this.$refs.nameWrapper
-      // console.log(el)
+      console.log(el)
       this.scrollY = this.listHeight[index]
-      // console.log(this.listHeight[index])
+      console.log(this.scrollY)
       el.style.top =(-this.scrollY)+'px'
     },
     _calculateHeight () {
@@ -94,7 +98,7 @@ export default {
         // console.log(Height, '----')
         this.listHeight.push(Height)
       }
-      console.log(this.listHeight)
+      // console.log(this.listHeight)
     }
     }
 }
@@ -103,6 +107,7 @@ export default {
 <style lang="stylus" scoped>
 .container
   position: sticky;
+  // position absolute
   top: 0;
   display: inline-block;
   width: 270px;
@@ -131,6 +136,8 @@ export default {
         // transition: background 0.3s ease-in-out;
         cursor: pointer
   .listRt
+    position relative
+    // position absolute
     height: 722px
     overflow-x: hidden
     overflow-y: auto
@@ -140,9 +147,8 @@ export default {
     border-left: 0
     box-sizing: border-box
     .listRt-wrapper
-      box-sizing: border-box
+      position absolute
       .listRt-box
-        box-sizing: border-box
         .listRtHitem
           position: sticky
           top: 0

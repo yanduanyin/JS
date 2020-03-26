@@ -193,7 +193,7 @@ export default {
       float right
       // transform translateZ(0px)
       margin 12px 0px
-      &::-webkit-scrollbar
+      &::-webkit-scrollbar // 设置滚轮消失的效果
         display: none
       .listRt-wrapper
         position absolute

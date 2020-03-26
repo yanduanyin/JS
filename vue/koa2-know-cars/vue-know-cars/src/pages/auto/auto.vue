@@ -12,5 +12,7 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-
+#home_page
+  width: 1190px
+  margin: 11px auto 0
 </style>
