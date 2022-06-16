@@ -3,7 +3,6 @@ function curry(fn, len = fn.length) {
     // this  
     return _curry.call(this, fn, len)
 }
-
 function _curry(fn, len, ...args) {
     //typeof  function
     return function(...params) {
@@ -12,17 +11,16 @@ function _curry(fn, len, ...args) {
         // 如果没到数量，返回函数，到了，执行代码
         console.log(...args,'-------------');
         console.log(...params,'+++++++++++++');
-        // console.log(len, '///////////');
+        console.log(len, '///////////');
         let _args = [...args, ...params]; 
         if(_args.length >= len) {
             return fn.apply(this, _args)
         }else {
-            // console.log(..._args)
+            console.log(..._args)
             return _curry.call(this, fn, len, ..._args) 
         } 
     }
 }
-
 let _fn = curry(function(a,b,c,d,e){
     console.log(a, b, c, d, e);
 })

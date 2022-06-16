@@ -24,7 +24,7 @@
   </script>
   <!-- getBook([{}, {}]) -->
   <!-- getBook([{"book":"book2"}]) -->
-  <script src="http://localhost:3002/api/books?callback=getBook"></script>
+  <!-- <script src="http://localhost:3002/api/books?callback=getBook"></script> -->
   <!-- 
   封装一个 jsonP 
     jsonP({
@@ -38,7 +38,7 @@
   function jsonP(option) {
     const { url, callback } = option;
     return new Promise((resolve, reject) => {
-      let methodName = 'abcdef';
+      let methodName = 'getBook';
       window[methodName] = function(data) {
         resolve(data);
         delete window[methodName];
