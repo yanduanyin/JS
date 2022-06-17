@@ -1,0 +1,18 @@
+npm-cli-package{
+  "name": "npm-cli-package-ydy",
+  "version": "1.0.0",
+  "description": "NPM CLI 工具的发布和使用",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "npm",
+    "cli"
+  ],
+  "bin": {
+    "npm-cli-package": "src/index.js"
+  },
+  "author": "ziyin",
+  "license": "ISC"
+}
